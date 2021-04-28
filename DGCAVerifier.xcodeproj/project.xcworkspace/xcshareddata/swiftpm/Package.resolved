@@ -11,6 +11,15 @@
         }
       },
       {
+        "package": "SwiftDGC",
+        "repositoryURL": "https://github.com/eu-digital-green-certificates/dgca-app-core-ios",
+        "state": {
+          "branch": "main",
+          "revision": "4fc47dc9978d1742eaf5ec653502c57a644e7f8e",
+          "version": null
+        }
+      },
+      {
         "package": "FloatingPanel",
         "repositoryURL": "https://github.com/SCENEE/FloatingPanel",
         "state": {
