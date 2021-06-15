@@ -63,6 +63,21 @@
 		9F90C5A7265E591E00B2F992 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F90C590265E591D00B2F992 /* Roboto-Thin.ttf */; };
 		9F90C5A8265E591E00B2F992 /* TitilliumWeb-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F90C591265E591D00B2F992 /* TitilliumWeb-Light.ttf */; };
 		9F90C5A9265E591E00B2F992 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F90C592265E591D00B2F992 /* Roboto-Black.ttf */; };
+		9FA948582677877A0066C272 /* CacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA948552677874E0066C272 /* CacheTests.swift */; };
+		9FA9485B26778D990066C272 /* ObservableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA9485A26778D990066C272 /* ObservableTests.swift */; };
+		9FA9486526779EC00066C272 /* CameraViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA9485C2677983F0066C272 /* CameraViewControllerTests.swift */; };
+		9FA9486A26779F5E0066C272 /* HomeViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA9486826779F5E0066C272 /* HomeViewControllerTests.swift */; };
+		9FA9486B26779F5E0066C272 /* VerificationViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA9486926779F5E0066C272 /* VerificationViewControllerTests.swift */; };
+		9FA9486D2677A0EA0066C272 /* UIViewController+AlertTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA9486C2677A0EA0066C272 /* UIViewController+AlertTests.swift */; };
+		9FA9487A2677A21F0066C272 /* UIAlertController+TestAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA948722677A21E0066C272 /* UIAlertController+TestAdditions.swift */; };
+		9FA9487B2677A21F0066C272 /* String+TestAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA948732677A21E0066C272 /* String+TestAdditions.swift */; };
+		9FA9487C2677A21F0066C272 /* UIControl+TestAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA948742677A21E0066C272 /* UIControl+TestAdditions.swift */; };
+		9FA9487D2677A21F0066C272 /* UIView+TestAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA948752677A21E0066C272 /* UIView+TestAdditions.swift */; };
+		9FA9487F2677A21F0066C272 /* TestsHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA948772677A21E0066C272 /* TestsHelpers.swift */; };
+		9FA948802677A21F0066C272 /* XCTestCase+TestAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA948782677A21F0066C272 /* XCTestCase+TestAdditions.swift */; };
+		9FA948822677A6F20066C272 /* UIViewShadowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA948812677A6F20066C272 /* UIViewShadowTests.swift */; };
+		9FA948842677A86C0066C272 /* ResultViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA948832677A86B0066C272 /* ResultViewTests.swift */; };
+		9FA948862677AEC40066C272 /* MainCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA948852677AEC40066C272 /* MainCoordinatorTests.swift */; };
 		CE13CF00262DCC180070C80E /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = CE13CEFF262DCC180070C80E /* FloatingPanel */; };
 		CE1F155C2639F9E700736D48 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = CE1F155B2639F9E700736D48 /* SwiftyJSON */; };
 		CE56B5052639F48E00FB31B1 /* SwiftDGC in Frameworks */ = {isa = PBXBuildFile; productRef = CE56B5042639F48E00FB31B1 /* SwiftDGC */; };
@@ -148,6 +163,21 @@
 		9F90C592265E591D00B2F992 /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
 		9F90C649265EA59C00B2F992 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		9F90C64A265EA5E500B2F992 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		9FA948552677874E0066C272 /* CacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheTests.swift; sourceTree = "<group>"; };
+		9FA9485A26778D990066C272 /* ObservableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservableTests.swift; sourceTree = "<group>"; };
+		9FA9485C2677983F0066C272 /* CameraViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewControllerTests.swift; sourceTree = "<group>"; };
+		9FA9486826779F5E0066C272 /* HomeViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewControllerTests.swift; sourceTree = "<group>"; };
+		9FA9486926779F5E0066C272 /* VerificationViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerificationViewControllerTests.swift; sourceTree = "<group>"; };
+		9FA9486C2677A0EA0066C272 /* UIViewController+AlertTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+AlertTests.swift"; sourceTree = "<group>"; };
+		9FA948722677A21E0066C272 /* UIAlertController+TestAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+TestAdditions.swift"; sourceTree = "<group>"; };
+		9FA948732677A21E0066C272 /* String+TestAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+TestAdditions.swift"; sourceTree = "<group>"; };
+		9FA948742677A21E0066C272 /* UIControl+TestAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIControl+TestAdditions.swift"; sourceTree = "<group>"; };
+		9FA948752677A21E0066C272 /* UIView+TestAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+TestAdditions.swift"; sourceTree = "<group>"; };
+		9FA948772677A21E0066C272 /* TestsHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsHelpers.swift; sourceTree = "<group>"; };
+		9FA948782677A21F0066C272 /* XCTestCase+TestAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+TestAdditions.swift"; sourceTree = "<group>"; };
+		9FA948812677A6F20066C272 /* UIViewShadowTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewShadowTests.swift; sourceTree = "<group>"; };
+		9FA948832677A86B0066C272 /* ResultViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultViewTests.swift; sourceTree = "<group>"; };
+		9FA948852677AEC40066C272 /* MainCoordinatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCoordinatorTests.swift; sourceTree = "<group>"; };
 		CEA6D6E8261F8D2700715333 /* VerificaC19.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VerificaC19.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEA6D6FE261F8D2900715333 /* VerifierTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VerifierTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEA6D704261F8D2900715333 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -252,6 +282,7 @@
 		9F4F3C392649D60B00F59BA2 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				9FA948542677873E0066C272 /* Tests */,
 				9F315B74264A70E600F07B24 /* Observable */,
 				9F4F3C3A2649D60B00F59BA2 /* UIViewController+Alert.swift */,
 				9F4F3C3B2649D60B00F59BA2 /* UIView+Shadow.swift */,
@@ -326,6 +357,49 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		9FA948542677873E0066C272 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		9FA94859267789540066C272 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				9FA9485A26778D990066C272 /* ObservableTests.swift */,
+				9FA948552677874E0066C272 /* CacheTests.swift */,
+				9FA948812677A6F20066C272 /* UIViewShadowTests.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		9FA9486726779EF30066C272 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9FA948852677AEC40066C272 /* MainCoordinatorTests.swift */,
+				9FA948832677A86B0066C272 /* ResultViewTests.swift */,
+				9FA9486C2677A0EA0066C272 /* UIViewController+AlertTests.swift */,
+				9FA9486826779F5E0066C272 /* HomeViewControllerTests.swift */,
+				9FA9486926779F5E0066C272 /* VerificationViewControllerTests.swift */,
+				9FA9485C2677983F0066C272 /* CameraViewControllerTests.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		9FA9486E2677A1D50066C272 /* TestHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				9FA948732677A21E0066C272 /* String+TestAdditions.swift */,
+				9FA948772677A21E0066C272 /* TestsHelpers.swift */,
+				9FA948722677A21E0066C272 /* UIAlertController+TestAdditions.swift */,
+				9FA948742677A21E0066C272 /* UIControl+TestAdditions.swift */,
+				9FA948752677A21E0066C272 /* UIView+TestAdditions.swift */,
+				9FA948782677A21F0066C272 /* XCTestCase+TestAdditions.swift */,
+			);
+			path = TestHelpers;
+			sourceTree = "<group>";
+		};
 		CE56B5032639F48E00FB31B1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -368,6 +442,9 @@
 		CEA6D701261F8D2900715333 /* VerifierTests */ = {
 			isa = PBXGroup;
 			children = (
+				9FA9486E2677A1D50066C272 /* TestHelpers */,
+				9FA9486726779EF30066C272 /* ViewController */,
+				9FA94859267789540066C272 /* Utils */,
 				CEA6D704261F8D2900715333 /* Info.plist */,
 				6BA8B9DF266EB8E80060D767 /* VaccineValidityCheckTests.swift */,
 				6BA8B9E1266F7E4C0060D767 /* RecoveryValidityCheckTests.swift */,
@@ -606,10 +683,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FA9487B2677A21F0066C272 /* String+TestAdditions.swift in Sources */,
+				9FA9487C2677A21F0066C272 /* UIControl+TestAdditions.swift in Sources */,
 				6BA8B9E82671227C0060D767 /* LocalDataTests.swift in Sources */,
+				9FA9487F2677A21F0066C272 /* TestsHelpers.swift in Sources */,
+				9FA948822677A6F20066C272 /* UIViewShadowTests.swift in Sources */,
+				9FA9486A26779F5E0066C272 /* HomeViewControllerTests.swift in Sources */,
+				9FA9487A2677A21F0066C272 /* UIAlertController+TestAdditions.swift in Sources */,
+				9FA948802677A21F0066C272 /* XCTestCase+TestAdditions.swift in Sources */,
 				6BA8B9E2266F7E4C0060D767 /* RecoveryValidityCheckTests.swift in Sources */,
 				6BA8B9E4266F840B0060D767 /* TestValidityCheckTests.swift in Sources */,
+				9FA9486B26779F5E0066C272 /* VerificationViewControllerTests.swift in Sources */,
+				9FA948582677877A0066C272 /* CacheTests.swift in Sources */,
+				9FA9487D2677A21F0066C272 /* UIView+TestAdditions.swift in Sources */,
+				9FA9486D2677A0EA0066C272 /* UIViewController+AlertTests.swift in Sources */,
+				9FA948862677AEC40066C272 /* MainCoordinatorTests.swift in Sources */,
+				9FA9486526779EC00066C272 /* CameraViewControllerTests.swift in Sources */,
+				9FA9485B26778D990066C272 /* ObservableTests.swift in Sources */,
 				6BA8B9E0266EB8E80060D767 /* VaccineValidityCheckTests.swift in Sources */,
+				9FA948842677A86C0066C272 /* ResultViewTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -774,6 +866,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = NFBYJRA8B5;
@@ -797,6 +890,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = NFBYJRA8B5;
@@ -871,6 +965,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
@@ -883,11 +978,12 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.t-systems.DGCAVerifierUITests.dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = DGCAVerifier;
+				TEST_TARGET_NAME = VerificaC19;
 			};
 			name = Debug;
 		};
@@ -895,6 +991,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
@@ -907,11 +1004,12 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.t-systems.DGCAVerifierUITests.dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = DGCAVerifier;
+				TEST_TARGET_NAME = VerificaC19;
 			};
 			name = Release;
 		};

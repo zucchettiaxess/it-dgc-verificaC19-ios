@@ -40,6 +40,8 @@ class ResultView: UIView {
         subtitleLabel.text = item.subtitle
         if let imageName = item.imageName {
             iconImageView.image = UIImage(named: imageName)
+        } else {
+            iconImageView.image = nil
         }
     }
 }
