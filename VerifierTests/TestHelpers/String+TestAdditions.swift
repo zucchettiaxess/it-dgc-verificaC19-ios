@@ -4,7 +4,8 @@ import UIKit
 
 extension String {
     public func isInDescendantOf(_ view: UIView) -> Bool {
-        return view.findAccessibilityDescendant { $0.accessibilityLabel == self || $0.accessibilityValue == self } != nil
+        return view.findAccessibilityDescendant { (view: UIView) in
+            return ((view as? UITextView)?.text == self || (view as? UILabel)?.text == self) } != nil
     }
     
     public func isAbsentIn(_ view: UIView) -> Bool {

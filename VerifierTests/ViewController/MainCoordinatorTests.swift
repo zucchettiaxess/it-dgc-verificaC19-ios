@@ -38,6 +38,6 @@ class MainCoordinatorTests: XCTestCase {
         waitForCondition { (self.window.rootViewController as! UINavigationController).presentedViewController is VerificationViewController }
         
         coordinator.dismissVerification()
-        waitForCondition { !((self.window.rootViewController as! UINavigationController).presentedViewController is VerificationViewController) }
+        waitForCondition { !((self.window.rootViewController as! UINavigationController).presentedViewController is CameraViewController) }
     }
 }

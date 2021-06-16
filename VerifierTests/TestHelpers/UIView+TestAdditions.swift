@@ -5,18 +5,16 @@ import UIKit
 extension UIView {
     /// Find an object of the generic class for which the test returns true
     /// - Parameter test: Closure that should return true if this is a matching object. Defaults to returning true, so you'd get any object of the generic class.
-    public func findAccessibilityDescendant<T: NSObject>(matching test: (T) -> Bool = { _ in true }) -> T? {
+    public func findAccessibilityDescendant<UITextView>(matching test: (UITextView) -> Bool = { _ in true }) -> UITextView? {
         guard !isHidden else { return nil }
         
-        if let testObject = self as? T, test(testObject) == true {
+        if let testObject = self as? UITextView, test(testObject) == true {
             return testObject
         }
 
-        if let elements = self.accessibilityElements {
-            for element in elements.compactMap({ $0 as? T }) {
-                if test(element) == true {
-                    return element
-                }
+        for subview in subviews.compactMap({ $0 as? UITextView }) {
+            if test(subview) == true {
+                return subview
             }
         }
         

@@ -30,6 +30,23 @@ class TestValidityCheckTests: XCTestCase {
         bodyString = nil
         LocalData.sharedInstance.settings = []
     }
+    
+    func testValidTest() {
+        let testSettingStartDay = Setting(name: "rapid_test_start_hours", type: "GENERIC", value: "0")
+        let testSettingEndDay = Setting(name: "rapid_test_end_hours", type: "GENERIC", value: "1")
+        LocalData.sharedInstance.addOrUpdateSettings(testSettingStartDay)
+        LocalData.sharedInstance.addOrUpdateSettings(testSettingEndDay)
+        let todayDate : Date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        let todayDateFormatted = dateFormatter.string(from: todayDate)
+        bodyString = bodyString.replacingOccurrences(of: "\"sc\": \"2021-05-03T12:27:15+02:00\"", with: "\"sc\": \"\(todayDateFormatted)\"")
+        hcert.body = JSON(parseJSON: bodyString)[ClaimKey.hCert.rawValue][ClaimKey.euDgcV1.rawValue]
+        let isTestValidResult = TestValidityCheck().isTestValid(hcert)
+        
+        XCTAssertEqual(isTestValidResult, .valid)
+    
+    }
 
     func testValidNegativeTest() {
         let isTestNegativeResult = TestValidityCheck().isTestNegative(hcert)
@@ -81,8 +98,13 @@ class TestValidityCheckTests: XCTestCase {
     func testMissingSettingRapidTestDate() {
         hcert.body = JSON(parseJSON: bodyString)[ClaimKey.hCert.rawValue][ClaimKey.euDgcV1.rawValue]
         let isTestDateValidResult = TestValidityCheck().isTestDateValid(hcert)
-
         XCTAssertEqual(isTestDateValidResult, .notValid)
+        
+        let testSettingStartDay = Setting(name: "rapid_test_start_hours", type: "GENERIC", value: "0")
+        LocalData.sharedInstance.addOrUpdateSettings(testSettingStartDay)
+        let isTestDateValidResult2 = TestValidityCheck().isTestDateValid(hcert)
+        XCTAssertEqual(isTestDateValidResult2, .notValid)
+        
     }
 
 }
