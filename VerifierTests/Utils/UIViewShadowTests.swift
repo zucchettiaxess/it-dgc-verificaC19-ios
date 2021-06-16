@@ -2,7 +2,6 @@
 //  UtilsTests.swift
 //  VerificaC19
 //
-//  Created by Alex Paduraru on 14.06.2021.
 //
 
 import XCTest

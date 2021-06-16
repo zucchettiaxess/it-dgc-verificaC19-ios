@@ -58,11 +58,11 @@ extension HCert {
     }
     
     var firstName: String {
-        return self.body["nam"]["gn"].string ?? ""
+        return self.body["nam"]["gn"].stringValue
     }
     
     var lastName: String {
-        return self.body["nam"]["fn"].string ?? ""
+        return self.body["nam"]["fn"].stringValue
     }
 }
 
@@ -71,8 +71,8 @@ class VerificationViewModel {
     var status: Status
     var hCert: HCert?
         
-    init(qrCodeText: String) {
-        hCert = HCert(from: qrCodeText)
+    init(hCert: HCert?) {
+        self.hCert = hCert
         
         if hCert == nil {
             status = .invalidQR
@@ -110,15 +110,12 @@ class VerificationViewModel {
     }
     
     var resultItems: [ResultItem]? {
-        if status == .invalidQR {
+        guard status != .invalidQR, let hCert = hCert else {
             return nil
         }
         
-        let firstName = hCert?.firstName ?? ""
-        let lastName = hCert?.lastName ?? ""
-        
         return [
-            ResultItem(title: lastName + " " + firstName, subtitle: "", imageName: "icon_user"),
+            ResultItem(title: hCert.firstName + " " + hCert.lastName, subtitle: "", imageName: "icon_user"),
             ResultItem(title: "result.bithdate".localized, subtitle: birthDateString, imageName: "icon_calendar")
         ]
     }

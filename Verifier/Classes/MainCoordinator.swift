@@ -23,6 +23,7 @@
 //
 
 import UIKit
+import SwiftDGC
 
 protocol Coordinator: AnyObject {
     var childCoordinators: [Coordinator] { get set }
@@ -55,8 +56,9 @@ extension MainCoordinator: HomeCoordinator {
 
 extension MainCoordinator: CameraCoordinator {
     func showVerificationFor(payloadString: String) {
+        let hCert = HCert(from: payloadString)
         let controller = VerificationViewController(coordinator: self,
-                                                    viewModel: VerificationViewModel(qrCodeText: payloadString))
+                                                    viewModel: VerificationViewModel(hCert: hCert))
         navigationController.present(controller, animated: true)
     }
     func dismissCamera() {

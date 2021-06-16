@@ -78,6 +78,10 @@
 		9FA948822677A6F20066C272 /* UIViewShadowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA948812677A6F20066C272 /* UIViewShadowTests.swift */; };
 		9FA948842677A86C0066C272 /* ResultViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA948832677A86B0066C272 /* ResultViewTests.swift */; };
 		9FA948862677AEC40066C272 /* MainCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA948852677AEC40066C272 /* MainCoordinatorTests.swift */; };
+		9FA948992678BD0C0066C272 /* VerificationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA948982678BD0C0066C272 /* VerificationViewModelTests.swift */; };
+		9FA9489B2678C1950066C272 /* MockGatewayConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA9489A2678C1950066C272 /* MockGatewayConnection.swift */; };
+		9FA9489D2678C2C80066C272 /* MockHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA9489C2678C2C70066C272 /* MockHomeViewModel.swift */; };
+		9FA9489F2678C6E90066C272 /* GatewayConnectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA9489E2678C6E90066C272 /* GatewayConnectionTests.swift */; };
 		CE13CF00262DCC180070C80E /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = CE13CEFF262DCC180070C80E /* FloatingPanel */; };
 		CE1F155C2639F9E700736D48 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = CE1F155B2639F9E700736D48 /* SwiftyJSON */; };
 		CE56B5052639F48E00FB31B1 /* SwiftDGC in Frameworks */ = {isa = PBXBuildFile; productRef = CE56B5042639F48E00FB31B1 /* SwiftDGC */; };
@@ -178,6 +182,10 @@
 		9FA948812677A6F20066C272 /* UIViewShadowTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewShadowTests.swift; sourceTree = "<group>"; };
 		9FA948832677A86B0066C272 /* ResultViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultViewTests.swift; sourceTree = "<group>"; };
 		9FA948852677AEC40066C272 /* MainCoordinatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCoordinatorTests.swift; sourceTree = "<group>"; };
+		9FA948982678BD0C0066C272 /* VerificationViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerificationViewModelTests.swift; sourceTree = "<group>"; };
+		9FA9489A2678C1950066C272 /* MockGatewayConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGatewayConnection.swift; sourceTree = "<group>"; };
+		9FA9489C2678C2C70066C272 /* MockHomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockHomeViewModel.swift; sourceTree = "<group>"; };
+		9FA9489E2678C6E90066C272 /* GatewayConnectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GatewayConnectionTests.swift; sourceTree = "<group>"; };
 		CEA6D6E8261F8D2700715333 /* VerificaC19.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VerificaC19.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEA6D6FE261F8D2900715333 /* VerifierTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VerifierTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEA6D704261F8D2900715333 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -400,6 +408,18 @@
 			path = TestHelpers;
 			sourceTree = "<group>";
 		};
+		9FA948972678BD0C0066C272 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				9FA9489E2678C6E90066C272 /* GatewayConnectionTests.swift */,
+				9FA9489C2678C2C70066C272 /* MockHomeViewModel.swift */,
+				9FA9489A2678C1950066C272 /* MockGatewayConnection.swift */,
+				9FA948982678BD0C0066C272 /* VerificationViewModelTests.swift */,
+			);
+			name = ViewModels;
+			path = VerifierTests/ViewModels;
+			sourceTree = SOURCE_ROOT;
+		};
 		CE56B5032639F48E00FB31B1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -443,6 +463,7 @@
 			isa = PBXGroup;
 			children = (
 				9FA9486E2677A1D50066C272 /* TestHelpers */,
+				9FA948972678BD0C0066C272 /* ViewModels */,
 				9FA9486726779EF30066C272 /* ViewController */,
 				9FA94859267789540066C272 /* Utils */,
 				CEA6D704261F8D2900715333 /* Info.plist */,
@@ -684,6 +705,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FA9487B2677A21F0066C272 /* String+TestAdditions.swift in Sources */,
+				9FA9489F2678C6E90066C272 /* GatewayConnectionTests.swift in Sources */,
 				9FA9487C2677A21F0066C272 /* UIControl+TestAdditions.swift in Sources */,
 				6BA8B9E82671227C0060D767 /* LocalDataTests.swift in Sources */,
 				9FA9487F2677A21F0066C272 /* TestsHelpers.swift in Sources */,
@@ -692,8 +714,10 @@
 				9FA9487A2677A21F0066C272 /* UIAlertController+TestAdditions.swift in Sources */,
 				9FA948802677A21F0066C272 /* XCTestCase+TestAdditions.swift in Sources */,
 				6BA8B9E2266F7E4C0060D767 /* RecoveryValidityCheckTests.swift in Sources */,
+				9FA9489D2678C2C80066C272 /* MockHomeViewModel.swift in Sources */,
 				6BA8B9E4266F840B0060D767 /* TestValidityCheckTests.swift in Sources */,
 				9FA9486B26779F5E0066C272 /* VerificationViewControllerTests.swift in Sources */,
+				9FA9489B2678C1950066C272 /* MockGatewayConnection.swift in Sources */,
 				9FA948582677877A0066C272 /* CacheTests.swift in Sources */,
 				9FA9487D2677A21F0066C272 /* UIView+TestAdditions.swift in Sources */,
 				9FA9486D2677A0EA0066C272 /* UIViewController+AlertTests.swift in Sources */,
@@ -701,6 +725,7 @@
 				9FA9486526779EC00066C272 /* CameraViewControllerTests.swift in Sources */,
 				9FA9485B26778D990066C272 /* ObservableTests.swift in Sources */,
 				6BA8B9E0266EB8E80060D767 /* VaccineValidityCheckTests.swift in Sources */,
+				9FA948992678BD0C0066C272 /* VerificationViewModelTests.swift in Sources */,
 				9FA948842677A86C0066C272 /* ResultViewTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

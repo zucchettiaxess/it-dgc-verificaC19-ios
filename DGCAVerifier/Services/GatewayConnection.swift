@@ -126,7 +126,7 @@ class GatewayConnection {
             }
     }
     
-    func certStatus(resume resumeToken: String? = nil, completion: (([String]) -> Void)?) {
+    func certStatus(resume resumeToken: String? = nil, completion: (([String]?) -> Void)?) {
         AF.request(baseUrl + statusEndpoint).response {
             guard
                 case let .success(result) = $0.result,
@@ -134,6 +134,7 @@ class GatewayConnection {
                 let responseStr = String(data: response, encoding: .utf8),
                 let json = JSON(parseJSON: responseStr).array
             else {
+                completion?(nil)
                 return
             }
             let kids = json.compactMap { $0.string }
@@ -144,14 +145,19 @@ class GatewayConnection {
         }
     }
     
-    func getSettings(completion: (([Setting]) -> Void)?) {
+    func getSettings(completion: (([Setting]?) -> Void)?) {
         AF.request(baseUrl + settingsEndpoint).response {
-            guard let data = $0.data else { return }
+            guard let data = $0.data else {
+                completion?(nil)
+                return
+            }
+            
             do {
                 let decoder = JSONDecoder()
                 let settingsWrapper = try decoder.decode([Setting].self, from: data)
                 completion?(settingsWrapper)
             } catch let error {
+                completion?(nil)
                 print(error)
             }
         }
@@ -185,6 +191,8 @@ class GatewayConnection {
     
     private func status(completion: ((String?, Bool?) -> Void)? = nil) {
         certStatus {  [weak self] validKids in
+            guard let validKids = validKids else { return }
+            
             let invalid = LocalData.sharedInstance.encodedPublicKeys.keys.filter {
                 !validKids.contains($0)
             }
@@ -199,6 +207,8 @@ class GatewayConnection {
     
     private func settings(completion: ((String?, Bool?) -> Void)? = nil) {
         getSettings { settings in
+            guard let settings = settings else { return }
+            
             for setting in settings {
                 LocalData.sharedInstance.addOrUpdateSettings(setting)
             }

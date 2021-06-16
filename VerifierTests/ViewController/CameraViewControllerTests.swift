@@ -2,12 +2,12 @@
 //  CameraViewControllerTests.swift
 //  VerifierTests
 //
-//  Created by Alex Paduraru on 14.06.2021.
 //
 
 import XCTest
 import UIKit
 @testable import VerificaC19
+import AVFoundation
 
 class CameraViewControllerTests: XCTestCase {
     var controller: CameraViewController!
@@ -27,7 +27,7 @@ class CameraViewControllerTests: XCTestCase {
         
     func testInitWithCoder() {
         let archiver = NSKeyedArchiver(requiringSecureCoding: true)
-        let viewController = HomeViewController(coder: archiver)
+        let viewController = CameraViewController(coder: archiver)
         XCTAssertNil(viewController)
     }
     
@@ -35,5 +35,32 @@ class CameraViewControllerTests: XCTestCase {
         window.makeKeyAndVisible()
         
         waitForCondition { self.controller.isViewLoaded }
+    }
+    
+    func testCameraViewController_showPermissionsAlert() throws {
+        window.makeKeyAndVisible()
+        
+        controller.showPermissionsAlert()
+        
+        waitForCondition { "alert.cameraPermissions.title".localized.isInDescendantOf(self.window) }
+    }
+    
+    func testCameraViewController_setupLive() throws {
+        window.makeKeyAndVisible()
+        
+        controller.setupCameraView()
+        
+        waitForCondition { "alert.nocamera.title".localized.isInDescendantOf(self.window) }
+    }
+    
+    func testCameraViewController_checkPermissions() throws {
+        window.makeKeyAndVisible()
+        
+        controller.checkPermissions(status: .authorized)
+        // test passed, nothing should happen
+        
+        controller.checkPermissions(status: .denied)
+        waitForCondition { "alert.cameraPermissions.title".localized.isInDescendantOf(self.window) }
+        
     }
 }

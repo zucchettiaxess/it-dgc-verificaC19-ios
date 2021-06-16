@@ -60,7 +60,7 @@ class CameraViewController: UIViewController {
             self?.found(payload: mockQRCode)
         }
         #else
-        checkPermissions()
+        checkPermissions(status: AVCaptureDevice.authorizationStatus(for: .video))
         setupCameraView()
         #endif
     }
@@ -85,8 +85,8 @@ class CameraViewController: UIViewController {
 
     // MARK: - Permissions
 
-    private func checkPermissions() {
-        switch AVCaptureDevice.authorizationStatus(for: .video) {
+    func checkPermissions(status: AVAuthorizationStatus) {
+        switch status {
         case .notDetermined:
             AVCaptureDevice.requestAccess(for: .video) { [self] granted in
                 if !granted {
@@ -99,14 +99,14 @@ class CameraViewController: UIViewController {
             return
         }
     }
-    private func showPermissionsAlert() {
+    func showPermissionsAlert() {
         self.showAlert(withTitle: "alert.cameraPermissions.title".localized,
                        message: "alert.cameraPermissions.message".localized)
     }
 
     // MARK: - Setup
 
-    private func setupCameraView() {
+    func setupCameraView() {
         captureSession.sessionPreset = .hd1280x720
 
         let videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)

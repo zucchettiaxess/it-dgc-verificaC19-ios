@@ -71,5 +71,25 @@ class LocalDataTests: XCTestCase {
         let firstSetting = LocalData.sharedInstance.getFirstSetting(withName: "testName")
         XCTAssertEqual(firstSetting!, "testValue")
     }
-
+    
+    func testLastFetch() throws {        
+        let date = Date()
+        var localData = LocalData()
+        localData.lastFetch = date
+        
+        XCTAssertEqual(date, localData.lastFetch)
+        
+        localData.lastFetchRaw = nil
+        XCTAssertEqual(localData.lastFetch, Date(timeIntervalSince1970: 0))
+    }
+    
+    func testToken() throws {
+        let savedToken = LocalData.sharedInstance.resumeToken
+        LocalData.set(resumeToken: "test")
+        LocalData.sharedInstance.save()
+        XCTAssertEqual(LocalData.sharedInstance.resumeToken, "test")
+        
+        LocalData.set(resumeToken: savedToken ?? "")
+        LocalData.sharedInstance.save()
+    }
 }

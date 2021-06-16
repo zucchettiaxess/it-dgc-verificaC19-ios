@@ -105,7 +105,7 @@ class HomeViewController: UIViewController {
 //        LocalData.sharedInstance.add(encodedPublicKey: mockCertificate)
     }
     
-    private func showOutdatedAlert() {
+    func showOutdatedAlert() {
         let alertController = UIAlertController(title: "alert.versionOutdated.title".localized, message: "alert.versionOutdated.message".localized, preferredStyle: .alert)
         
         let okAction = UIAlertAction(title: "OK", style: .default)  { _ in
@@ -119,7 +119,7 @@ class HomeViewController: UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
 
-    private func showNoKeysAlert() {
+    func showNoKeysAlert() {
         let alertController = UIAlertController(title: "alert.noKeys.title".localized, message: "alert.noKeys.message".localized, preferredStyle: .alert)
         
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
