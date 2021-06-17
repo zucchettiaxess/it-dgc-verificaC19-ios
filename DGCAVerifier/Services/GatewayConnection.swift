@@ -45,20 +45,13 @@ class GatewayConnection {
     private let updateEndpoint: String
     private let statusEndpoint: String
     private let settingsEndpoint: String
-    private let certificateFilename: String
-    private let certificateEvaluator: String
     
-    private let session: Session
+    private var session: Session
     private var timer: Timer?
     
-    init() {
-        // Init config
-        baseUrl = Bundle.main.infoForKey("baseUrl")!
-        updateEndpoint = Bundle.main.infoForKey("updateEndpoint")!
-        statusEndpoint = Bundle.main.infoForKey("statusEndpoint")!
-        settingsEndpoint = Bundle.main.infoForKey("settingsEndpoint")!
-        certificateFilename = Bundle.main.infoForKey("certificateFilename")!
-        certificateEvaluator = Bundle.main.infoForKey("certificateEvaluator")!
+    static var pinnedSession: Session {
+        let certificateEvaluator = Bundle.main.infoForKey("certificateEvaluator")!
+        let certificateFilename = Bundle.main.infoForKey("certificateFilename")!
         
         // Init certificate for pinning
         let filePath = Bundle.main.path(forResource: certificateFilename, ofType: nil)!
@@ -67,7 +60,17 @@ class GatewayConnection {
                     
         // Init session
         let evaluators = [certificateEvaluator: PinnedCertificatesTrustEvaluator(certificates: [certificate])]
-        session = Session(serverTrustManager: ServerTrustManager(evaluators: evaluators))
+        return Session(serverTrustManager: ServerTrustManager(evaluators: evaluators))
+    }
+    
+    init(session: Session = GatewayConnection.pinnedSession) {
+        // Init config
+        baseUrl = Bundle.main.infoForKey("baseUrl")!
+        updateEndpoint = Bundle.main.infoForKey("updateEndpoint")!
+        statusEndpoint = Bundle.main.infoForKey("statusEndpoint")!
+        settingsEndpoint = Bundle.main.infoForKey("settingsEndpoint")!
+        
+        self.session = session
     }
         
     func start(completion: ((String?, Bool?) -> Void)?) {
@@ -127,7 +130,7 @@ class GatewayConnection {
     }
     
     func certStatus(resume resumeToken: String? = nil, completion: (([String]?) -> Void)?) {
-        AF.request(baseUrl + statusEndpoint).response {
+        session.request(baseUrl + statusEndpoint).response {
             guard
                 case let .success(result) = $0.result,
                 let response = result,
@@ -146,7 +149,7 @@ class GatewayConnection {
     }
     
     func getSettings(completion: (([Setting]?) -> Void)?) {
-        AF.request(baseUrl + settingsEndpoint).response {
+        session.request(baseUrl + settingsEndpoint).response {
             guard let data = $0.data else {
                 completion?(nil)
                 return
