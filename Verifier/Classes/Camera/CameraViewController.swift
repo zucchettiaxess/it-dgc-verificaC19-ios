@@ -80,7 +80,9 @@ class CameraViewController: UIViewController {
     }
 
     private func found(payload: String) {
-        coordinator?.showVerificationFor(payloadString: payload)
+        if !(coordinator?.navigationController.visibleViewController is VerificationViewController) {
+            coordinator?.showVerificationFor(payloadString: payload)
+        }
     }
 
     // MARK: - Permissions
