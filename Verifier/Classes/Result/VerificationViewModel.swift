@@ -33,7 +33,8 @@ enum Status {
     case invalidQR
 }
 
-func validateWithMedicalRules(_ hcert: HCert) -> Status {
+func validateWithMedicalRules(_ hcert: HCert?) -> Status {
+    guard let hcert = hcert else { return .notValid }
     switch hcert.type {
     case .test:
         let testValidityCheck = TestValidityCheck()
@@ -47,47 +48,29 @@ func validateWithMedicalRules(_ hcert: HCert) -> Status {
     }
 }
 
-extension HCert {
-    private var listItems: [InfoSection]? {
-        self.info.filter { !$0.isPrivate }
-    }
-    var standardizedFirstName: String? {
-        return listItems?.filter { $0.header == l10n("header.std-gn")}.first?.content
-    }
-    var standardizedLastName: String? {
-        return listItems?.filter { $0.header == l10n("header.std-fn")}.first?.content
-    }
-    
-    var firstName: String {
-        return self.body["nam"]["gn"].string ?? ""
-    }
-    
-    var lastName: String {
-        return self.body["nam"]["fn"].string ?? ""
-    }
-}
-
 class VerificationViewModel {
 
-    var status: Status
+    var status: Status = .invalidQR
     var hCert: HCert?
         
     init(qrCodeText: String) {
-        hCert = HCert(from: qrCodeText)
+        let cert = HCert(from: qrCodeText)
+        guard isValid(cert) else { return }
         
-        if hCert == nil {
-            status = .invalidQR
-        }
-        else {
-            if hCert!.isValid {
-                status = validateWithMedicalRules(hCert!)
-            }
-            else {
-                status = .invalidQR
-            }
-        }
+        hCert = cert
+        status = validateWithMedicalRules(cert)
     }
-    
+
+    private func isValid(_ hCert: HCert?) -> Bool {
+        guard let cert = hCert else { return false }
+//        return cert.isValid // it checks some medical rules too.
+        guard cert.cryptographicallyValid else { return false }
+        guard cert.exp >= HCert.clock else { return false }
+        guard cert.iat <= HCert.clock else { return false }
+        guard cert.statement != nil else { return false }
+        return true
+    }
+
     var imageName: String {
         return status == .valid ? "icon_checkmark-filled" : "icon_misuse"
     }
