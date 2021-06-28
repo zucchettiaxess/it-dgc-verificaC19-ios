@@ -10,6 +10,12 @@ import SwiftDGC
 
 struct VaccineValidityCheck {
     
+    private let incompleteStartDays = "vaccine_start_day_not_complete"
+    private let incompleteEndDays = "vaccine_end_day_not_complete"
+
+    private let completeStartDays = "vaccine_start_day_complete"
+    private let completeEndDays = "vaccine_end_day_complete"
+    
     func isVaccineDateValid(_ hcert: HCert) -> Status {
         guard let currentDoses = hcert.currentDosesNumber else { return .notValid }
         guard let totalDoses = hcert.totalDosesNumber else { return .notValid }
@@ -34,17 +40,17 @@ struct VaccineValidityCheck {
     
     private func isValid(for medicalProduct: String) -> Bool {
         // Vaccine code not included in settings -> not a valid vaccine for Italy
-        let name = "vaccine_end_day_complete"
+        let name = completeEndDays
         return getProduct(from: name, type: medicalProduct) != nil
     }
      
     private func getStartDays(for medicalProduct: String, _ isLastDose: Bool) -> Int? {
-        let name = isLastDose ? "vaccine_start_day_complete" : "vaccine_start_day_not_complete"
+        let name = isLastDose ? completeStartDays : incompleteStartDays
         return getProduct(from: name, type: medicalProduct)?.intValue
     }
     
     private func getEndDays(for medicalProduct: String, _ isLastDose: Bool) -> Int? {
-        let name = isLastDose ? "vaccine_end_day_complete" : "vaccine_end_day_not_complete"
+        let name = isLastDose ? completeEndDays : incompleteEndDays
         return getProduct(from: name, type: medicalProduct)?.intValue
     }
     

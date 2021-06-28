@@ -10,9 +10,6 @@ import SwiftDGC
 
 struct TestValidityCheck {
     
-    private let resultKey = "test.test-result"
-    private let isNegativeKey = "test.result.negative"
-    
     private let startHoursKey = "rapid_test_start_hours"
     private let endHoursKey = "rapid_test_end_hours"
     

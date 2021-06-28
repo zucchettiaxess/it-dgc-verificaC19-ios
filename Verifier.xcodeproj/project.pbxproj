@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6549CCD82688E76800845518 /* HCert+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6549CCD72688E76800845518 /* HCert+Name.swift */; };
 		6574094F2686562800499706 /* String+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6574094E2686562800499706 /* String+Date.swift */; };
 		657409512686576300499706 /* LocalData+Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657409502686576300499706 /* LocalData+Setting.swift */; };
 		6574095326868CAD00499706 /* Date+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6574095226868CAD00499706 /* Date+String.swift */; };
@@ -100,6 +101,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6549CCD72688E76800845518 /* HCert+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HCert+Name.swift"; sourceTree = "<group>"; };
 		6574094E2686562800499706 /* String+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Date.swift"; sourceTree = "<group>"; };
 		657409502686576300499706 /* LocalData+Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalData+Setting.swift"; sourceTree = "<group>"; };
 		6574095226868CAD00499706 /* Date+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+String.swift"; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				65A4579A2685E0B9003AD868 /* HCert+Vaccine.swift */,
 				6574095B268692C300499706 /* HCert+Test.swift */,
 				6574095D268692CA00499706 /* HCert+Recovery.swift */,
+				6549CCD72688E76800845518 /* HCert+Name.swift */,
 			);
 			path = HCert;
 			sourceTree = "<group>";
@@ -651,6 +654,7 @@
 				6BA8B9E5266FAC150060D767 /* GatewayConnection.swift in Sources */,
 				9F4F3C4F2649D60C00F59BA2 /* ResultView.swift in Sources */,
 				6574095C268692C300499706 /* HCert+Test.swift in Sources */,
+				6549CCD82688E76800845518 /* HCert+Name.swift in Sources */,
 				9F4BB49A264A5FAA0046D16E /* MockData.swift in Sources */,
 				657409632686A72900499706 /* Date.swift in Sources */,
 				657409512686576300499706 /* LocalData+Setting.swift in Sources */,
