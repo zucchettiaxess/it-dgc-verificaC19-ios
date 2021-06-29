@@ -22,7 +22,7 @@
 "result.bithdate" = "Data di nascita";
 
 "result.invalid.title" = "Certificazione non valida";
-"result.invalidQR.description" = "Il QR code, o firma digitale, non è valido.";
+"result.invalidQR.description" = "Il QR Code o la chiave di firma non sono validi.";
 "result.expired.description" = "La Certificazione è scaduta.";
 "result.future.description" = "La certificazione non è ancora valida.";
 "result.notValid.description" = "La certificazione non è valida o non è stato possibile verificarla.";
