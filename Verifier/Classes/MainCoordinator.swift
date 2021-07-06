@@ -54,9 +54,9 @@ extension MainCoordinator: HomeCoordinator {
 }
 
 extension MainCoordinator: CameraCoordinator {
-    func showVerificationFor(payloadString: String) {
-        let controller = VerificationViewController(coordinator: self,
-                                                    viewModel: VerificationViewModel(qrCodeText: payloadString))
+    func showVerificationFor(payloadString: String, delegate: CameraDelegate) {
+        let vm = VerificationViewModel(qrCodeText: payloadString)
+        let controller = VerificationViewController(coordinator: self, delegate: delegate, viewModel: vm)
         navigationController.present(controller, animated: true)
     }
     func dismissCamera() {

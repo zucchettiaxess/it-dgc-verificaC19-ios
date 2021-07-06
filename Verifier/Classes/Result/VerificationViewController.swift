@@ -31,6 +31,7 @@ protocol VerificationCoordinator: Coordinator {
 class VerificationViewController: UIViewController {
     
     private weak var coordinator: VerificationCoordinator?
+    private var delegate: CameraDelegate?
     private var viewModel: VerificationViewModel
     
     @IBOutlet weak var resultImageView: UIImageView!
@@ -42,8 +43,9 @@ class VerificationViewController: UIViewController {
     
     // MARK: - Init
     
-    init(coordinator: VerificationCoordinator, viewModel: VerificationViewModel) {
+    init(coordinator: VerificationCoordinator, delegate: CameraDelegate, viewModel: VerificationViewModel) {
         self.coordinator = coordinator
+        self.delegate = delegate
         self.viewModel = viewModel
         
         super.init(nibName: "VerificationViewController", bundle: nil)
@@ -70,6 +72,7 @@ class VerificationViewController: UIViewController {
     }
     
     @IBAction func dismiss(_ sender: Any) {
+        delegate?.startRunning()
         coordinator?.dismissVerification(completion: nil)
     }
     
