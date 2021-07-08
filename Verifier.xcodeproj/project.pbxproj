@@ -41,6 +41,73 @@
 		65E281A8269721ED00377913 /* HCert+Recovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E28198269721ED00377913 /* HCert+Recovery.swift */; };
 		65E281A9269721ED00377913 /* HCert+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E28199269721ED00377913 /* HCert+Name.swift */; };
 		65E281AA269721ED00377913 /* HCert+Vaccine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E2819A269721ED00377913 /* HCert+Vaccine.swift */; };
+		65E281B92697259D00377913 /* TestValidityCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B155164265BE463001D19E2 /* TestValidityCheck.swift */; };
+		65E281BA2697259D00377913 /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E28195269721ED00377913 /* UIView+Shadow.swift */; };
+		65E281BB2697259D00377913 /* HCert+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E28199269721ED00377913 /* HCert+Name.swift */; };
+		65E281BC2697259D00377913 /* HCert+Recovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E28198269721ED00377913 /* HCert+Recovery.swift */; };
+		65E281BD2697259D00377913 /* LocalData+Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E2818E269721ED00377913 /* LocalData+Setting.swift */; };
+		65E281BE2697259D00377913 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65740957268690E500499706 /* Validator.swift */; };
+		65E281BF2697259D00377913 /* VaccineValidityCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B155162265BE463001D19E2 /* VaccineValidityCheck.swift */; };
+		65E281C02697259D00377913 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E281432697217B00377913 /* HomeViewModel.swift */; };
+		65E281C12697259D00377913 /* Date+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E28189269721ED00377913 /* Date+String.swift */; };
+		65E281C22697259D00377913 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E28191269721ED00377913 /* Observable.swift */; };
+		65E281C32697259D00377913 /* LocalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4F3C3E2649D60B00F59BA2 /* LocalData.swift */; };
+		65E281C42697259D00377913 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4F3C422649D60B00F59BA2 /* AppDelegate.swift */; };
+		65E281C52697259D00377913 /* GatewayConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4F3C442649D60B00F59BA2 /* GatewayConnection.swift */; };
+		65E281C62697259D00377913 /* String+Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E28193269721ED00377913 /* String+Int.swift */; };
+		65E281C72697259D00377913 /* String+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E2818B269721ED00377913 /* String+Date.swift */; };
+		65E281C82697259D00377913 /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E28194269721ED00377913 /* String+Localization.swift */; };
+		65E281C92697259D00377913 /* HCert+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E28197269721ED00377913 /* HCert+Test.swift */; };
+		65E281CA2697259D00377913 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E2814A2697217B00377913 /* ResultView.swift */; };
+		65E281CB2697259D00377913 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E281452697217B00377913 /* HomeViewController.swift */; };
+		65E281CC2697259D00377913 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E28188269721ED00377913 /* Date.swift */; };
+		65E281CD2697259D00377913 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B155165265BE463001D19E2 /* Setting.swift */; };
+		65E281CE2697259D00377913 /* VerificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E281492697217B00377913 /* VerificationViewModel.swift */; };
+		65E281CF2697259D00377913 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E28190269721ED00377913 /* Cache.swift */; };
+		65E281D02697259D00377913 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E2814F2697217B00377913 /* CameraViewController.swift */; };
+		65E281D12697259D00377913 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4F3C412649D60B00F59BA2 /* MainCoordinator.swift */; };
+		65E281D22697259D00377913 /* DateFormatter+Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E2818A269721ED00377913 /* DateFormatter+Default.swift */; };
+		65E281D32697259D00377913 /* HCert+Vaccine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E2819A269721ED00377913 /* HCert+Vaccine.swift */; };
+		65E281D42697259D00377913 /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E2814B2697217B00377913 /* VerificationViewController.swift */; };
+		65E281D52697259D00377913 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E2818D269721ED00377913 /* UIViewController+Alert.swift */; };
+		65E281D62697259D00377913 /* Date+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E2818C269721ED00377913 /* Date+Utils.swift */; };
+		65E281D72697259D00377913 /* RecoveryValidityCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B155163265BE463001D19E2 /* RecoveryValidityCheck.swift */; };
+		65E281D92697259D00377913 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 65E281B02697259D00377913 /* Alamofire */; };
+		65E281DA2697259D00377913 /* SwiftDGC in Frameworks */ = {isa = PBXBuildFile; productRef = 65E281B22697259D00377913 /* SwiftDGC */; };
+		65E281DB2697259D00377913 /* SwiftDGC in Frameworks */ = {isa = PBXBuildFile; productRef = 65E281B52697259D00377913 /* SwiftDGC */; };
+		65E281DC2697259D00377913 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 65E281B32697259D00377913 /* SwiftyJSON */; };
+		65E281DD2697259D00377913 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 65E281AE2697259D00377913 /* FloatingPanel */; };
+		65E281DF2697259D00377913 /* TitilliumWeb-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F90C588265E591D00B2F992 /* TitilliumWeb-SemiBoldItalic.ttf */; };
+		65E281E02697259D00377913 /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F90C587265E591D00B2F992 /* Roboto-ThinItalic.ttf */; };
+		65E281E12697259D00377913 /* Roboto-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F90C58B265E591D00B2F992 /* Roboto-LightItalic.ttf */; };
+		65E281E22697259D00377913 /* TitilliumWeb-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F90C584265E591D00B2F992 /* TitilliumWeb-ExtraLight.ttf */; };
+		65E281E32697259D00377913 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F90C592265E591D00B2F992 /* Roboto-Black.ttf */; };
+		65E281E42697259D00377913 /* VerificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65E281482697217B00377913 /* VerificationViewController.xib */; };
+		65E281E52697259D00377913 /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F90C58D265E591D00B2F992 /* Roboto-Italic.ttf */; };
+		65E281E62697259D00377913 /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F90C582265E591D00B2F992 /* Roboto-MediumItalic.ttf */; };
+		65E281E72697259D00377913 /* TitilliumWeb-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F90C580265E591D00B2F992 /* TitilliumWeb-Regular.ttf */; };
+		65E281E82697259D00377913 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F90C57E265E591D00B2F992 /* Roboto-Light.ttf */; };
+		65E281E92697259D00377913 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F4F3C632649D71F00F59BA2 /* Localizable.strings */; };
+		65E281EA2697259D00377913 /* ResultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65E2814C2697217B00377913 /* ResultView.xib */; };
+		65E281EB2697259D00377913 /* TitilliumWeb-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F90C57F265E591D00B2F992 /* TitilliumWeb-Bold.ttf */; };
+		65E281EC2697259D00377913 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F90C58F265E591D00B2F992 /* Roboto-Bold.ttf */; };
+		65E281ED2697259D00377913 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F90C581265E591D00B2F992 /* Roboto-Regular.ttf */; };
+		65E281EE2697259D00377913 /* TitilliumWeb-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F90C586265E591D00B2F992 /* TitilliumWeb-ExtraLightItalic.ttf */; };
+		65E281EF2697259D00377913 /* TitilliumWeb-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F90C57D265E591D00B2F992 /* TitilliumWeb-Black.ttf */; };
+		65E281F02697259D00377913 /* CameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65E2814E2697217B00377913 /* CameraViewController.xib */; };
+		65E281F12697259D00377913 /* TitilliumWeb-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F90C591265E591D00B2F992 /* TitilliumWeb-Light.ttf */; };
+		65E281F22697259D00377913 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F4F3C472649D60B00F59BA2 /* Assets.xcassets */; };
+		65E281F32697259D00377913 /* Roboto-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F90C58A265E591D00B2F992 /* Roboto-BoldItalic.ttf */; };
+		65E281F42697259D00377913 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65E281462697217B00377913 /* LaunchScreen.storyboard */; };
+		65E281F52697259D00377913 /* TitilliumWeb-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F90C58C265E591D00B2F992 /* TitilliumWeb-Italic.ttf */; };
+		65E281F62697259D00377913 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65E281442697217B00377913 /* HomeViewController.xib */; };
+		65E281F72697259D00377913 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F90C590265E591D00B2F992 /* Roboto-Thin.ttf */; };
+		65E281F82697259D00377913 /* TitilliumWeb-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F90C589265E591D00B2F992 /* TitilliumWeb-LightItalic.ttf */; };
+		65E281FA2697259D00377913 /* TitilliumWeb-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F90C583265E591D00B2F992 /* TitilliumWeb-SemiBold.ttf */; };
+		65E281FB2697259D00377913 /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F90C58E265E591D00B2F992 /* Roboto-BlackItalic.ttf */; };
+		65E281FC2697259D00377913 /* testaka4-sogei-it.der in Resources */ = {isa = PBXBuildFile; fileRef = 9F90C579265E284A00B2F992 /* testaka4-sogei-it.der */; };
+		65E281FD2697259D00377913 /* TitilliumWeb-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F90C585265E591D00B2F992 /* TitilliumWeb-BoldItalic.ttf */; };
+		65E281FE2697259D00377913 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F90C57C265E591D00B2F992 /* Roboto-Medium.ttf */; };
 		6B155166265BE463001D19E2 /* VaccineValidityCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B155162265BE463001D19E2 /* VaccineValidityCheck.swift */; };
 		6B155167265BE463001D19E2 /* RecoveryValidityCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B155163265BE463001D19E2 /* RecoveryValidityCheck.swift */; };
 		6B155168265BE463001D19E2 /* TestValidityCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B155164265BE463001D19E2 /* TestValidityCheck.swift */; };
@@ -52,7 +119,6 @@
 		9F4F3C5B2649D60C00F59BA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4F3C422649D60B00F59BA2 /* AppDelegate.swift */; };
 		9F4F3C5E2649D60C00F59BA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F4F3C472649D60B00F59BA2 /* Assets.xcassets */; };
 		9F4F3C612649D71F00F59BA2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F4F3C632649D71F00F59BA2 /* Localizable.strings */; };
-		9F90C57A265E284A00B2F992 /* testaka4-sogei-it.der in Resources */ = {isa = PBXBuildFile; fileRef = 9F90C579265E284A00B2F992 /* testaka4-sogei-it.der */; };
 		9F90C593265E591D00B2F992 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F90C57C265E591D00B2F992 /* Roboto-Medium.ttf */; };
 		9F90C594265E591E00B2F992 /* TitilliumWeb-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F90C57D265E591D00B2F992 /* TitilliumWeb-Black.ttf */; };
 		9F90C595265E591E00B2F992 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F90C57E265E591D00B2F992 /* Roboto-Light.ttf */; };
@@ -131,6 +197,8 @@
 		65E28198269721ED00377913 /* HCert+Recovery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HCert+Recovery.swift"; sourceTree = "<group>"; };
 		65E28199269721ED00377913 /* HCert+Name.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HCert+Name.swift"; sourceTree = "<group>"; };
 		65E2819A269721ED00377913 /* HCert+Vaccine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HCert+Vaccine.swift"; sourceTree = "<group>"; };
+		65E282022697259D00377913 /* VerificaC19 Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VerificaC19 Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		65E282052697269100377913 /* Info-Test.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Test.plist"; sourceTree = "<group>"; };
 		6B155162265BE463001D19E2 /* VaccineValidityCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VaccineValidityCheck.swift; sourceTree = "<group>"; };
 		6B155163265BE463001D19E2 /* RecoveryValidityCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecoveryValidityCheck.swift; sourceTree = "<group>"; };
 		6B155164265BE463001D19E2 /* TestValidityCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestValidityCheck.swift; sourceTree = "<group>"; };
@@ -180,6 +248,18 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		65E281D82697259D00377913 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65E281D92697259D00377913 /* Alamofire in Frameworks */,
+				65E281DA2697259D00377913 /* SwiftDGC in Frameworks */,
+				65E281DB2697259D00377913 /* SwiftDGC in Frameworks */,
+				65E281DC2697259D00377913 /* SwiftyJSON in Frameworks */,
+				65E281DD2697259D00377913 /* FloatingPanel in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CEA6D6E5261F8D2700715333 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -243,10 +323,10 @@
 			children = (
 				65B2814B269714DE00A9A533 /* Configurations */,
 				9F4F3C452649D60B00F59BA2 /* Resources */,
+				65E28204269725CC00377913 /* Plists */,
 				9F4F3C422649D60B00F59BA2 /* AppDelegate.swift */,
 				9F4F3C632649D71F00F59BA2 /* Localizable.strings */,
 				9F4F3C472649D60B00F59BA2 /* Assets.xcassets */,
-				9F4F3C492649D60B00F59BA2 /* Info.plist */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -368,6 +448,15 @@
 			path = BusinessRules;
 			sourceTree = "<group>";
 		};
+		65E28204269725CC00377913 /* Plists */ = {
+			isa = PBXGroup;
+			children = (
+				65E282052697269100377913 /* Info-Test.plist */,
+				9F4F3C492649D60B00F59BA2 /* Info.plist */,
+			);
+			path = Plists;
+			sourceTree = "<group>";
+		};
 		9F2AF7EE2653D27F00619B9C /* DGCAVerifier */ = {
 			isa = PBXGroup;
 			children = (
@@ -463,6 +552,7 @@
 				CEA6D6E8261F8D2700715333 /* VerificaC19.app */,
 				CEA6D6FE261F8D2900715333 /* VerifierTests.xctest */,
 				CEA6D709261F8D2900715333 /* VerifierUITests.xctest */,
+				65E282022697259D00377913 /* VerificaC19 Test.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -470,6 +560,31 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		65E281AD2697259D00377913 /* VerificaC19 Test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 65E281FF2697259D00377913 /* Build configuration list for PBXNativeTarget "VerificaC19 Test" */;
+			buildPhases = (
+				65E281B72697259D00377913 /* ShellScript */,
+				65E281B82697259D00377913 /* Sources */,
+				65E281D82697259D00377913 /* Frameworks */,
+				65E281DE2697259D00377913 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "VerificaC19 Test";
+			packageProductDependencies = (
+				65E281AE2697259D00377913 /* FloatingPanel */,
+				65E281B02697259D00377913 /* Alamofire */,
+				65E281B22697259D00377913 /* SwiftDGC */,
+				65E281B32697259D00377913 /* SwiftyJSON */,
+				65E281B52697259D00377913 /* SwiftDGC */,
+			);
+			productName = DGCAVerifier;
+			productReference = 65E282022697259D00377913 /* VerificaC19 Test.app */;
+			productType = "com.apple.product-type.application";
+		};
 		CEA6D6E7261F8D2700715333 /* VerificaC19 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CEA6D712261F8D2900715333 /* Build configuration list for PBXNativeTarget "VerificaC19" */;
@@ -574,6 +689,7 @@
 			projectRoot = "";
 			targets = (
 				CEA6D6E7261F8D2700715333 /* VerificaC19 */,
+				65E281AD2697259D00377913 /* VerificaC19 Test */,
 				CEA6D6FD261F8D2900715333 /* VerifierTests */,
 				CEA6D708261F8D2900715333 /* VerifierUITests */,
 			);
@@ -581,6 +697,44 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		65E281DE2697259D00377913 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65E281DF2697259D00377913 /* TitilliumWeb-SemiBoldItalic.ttf in Resources */,
+				65E281E02697259D00377913 /* Roboto-ThinItalic.ttf in Resources */,
+				65E281E12697259D00377913 /* Roboto-LightItalic.ttf in Resources */,
+				65E281E22697259D00377913 /* TitilliumWeb-ExtraLight.ttf in Resources */,
+				65E281E32697259D00377913 /* Roboto-Black.ttf in Resources */,
+				65E281E42697259D00377913 /* VerificationViewController.xib in Resources */,
+				65E281E52697259D00377913 /* Roboto-Italic.ttf in Resources */,
+				65E281E62697259D00377913 /* Roboto-MediumItalic.ttf in Resources */,
+				65E281E72697259D00377913 /* TitilliumWeb-Regular.ttf in Resources */,
+				65E281E82697259D00377913 /* Roboto-Light.ttf in Resources */,
+				65E281E92697259D00377913 /* Localizable.strings in Resources */,
+				65E281EA2697259D00377913 /* ResultView.xib in Resources */,
+				65E281EB2697259D00377913 /* TitilliumWeb-Bold.ttf in Resources */,
+				65E281EC2697259D00377913 /* Roboto-Bold.ttf in Resources */,
+				65E281ED2697259D00377913 /* Roboto-Regular.ttf in Resources */,
+				65E281EE2697259D00377913 /* TitilliumWeb-ExtraLightItalic.ttf in Resources */,
+				65E281EF2697259D00377913 /* TitilliumWeb-Black.ttf in Resources */,
+				65E281F02697259D00377913 /* CameraViewController.xib in Resources */,
+				65E281F12697259D00377913 /* TitilliumWeb-Light.ttf in Resources */,
+				65E281F22697259D00377913 /* Assets.xcassets in Resources */,
+				65E281F32697259D00377913 /* Roboto-BoldItalic.ttf in Resources */,
+				65E281F42697259D00377913 /* LaunchScreen.storyboard in Resources */,
+				65E281F52697259D00377913 /* TitilliumWeb-Italic.ttf in Resources */,
+				65E281F62697259D00377913 /* HomeViewController.xib in Resources */,
+				65E281F72697259D00377913 /* Roboto-Thin.ttf in Resources */,
+				65E281F82697259D00377913 /* TitilliumWeb-LightItalic.ttf in Resources */,
+				65E281FA2697259D00377913 /* TitilliumWeb-SemiBold.ttf in Resources */,
+				65E281FB2697259D00377913 /* Roboto-BlackItalic.ttf in Resources */,
+				65E281FC2697259D00377913 /* testaka4-sogei-it.der in Resources */,
+				65E281FD2697259D00377913 /* TitilliumWeb-BoldItalic.ttf in Resources */,
+				65E281FE2697259D00377913 /* Roboto-Medium.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CEA6D6E6261F8D2700715333 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -614,7 +768,6 @@
 				6B24E85C266275920003808F /* get-dgc-gov-it.der in Resources */,
 				9F90C59A265E591E00B2F992 /* TitilliumWeb-SemiBold.ttf in Resources */,
 				9F90C5A5265E591E00B2F992 /* Roboto-BlackItalic.ttf in Resources */,
-				9F90C57A265E284A00B2F992 /* testaka4-sogei-it.der in Resources */,
 				9F90C59C265E591E00B2F992 /* TitilliumWeb-BoldItalic.ttf in Resources */,
 				9F90C593265E591D00B2F992 /* Roboto-Medium.ttf in Resources */,
 			);
@@ -637,6 +790,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		65E281B72697259D00377913 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "
+";
+		};
 		CEF91E4D264722D70018888D /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -658,6 +829,44 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		65E281B82697259D00377913 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65E281B92697259D00377913 /* TestValidityCheck.swift in Sources */,
+				65E281BA2697259D00377913 /* UIView+Shadow.swift in Sources */,
+				65E281BB2697259D00377913 /* HCert+Name.swift in Sources */,
+				65E281BC2697259D00377913 /* HCert+Recovery.swift in Sources */,
+				65E281BD2697259D00377913 /* LocalData+Setting.swift in Sources */,
+				65E281BE2697259D00377913 /* Validator.swift in Sources */,
+				65E281BF2697259D00377913 /* VaccineValidityCheck.swift in Sources */,
+				65E281C02697259D00377913 /* HomeViewModel.swift in Sources */,
+				65E281C12697259D00377913 /* Date+String.swift in Sources */,
+				65E281C22697259D00377913 /* Observable.swift in Sources */,
+				65E281C32697259D00377913 /* LocalData.swift in Sources */,
+				65E281C42697259D00377913 /* AppDelegate.swift in Sources */,
+				65E281C52697259D00377913 /* GatewayConnection.swift in Sources */,
+				65E281C62697259D00377913 /* String+Int.swift in Sources */,
+				65E281C72697259D00377913 /* String+Date.swift in Sources */,
+				65E281C82697259D00377913 /* String+Localization.swift in Sources */,
+				65E281C92697259D00377913 /* HCert+Test.swift in Sources */,
+				65E281CA2697259D00377913 /* ResultView.swift in Sources */,
+				65E281CB2697259D00377913 /* HomeViewController.swift in Sources */,
+				65E281CC2697259D00377913 /* Date.swift in Sources */,
+				65E281CD2697259D00377913 /* Setting.swift in Sources */,
+				65E281CE2697259D00377913 /* VerificationViewModel.swift in Sources */,
+				65E281CF2697259D00377913 /* Cache.swift in Sources */,
+				65E281D02697259D00377913 /* CameraViewController.swift in Sources */,
+				65E281D12697259D00377913 /* MainCoordinator.swift in Sources */,
+				65E281D22697259D00377913 /* DateFormatter+Default.swift in Sources */,
+				65E281D32697259D00377913 /* HCert+Vaccine.swift in Sources */,
+				65E281D42697259D00377913 /* VerificationViewController.swift in Sources */,
+				65E281D52697259D00377913 /* UIViewController+Alert.swift in Sources */,
+				65E281D62697259D00377913 /* Date+Utils.swift in Sources */,
+				65E281D72697259D00377913 /* RecoveryValidityCheck.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CEA6D6E4261F8D2700715333 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -743,6 +952,54 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		65E282002697259D00377913 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 8;
+				DEVELOPMENT_TEAM = NFBYJRA8B5;
+				INFOPLIST_FILE = "DGCAVerifier/SupportingFiles/Plists/Info-Test.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = it.ministerodellasalute.VerificaC19.test;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = VerificaC19ProdProfile;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		65E282012697259D00377913 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 8;
+				DEVELOPMENT_TEAM = NFBYJRA8B5;
+				INFOPLIST_FILE = "DGCAVerifier/SupportingFiles/Plists/Info-Test.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = it.ministerodellasalute.VerificaC19.test;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = VerificaC19ProdProfile;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 		CEA6D710261F8D2900715333 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9F90C64A265EA5E500B2F992 /* Debug.xcconfig */;
@@ -872,7 +1129,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = NFBYJRA8B5;
-				INFOPLIST_FILE = "DGCAVerifier/SupportingFiles//Info.plist";
+				INFOPLIST_FILE = DGCAVerifier/SupportingFiles/Plists/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -896,7 +1153,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = NFBYJRA8B5;
-				INFOPLIST_FILE = "DGCAVerifier/SupportingFiles//Info.plist";
+				INFOPLIST_FILE = DGCAVerifier/SupportingFiles/Plists/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1014,6 +1271,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		65E281FF2697259D00377913 /* Build configuration list for PBXNativeTarget "VerificaC19 Test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65E282002697259D00377913 /* Debug */,
+				65E282012697259D00377913 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		CEA6D6E3261F8D2700715333 /* Build configuration list for PBXProject "Verifier" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1061,6 +1327,38 @@
 				kind = branch;
 			};
 		};
+		65E281AF2697259D00377913 /* XCRemoteSwiftPackageReference "FloatingPanel" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SCENEE/FloatingPanel";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.0;
+			};
+		};
+		65E281B12697259D00377913 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.4.3;
+			};
+		};
+		65E281B42697259D00377913 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+		65E281B62697259D00377913 /* XCRemoteSwiftPackageReference "dgca-app-core-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/eu-digital-green-certificates/dgca-app-core-ios";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		CE13CEFE262DCC180070C80E /* XCRemoteSwiftPackageReference "FloatingPanel" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SCENEE/FloatingPanel";
@@ -1091,6 +1389,30 @@
 		65D6D7D32684FCA90022C816 /* SwiftDGC */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 65D6D7D22684FCA90022C816 /* XCRemoteSwiftPackageReference "dgca-app-core-ios" */;
+			productName = SwiftDGC;
+		};
+		65E281AE2697259D00377913 /* FloatingPanel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 65E281AF2697259D00377913 /* XCRemoteSwiftPackageReference "FloatingPanel" */;
+			productName = FloatingPanel;
+		};
+		65E281B02697259D00377913 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 65E281B12697259D00377913 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		65E281B22697259D00377913 /* SwiftDGC */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SwiftDGC;
+		};
+		65E281B32697259D00377913 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 65E281B42697259D00377913 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
+		65E281B52697259D00377913 /* SwiftDGC */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 65E281B62697259D00377913 /* XCRemoteSwiftPackageReference "dgca-app-core-ios" */;
 			productName = SwiftDGC;
 		};
 		CE13CEFF262DCC180070C80E /* FloatingPanel */ = {
