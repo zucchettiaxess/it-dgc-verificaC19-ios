@@ -15,15 +15,15 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "65E281AD2697259D00377913"
-               BuildableName = "VerificaC19 Test.app"
-               BlueprintName = "VerificaC19 Test"
+               BuildableName = "VerificaC19 Dev.app"
+               BlueprintName = "VerificaC19 Dev"
                ReferencedContainer = "container:Verifier.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "Debug"
+      buildConfiguration = "Debug Dev"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
@@ -31,7 +31,7 @@
       </Testables>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Debug"
+      buildConfiguration = "Debug Dev"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -45,14 +45,14 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "65E281AD2697259D00377913"
-            BuildableName = "VerificaC19 Test.app"
-            BlueprintName = "VerificaC19 Test"
+            BuildableName = "VerificaC19 Dev.app"
+            BlueprintName = "VerificaC19 Dev"
             ReferencedContainer = "container:Verifier.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Release Dev"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
@@ -62,17 +62,17 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "65E281AD2697259D00377913"
-            BuildableName = "VerificaC19 Test.app"
-            BlueprintName = "VerificaC19 Test"
+            BuildableName = "VerificaC19 Dev.app"
+            BlueprintName = "VerificaC19 Dev"
             ReferencedContainer = "container:Verifier.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
-      buildConfiguration = "Debug">
+      buildConfiguration = "Debug Dev">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Release Dev"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>
