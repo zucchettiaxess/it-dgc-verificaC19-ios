@@ -45,6 +45,8 @@ func validateWithMedicalRules(_ hcert: HCert?) -> Status {
     case .recovery:
         let recoveryValidityCheck = RecoveryValidityCheck()
         return recoveryValidityCheck.isRecoveryValid(hcert)
+    case .unknown:
+        return .notValid
     }
 }
 
