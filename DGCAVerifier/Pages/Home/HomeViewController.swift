@@ -106,9 +106,6 @@ class HomeViewController: UIViewController {
         }
         
         viewModel.loadCertificates()
-//        scanButton.isEnabled = true
-//        updateStatusLabel.text = "Test certificate loaded locally"
-//        LocalData.sharedInstance.add(encodedPublicKey: mockCertificate)
     }
     
     @IBAction func onPrivacyPolicyLinkTap(sender: UITapGestureRecognizer) {

@@ -36,6 +36,8 @@ protocol CameraDelegate {
     func stopRunning()
 }
 
+let mockQRCode = "<add your mock qr code here>"
+
 class CameraViewController: UIViewController {
     weak var coordinator: CameraCoordinator?
     private var captureSession = AVCaptureSession()

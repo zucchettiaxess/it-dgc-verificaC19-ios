@@ -35,7 +35,7 @@ jobs:
       run: |-
         cd ./it-dgc-verificaC19-ios
         xcodebuild test \
-        -scheme Verifier \
+        -scheme VerificaC19 \
         -project Verifier.xcodeproj \
         -resultBundlePath ../TestResults \
         -destination 'platform=iOS Simulator,name=iPhone 12,OS=14.5' | xcpretty && exit ${PIPESTATUS[0]}
