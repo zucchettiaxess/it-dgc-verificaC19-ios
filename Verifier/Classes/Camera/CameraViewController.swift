@@ -27,8 +27,13 @@ import Vision
 import AVFoundation
 
 protocol CameraCoordinator: Coordinator {
-    func showVerificationFor(payloadString: String)
+    func showVerificationFor(payloadString: String, delegate: CameraDelegate)
     func dismissCamera()
+}
+
+protocol CameraDelegate {
+    func startRunning()
+    func stopRunning()
 }
 
 class CameraViewController: UIViewController {
@@ -67,12 +72,12 @@ class CameraViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        captureSession.stopRunning()
+        stopRunning()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        captureSession.startRunning()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        startRunning()
     }
 
     @IBAction func back(_ sender: Any) {
@@ -80,9 +85,11 @@ class CameraViewController: UIViewController {
     }
 
     private func found(payload: String) {
-        guard !(coordinator?.navigationController.visibleViewController is VerificationViewController) else { return }
+        let vc = coordinator?.navigationController.visibleViewController
+        guard !(vc is VerificationViewController) else { return }
+        stopRunning()
         hapticFeedback()
-        coordinator?.showVerificationFor(payloadString: payload)
+        coordinator?.showVerificationFor(payloadString: payload, delegate: self)
     }
 
     // MARK: - Permissions
@@ -139,6 +146,18 @@ class CameraViewController: UIViewController {
         DispatchQueue.main.async {
             UINotificationFeedbackGenerator().notificationOccurred(.success)
         }
+    }
+}
+
+extension CameraViewController: CameraDelegate {
+    func startRunning() {
+        guard !captureSession.isRunning else { return }
+        captureSession.startRunning()
+    }
+    
+    func stopRunning() {
+        guard captureSession.isRunning else { return }
+        captureSession.stopRunning()
     }
 }
 
