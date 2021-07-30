@@ -39,8 +39,8 @@ class CertLogicEngineManager {
         certLogicEngine.updateRules(rules: ruleList)
     }
     func validate(filter: FilterParameter, external: ExternalParameter, payload: String) -> [ValidationResult] {
-//        external.issuerCountryCode = filter.countryCode
-//        filter.region = filter.countryCode
+        external.issuerCountryCode = filter.countryCode
+        filter.region = filter.countryCode
         
         return certLogicEngine.validate(filter: filter, external: external, payload: payload)
     }
