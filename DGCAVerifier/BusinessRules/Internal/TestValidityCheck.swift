@@ -28,6 +28,8 @@ import SwiftDGC
 
 struct TestValidityCheck {
     
+    typealias Validator = MedicalRulesValidator
+    
     private let startHoursKey = "rapid_test_start_hours"
     private let endHoursKey = "rapid_test_end_hours"
     
@@ -37,18 +39,17 @@ struct TestValidityCheck {
     }
     
     func isTestDateValid(_ hcert: HCert) -> Status {
-        guard let startHours = LocalData.getSetting(from: startHoursKey) else { return .notValid }
-        guard let endHours = LocalData.getSetting(from: endHoursKey) else { return .notValid }
-        guard let start = startHours.intValue else { return .notValid }
-        guard let end = endHours.intValue else { return .notValid }
+        let startHours = LocalData.getSetting(from: startHoursKey)
+        let endHours = LocalData.getSetting(from: endHoursKey)
+        guard let start = startHours?.intValue else { return .technicalError }
+        guard let end = endHours?.intValue else { return .technicalError }
 
         guard let dateString = hcert.testDate else { return .notValid }
         guard let dateTime = dateString.toTestDate else { return .notValid }
         guard let validityStart = dateTime.add(start, ofType: .hour) else { return .notValid }
         guard let validityEnd = dateTime.add(end, ofType: .hour) else { return .notValid }
-        
-        let currentDate = Date()
-        return Validator.validate(currentDate, from: validityStart, to: validityEnd)
+    
+        return Validator.validate(Date(), from: validityStart, to: validityEnd)
     }
     
     func isTestValid(_ hcert: HCert) -> Status {

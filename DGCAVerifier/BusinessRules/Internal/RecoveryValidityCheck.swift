@@ -28,6 +28,8 @@ import SwiftDGC
 
 struct RecoveryValidityCheck {
     
+    typealias Validator = MedicalRulesValidator
+    
     func isRecoveryValid(_ hcert: HCert) -> Status {
         guard let validFrom = hcert.recoveryDateFrom else { return .notValid }
         guard let validUntil = hcert.recoveryDateUntil else { return .notValid }
