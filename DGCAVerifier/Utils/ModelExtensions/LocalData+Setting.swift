@@ -17,25 +17,25 @@
 */
 
 //
-//  Validator.swift
+//  LocalData+Setting.swift
 //  VerificaC19
 //
-//  Created by Andrea Prosseda on 26/06/21.
+//  Created by Andrea Prosseda on 25/06/21.
 //
 
 import Foundation
 
-struct Validator {
+extension LocalData {
     
-    public static func validate(_ current: Date, from validityStart: Date, to validityEnd: Date) -> Status {
-        switch current {
-        case ..<validityStart:
-            return .future
-        case validityStart...validityEnd:
-            return .valid
-        default:
-            return .expired
-        }
+    static func getSetting(from name: String) -> String? {
+        SettingDataStorage.sharedInstance.getFirstSetting(withName: name)
     }
     
+    static func getSetting(from name: String, type: String) -> String? {
+        getSettings(from: name).first(where: { $0.type == type })?.value
+    }
+    
+    static func getSettings(from key: String) -> [Setting] {
+        SettingDataStorage.sharedInstance.settings.filter { $0.name == key }
+    }
 }

@@ -17,25 +17,23 @@
 */
 
 //
-//  LocalData+Setting.swift
+//  HCert+PersonalData.swift
 //  VerificaC19
 //
-//  Created by Andrea Prosseda on 25/06/21.
+//  Created by Andrea Prosseda on 27/06/21.
 //
 
 import Foundation
+import SwiftDGC
 
-extension LocalData {
+extension HCert {
     
-    static func getSetting(from name: String) -> String? {
-        LocalData.sharedInstance.getFirstSetting(withName: name)
-    }
+    var name: String { firstName + " " + lastName }
     
-    static func getSetting(from name: String, type: String) -> String? {
-        getSettings(from: name).first(where: { $0.type == type })?.value
-    }
+    var firstName: String { body["nam"]["gn"].string ?? "" }
     
-    static func getSettings(from key: String) -> [Setting] {
-        LocalData.sharedInstance.settings.filter { $0.name == key }
-    }
+    var lastName: String { body["nam"]["fn"].string ?? "" }
+    
+    var birthDate: String { body["dob"].string?.toDate?.toDateReadableString ?? "" }
+    
 }
