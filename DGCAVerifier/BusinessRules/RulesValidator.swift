@@ -33,7 +33,7 @@ struct RulesValidator: Validator {
         case european
     }
     
-    private static let currentValidationType: ValidationType = .european
+    private static let currentValidationType: ValidationType = .internal
     
     static func getStatus(from hCert: HCert) -> Status {
         switch currentValidationType {
