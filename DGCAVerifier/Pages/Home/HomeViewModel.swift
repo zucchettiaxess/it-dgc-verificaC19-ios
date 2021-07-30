@@ -73,7 +73,7 @@ class HomeViewModel {
             .first(where: { $0.name == "ios" && $0.type == "APP_MIN_VERSION" })?
             .value
     }
-
+    
 }
 
 extension HomeViewModel {
@@ -83,6 +83,9 @@ extension HomeViewModel {
         
         loadSettings(in: group)
         loadCertificates(in: group)
+        loadCountries(in: group)
+        loadRules(in: group)
+        loadValueSets(in: group)
         
         group.notify(queue: .main) { [weak self] in self?.loadComplete() }
     }
@@ -107,4 +110,35 @@ extension HomeViewModel {
         loadingGroup.enter()
     }
     
+    private func loadCountries(in loadingGroup: DispatchGroup) {
+        CountryDataStorage.initialize {
+            GatewayConnection.shared.countryList { _ in
+                print("log.countries.done")
+                loadingGroup.leave()
+            }
+        }
+        loadingGroup.enter()
+    }
+    
+    private func loadRules(in loadingGroup: DispatchGroup) {
+        RulesDataStorage.initialize {
+            GatewayConnection.shared.loadRulesFromServer { _ in
+                let rules = RulesDataStorage.sharedInstance.rules
+                CertLogicEngineManager.sharedInstance.setRules(ruleList: rules)
+                print("log.rules.done")
+                loadingGroup.leave()
+            }
+        }
+        loadingGroup.enter()
+    }
+    
+    private func loadValueSets(in loadingGroup: DispatchGroup) {
+        ValueSetsDataStorage.initialize {
+            GatewayConnection.shared.loadValueSetsFromServer { _ in
+                print("log.valuesets.done")
+                loadingGroup.leave()
+            }
+        }
+        loadingGroup.enter()
+    }
 }
