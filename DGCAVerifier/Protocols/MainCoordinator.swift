@@ -1,20 +1,20 @@
 /*
  *  license-start
- *  
+ *
  *  Copyright (C) 2021 Ministero della Salute and all other contributors
- *  
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
- *  
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing, software
  *  distributed under the License is distributed on an "AS IS" BASIS,
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
-*/
+ */
 
 //
 //  MainCoordinator.swift
@@ -28,7 +28,7 @@ import SwiftDGC
 protocol Coordinator: AnyObject {
     var childCoordinators: [Coordinator] { get set }
     var navigationController: UINavigationController { get set }
-
+    
     func start()
     func dismiss()
     func dismissToRoot()
@@ -38,12 +38,12 @@ protocol Coordinator: AnyObject {
 class MainCoordinator: Coordinator {
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
-
+    
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
         navigationController.setNavigationBarHidden(true, animated: false)
     }
-
+    
     func start() {
         let controller = HomeViewController(coordinator: self, viewModel: HomeViewModel())
         navigationController.pushViewController(controller, animated: true)
@@ -56,7 +56,7 @@ class MainCoordinator: Coordinator {
     func dismissToRoot() {
         navigationController.popToRootViewController(animated: true)
     }
-
+    
 }
 
 extension MainCoordinator: HomeCoordinator {
@@ -66,6 +66,9 @@ extension MainCoordinator: HomeCoordinator {
     }
     
     func showCountries() {
+        let vm = CountrySelectionViewModel()
+        let controller = CountrySelectionViewController(coordinator: self, viewModel: vm)
+        navigationController.pushViewController(controller, animated: true)
     }
 }
 
@@ -79,6 +82,12 @@ extension MainCoordinator: CameraCoordinator {
     }
 }
 
+extension MainCoordinator: CountrySelectionCoordinator {
+    func showCamera(selectedCountry: CountryModel) {
+        let controller = CameraViewController(coordinator: self, country: selectedCountry)
+        navigationController.pushViewController(controller, animated: true)
+    }
+}
 
 extension MainCoordinator: VerificationCoordinator {
     func dismissVerification(completion: (()->())?) {

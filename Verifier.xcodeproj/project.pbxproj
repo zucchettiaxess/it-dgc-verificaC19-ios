@@ -32,6 +32,16 @@
 		65021B6826AEEC48004C3D14 /* UIImage+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65021B6726AEEC48004C3D14 /* UIImage+Colors.swift */; };
 		65021B6926AEEC48004C3D14 /* UIImage+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65021B6726AEEC48004C3D14 /* UIImage+Colors.swift */; };
 		65085B8726B4076600111F2D /* CertLogic in Frameworks */ = {isa = PBXBuildFile; productRef = 65085B8626B4076600111F2D /* CertLogic */; };
+		65085B8926B407E400111F2D /* CertLogicEngineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65085B8826B407E400111F2D /* CertLogicEngineManager.swift */; };
+		65085B8B26B4080000111F2D /* GatewayConnection+Countries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65085B8A26B4080000111F2D /* GatewayConnection+Countries.swift */; };
+		65085B8D26B4080700111F2D /* GatewayConnection+Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65085B8C26B4080700111F2D /* GatewayConnection+Rules.swift */; };
+		65085B8F26B4081200111F2D /* GatewayConnection+ValueSets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65085B8E26B4081200111F2D /* GatewayConnection+ValueSets.swift */; };
+		65085B9326B4085900111F2D /* CountryDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65085B9026B4085900111F2D /* CountryDataStorage.swift */; };
+		65085B9426B4085900111F2D /* CountryDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65085B9026B4085900111F2D /* CountryDataStorage.swift */; };
+		65085B9526B4085900111F2D /* ValueSetsDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65085B9126B4085900111F2D /* ValueSetsDataStorage.swift */; };
+		65085B9626B4085900111F2D /* ValueSetsDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65085B9126B4085900111F2D /* ValueSetsDataStorage.swift */; };
+		65085B9726B4085900111F2D /* RulesDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65085B9226B4085900111F2D /* RulesDataStorage.swift */; };
+		65085B9826B4085900111F2D /* RulesDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65085B9226B4085900111F2D /* RulesDataStorage.swift */; };
 		653F928226B00264000BE8F5 /* UITableView+Dequeue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653F928126B00264000BE8F5 /* UITableView+Dequeue.swift */; };
 		653F928426B002D0000BE8F5 /* Array+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653F928326B002D0000BE8F5 /* Array+Utils.swift */; };
 		653F928A26B00474000BE8F5 /* CountryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653F928826B00474000BE8F5 /* CountryCell.swift */; };
@@ -179,6 +189,20 @@
 		65EFB63026B1829E0081682B /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EFB62E26B1829E0081682B /* Link.swift */; };
 		65EFB63326B183CF0081682B /* Link+Values.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EFB63226B183CF0081682B /* Link+Values.swift */; };
 		65EFB63426B183CF0081682B /* Link+Values.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EFB63226B183CF0081682B /* Link+Values.swift */; };
+		65FB20DA26B408E1000B982A /* HCert+CertificateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FB20D926B408E0000B982A /* HCert+CertificateType.swift */; };
+		65FB20DB26B408E1000B982A /* HCert+CertificateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FB20D926B408E0000B982A /* HCert+CertificateType.swift */; };
+		65FB20DD26B4092D000B982A /* Result+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FB20DC26B4092D000B982A /* Result+Name.swift */; };
+		65FB20DE26B4092D000B982A /* Result+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FB20DC26B4092D000B982A /* Result+Name.swift */; };
+		65FB20E026B40941000B982A /* CountryModel+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FB20DF26B40941000B982A /* CountryModel+Name.swift */; };
+		65FB20E126B40941000B982A /* CountryModel+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FB20DF26B40941000B982A /* CountryModel+Name.swift */; };
+		65FB20E626B40997000B982A /* CountrySelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65FB20E326B40997000B982A /* CountrySelectionViewController.xib */; };
+		65FB20E726B40997000B982A /* CountrySelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65FB20E326B40997000B982A /* CountrySelectionViewController.xib */; };
+		65FB20E826B40997000B982A /* CountrySelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FB20E426B40997000B982A /* CountrySelectionViewController.swift */; };
+		65FB20E926B40997000B982A /* CountrySelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FB20E426B40997000B982A /* CountrySelectionViewController.swift */; };
+		65FB20EA26B40997000B982A /* CountrySelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FB20E526B40997000B982A /* CountrySelectionViewModel.swift */; };
+		65FB20EB26B40997000B982A /* CountrySelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FB20E526B40997000B982A /* CountrySelectionViewModel.swift */; };
+		65FB20ED26B409C4000B982A /* CountryModel+Initials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FB20EC26B409C4000B982A /* CountryModel+Initials.swift */; };
+		65FB20EE26B409C4000B982A /* CountryModel+Initials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FB20EC26B409C4000B982A /* CountryModel+Initials.swift */; };
 		6B155166265BE463001D19E2 /* VaccineValidityCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B155162265BE463001D19E2 /* VaccineValidityCheck.swift */; };
 		6B155167265BE463001D19E2 /* RecoveryValidityCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B155163265BE463001D19E2 /* RecoveryValidityCheck.swift */; };
 		6B155168265BE463001D19E2 /* TestValidityCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B155164265BE463001D19E2 /* TestValidityCheck.swift */; };
@@ -250,6 +274,13 @@
 		65021B6126AEDCF3004C3D14 /* Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
 		65021B6426AEE30F004C3D14 /* UIColor+RGB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+RGB.swift"; sourceTree = "<group>"; };
 		65021B6726AEEC48004C3D14 /* UIImage+Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Colors.swift"; sourceTree = "<group>"; };
+		65085B8826B407E400111F2D /* CertLogicEngineManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertLogicEngineManager.swift; sourceTree = "<group>"; };
+		65085B8A26B4080000111F2D /* GatewayConnection+Countries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GatewayConnection+Countries.swift"; sourceTree = "<group>"; };
+		65085B8C26B4080700111F2D /* GatewayConnection+Rules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GatewayConnection+Rules.swift"; sourceTree = "<group>"; };
+		65085B8E26B4081200111F2D /* GatewayConnection+ValueSets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GatewayConnection+ValueSets.swift"; sourceTree = "<group>"; };
+		65085B9026B4085900111F2D /* CountryDataStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryDataStorage.swift; sourceTree = "<group>"; };
+		65085B9126B4085900111F2D /* ValueSetsDataStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueSetsDataStorage.swift; sourceTree = "<group>"; };
+		65085B9226B4085900111F2D /* RulesDataStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulesDataStorage.swift; sourceTree = "<group>"; };
 		653F927C26B000D9000BE8F5 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		653F928126B00264000BE8F5 /* UITableView+Dequeue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Dequeue.swift"; sourceTree = "<group>"; };
 		653F928326B002D0000BE8F5 /* Array+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Utils.swift"; sourceTree = "<group>"; };
@@ -309,6 +340,13 @@
 		65EFB62B26B0C2390081682B /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		65EFB62E26B1829E0081682B /* Link.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
 		65EFB63226B183CF0081682B /* Link+Values.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Link+Values.swift"; sourceTree = "<group>"; };
+		65FB20D926B408E0000B982A /* HCert+CertificateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HCert+CertificateType.swift"; sourceTree = "<group>"; };
+		65FB20DC26B4092D000B982A /* Result+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+Name.swift"; sourceTree = "<group>"; };
+		65FB20DF26B40941000B982A /* CountryModel+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CountryModel+Name.swift"; sourceTree = "<group>"; };
+		65FB20E326B40997000B982A /* CountrySelectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CountrySelectionViewController.xib; sourceTree = "<group>"; };
+		65FB20E426B40997000B982A /* CountrySelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountrySelectionViewController.swift; sourceTree = "<group>"; };
+		65FB20E526B40997000B982A /* CountrySelectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountrySelectionViewModel.swift; sourceTree = "<group>"; };
+		65FB20EC26B409C4000B982A /* CountryModel+Initials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CountryModel+Initials.swift"; sourceTree = "<group>"; };
 		6B155162265BE463001D19E2 /* VaccineValidityCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VaccineValidityCheck.swift; sourceTree = "<group>"; };
 		6B155163265BE463001D19E2 /* RecoveryValidityCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecoveryValidityCheck.swift; sourceTree = "<group>"; };
 		6B155164265BE463001D19E2 /* TestValidityCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestValidityCheck.swift; sourceTree = "<group>"; };
@@ -568,6 +606,7 @@
 			children = (
 				65E281462697217B00377913 /* LaunchScreen.storyboard */,
 				65E281422697217B00377913 /* Home */,
+				65FB20E226B40997000B982A /* Countries */,
 				65E2814D2697217B00377913 /* Camera */,
 				65E281472697217B00377913 /* Result */,
 			);
@@ -656,6 +695,7 @@
 				65E28198269721ED00377913 /* HCert+Recovery.swift */,
 				65E28199269721ED00377913 /* HCert+PersonalData.swift */,
 				65E2819A269721ED00377913 /* HCert+Vaccine.swift */,
+				65FB20D926B408E0000B982A /* HCert+CertificateType.swift */,
 			);
 			path = HCert;
 			sourceTree = "<group>";
@@ -722,6 +762,9 @@
 			children = (
 				9F4F3C3E2649D60B00F59BA2 /* LocalData.swift */,
 				65EFB60B26B06AD80081682B /* SettingsDataStorage.swift */,
+				65085B9026B4085900111F2D /* CountryDataStorage.swift */,
+				65085B9226B4085900111F2D /* RulesDataStorage.swift */,
+				65085B9126B4085900111F2D /* ValueSetsDataStorage.swift */,
 			);
 			path = DataStorage;
 			sourceTree = "<group>";
@@ -732,6 +775,9 @@
 				9F4F3C442649D60B00F59BA2 /* GatewayConnection.swift */,
 				65EFB5ED26B04D850081682B /* GatewayConnection+Certificates.swift */,
 				65EFB5F026B04D900081682B /* GatewayConnection+Settings.swift */,
+				65085B8A26B4080000111F2D /* GatewayConnection+Countries.swift */,
+				65085B8C26B4080700111F2D /* GatewayConnection+Rules.swift */,
+				65085B8E26B4081200111F2D /* GatewayConnection+ValueSets.swift */,
 			);
 			path = GatewayConnection;
 			sourceTree = "<group>";
@@ -752,8 +798,21 @@
 				65E2818E269721ED00377913 /* LocalData+Setting.swift */,
 				658CB72426AF3C1200B90EC0 /* Status+Configuration.swift */,
 				65EFB63226B183CF0081682B /* Link+Values.swift */,
+				65FB20DC26B4092D000B982A /* Result+Name.swift */,
+				65FB20DF26B40941000B982A /* CountryModel+Name.swift */,
+				65FB20EC26B409C4000B982A /* CountryModel+Initials.swift */,
 			);
 			path = ModelExtensions;
+			sourceTree = "<group>";
+		};
+		65FB20E226B40997000B982A /* Countries */ = {
+			isa = PBXGroup;
+			children = (
+				65FB20E326B40997000B982A /* CountrySelectionViewController.xib */,
+				65FB20E426B40997000B982A /* CountrySelectionViewController.swift */,
+				65FB20E526B40997000B982A /* CountrySelectionViewModel.swift */,
+			);
+			path = Countries;
 			sourceTree = "<group>";
 		};
 		9F2AF7EE2653D27F00619B9C /* DGCAVerifier */ = {
@@ -786,6 +845,7 @@
 			isa = PBXGroup;
 			children = (
 				65EFB60626B068EA0081682B /* GatewayConnection */,
+				65085B8826B407E400111F2D /* CertLogicEngineManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1016,6 +1076,7 @@
 				65E281E72697259D00377913 /* TitilliumWeb-Regular.ttf in Resources */,
 				65E281E82697259D00377913 /* Roboto-Light.ttf in Resources */,
 				65E281E92697259D00377913 /* Localizable.strings in Resources */,
+				65FB20E726B40997000B982A /* CountrySelectionViewController.xib in Resources */,
 				65E7001026AF75AD00715CCC /* ResultView.xib in Resources */,
 				65E281EB2697259D00377913 /* TitilliumWeb-Bold.ttf in Resources */,
 				65E281EC2697259D00377913 /* Roboto-Bold.ttf in Resources */,
@@ -1076,6 +1137,7 @@
 				9F90C59A265E591E00B2F992 /* TitilliumWeb-SemiBold.ttf in Resources */,
 				9F90C5A5265E591E00B2F992 /* Roboto-BlackItalic.ttf in Resources */,
 				9F90C59C265E591E00B2F992 /* TitilliumWeb-BoldItalic.ttf in Resources */,
+				65FB20E626B40997000B982A /* CountrySelectionViewController.xib in Resources */,
 				9F90C593265E591D00B2F992 /* Roboto-Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1141,6 +1203,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65021B4C26AEC889004C3D14 /* AppButton.swift in Sources */,
+				65FB20DB26B408E1000B982A /* HCert+CertificateType.swift in Sources */,
 				65E281B92697259D00377913 /* TestValidityCheck.swift in Sources */,
 				65E281BB2697259D00377913 /* HCert+PersonalData.swift in Sources */,
 				65021B6926AEEC48004C3D14 /* UIImage+Colors.swift in Sources */,
@@ -1151,9 +1214,11 @@
 				65E281BE2697259D00377913 /* RulesValidator.swift in Sources */,
 				65021B6326AEDCF3004C3D14 /* Palette.swift in Sources */,
 				658CB71C26AF27D200B90EC0 /* UIBarButtonItem+Appearance.swift in Sources */,
+				65085B9826B4085900111F2D /* RulesDataStorage.swift in Sources */,
 				65E7000226AF6E1F00715CCC /* UIStackView+ArrangedSubViews.swift in Sources */,
 				65021B4D26AEC889004C3D14 /* ButtonStyle.swift in Sources */,
 				65021B5126AEC88E004C3D14 /* CALayer+Shadow.swift in Sources */,
+				65FB20E926B40997000B982A /* CountrySelectionViewController.swift in Sources */,
 				65E281BF2697259D00377913 /* VaccineValidityCheck.swift in Sources */,
 				65E281C02697259D00377913 /* HomeViewModel.swift in Sources */,
 				65E281C12697259D00377913 /* Date+String.swift in Sources */,
@@ -1164,10 +1229,13 @@
 				65E281C42697259D00377913 /* AppDelegate.swift in Sources */,
 				65EFB62726B0BFB90081682B /* MedicalRulesValidator.swift in Sources */,
 				65E281C52697259D00377913 /* GatewayConnection.swift in Sources */,
+				65FB20E126B40941000B982A /* CountryModel+Name.swift in Sources */,
 				65EFB62D26B0C2390081682B /* Validator.swift in Sources */,
 				659DE89726B2E9410026A39A /* UIButton+Inspectable.swift in Sources */,
 				658CB72626AF3C1200B90EC0 /* Status+Configuration.swift in Sources */,
 				65021B5326AEC88E004C3D14 /* UIView+Set.swift in Sources */,
+				65085B9426B4085900111F2D /* CountryDataStorage.swift in Sources */,
+				65FB20EB26B40997000B982A /* CountrySelectionViewModel.swift in Sources */,
 				658CB71F26AF359100B90EC0 /* UIImage+Rotate.swift in Sources */,
 				65E281C62697259D00377913 /* String+Int.swift in Sources */,
 				65021B5226AEC88E004C3D14 /* UIButton+Set.swift in Sources */,
@@ -1181,6 +1249,7 @@
 				65E281CB2697259D00377913 /* HomeViewController.swift in Sources */,
 				658CB72326AF3B5B00B90EC0 /* Status.swift in Sources */,
 				65E281CC2697259D00377913 /* Date.swift in Sources */,
+				65FB20EE26B409C4000B982A /* CountryModel+Initials.swift in Sources */,
 				65EFB63426B183CF0081682B /* Link+Values.swift in Sources */,
 				65C3A55826AEF8F3000BBCC5 /* UIView+Borders.swift in Sources */,
 				65E281CD2697259D00377913 /* Setting.swift in Sources */,
@@ -1192,12 +1261,14 @@
 				65E281D22697259D00377913 /* DateFormatter+Default.swift in Sources */,
 				65E281D32697259D00377913 /* HCert+Vaccine.swift in Sources */,
 				65E281D42697259D00377913 /* VerificationViewController.swift in Sources */,
+				65FB20DE26B4092D000B982A /* Result+Name.swift in Sources */,
 				65E281D52697259D00377913 /* UIViewController+Alert.swift in Sources */,
 				65021B6626AEE30F004C3D14 /* UIColor+RGB.swift in Sources */,
 				659DE89226B2D75B0026A39A /* Font.swift in Sources */,
 				65E281D62697259D00377913 /* Date+Utils.swift in Sources */,
 				65E7000D26AF753C00715CCC /* AppView.swift in Sources */,
 				65E281D72697259D00377913 /* RecoveryValidityCheck.swift in Sources */,
+				65085B9626B4085900111F2D /* ValueSetsDataStorage.swift in Sources */,
 				65C3A55F26AF01EB000BBCC5 /* AppLabel.swift in Sources */,
 				65EFB62A26B0BFC00081682B /* CertLogicValidator.swift in Sources */,
 				65021B5C26AED0A1004C3D14 /* AppLabelUrl.swift in Sources */,
@@ -1208,6 +1279,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65FB20EA26B40997000B982A /* CountrySelectionViewModel.swift in Sources */,
 				6B155168265BE463001D19E2 /* TestValidityCheck.swift in Sources */,
 				658CB72226AF3B5B00B90EC0 /* Status.swift in Sources */,
 				65E281A6269721ED00377913 /* UIView+Set.swift in Sources */,
@@ -1220,6 +1292,8 @@
 				658CB71E26AF359100B90EC0 /* UIImage+Rotate.swift in Sources */,
 				653F928E26B00727000BE8F5 /* UITableView+Nib.swift in Sources */,
 				65E281A1269721ED00377913 /* LocalData+Setting.swift in Sources */,
+				65085B9726B4085900111F2D /* RulesDataStorage.swift in Sources */,
+				65085B9526B4085900111F2D /* ValueSetsDataStorage.swift in Sources */,
 				65740958268690E500499706 /* RulesValidator.swift in Sources */,
 				6B155166265BE463001D19E2 /* VaccineValidityCheck.swift in Sources */,
 				65021B3926AEB21F004C3D14 /* AppButton.swift in Sources */,
@@ -1234,10 +1308,12 @@
 				653F928226B00264000BE8F5 /* UITableView+Dequeue.swift in Sources */,
 				65E7000C26AF753C00715CCC /* AppView.swift in Sources */,
 				9F4F3C572649D60C00F59BA2 /* LocalData.swift in Sources */,
+				65FB20DA26B408E1000B982A /* HCert+CertificateType.swift in Sources */,
 				65C3A55726AEF8F3000BBCC5 /* UIView+Borders.swift in Sources */,
 				9F4F3C5B2649D60C00F59BA2 /* AppDelegate.swift in Sources */,
 				6BA8B9E5266FAC150060D767 /* GatewayConnection.swift in Sources */,
 				65E281A4269721ED00377913 /* String+Int.swift in Sources */,
+				65085B9326B4085900111F2D /* CountryDataStorage.swift in Sources */,
 				65E2819E269721ED00377913 /* String+Date.swift in Sources */,
 				65E281A5269721ED00377913 /* String+Localization.swift in Sources */,
 				65EFB5EE26B04D850081682B /* GatewayConnection+Certificates.swift in Sources */,
@@ -1248,21 +1324,28 @@
 				65E2816C2697217B00377913 /* ResultView.swift in Sources */,
 				65E281682697217B00377913 /* HomeViewController.swift in Sources */,
 				65E2819B269721ED00377913 /* Date.swift in Sources */,
+				65FB20DD26B4092D000B982A /* Result+Name.swift in Sources */,
 				6B155169265BE463001D19E2 /* Setting.swift in Sources */,
 				65E2816B2697217B00377913 /* VerificationViewModel.swift in Sources */,
+				65FB20ED26B409C4000B982A /* CountryModel+Initials.swift in Sources */,
 				65021B5926AECF59004C3D14 /* UIImageView+Inspectable.swift in Sources */,
 				65E281A2269721ED00377913 /* Cache.swift in Sources */,
 				65E281702697217B00377913 /* CameraViewController.swift in Sources */,
+				65FB20E826B40997000B982A /* CountrySelectionViewController.swift in Sources */,
 				65E7001326AF7BB000715CCC /* FaqView.swift in Sources */,
 				9F4F3C5A2649D60C00F59BA2 /* MainCoordinator.swift in Sources */,
+				65085B8F26B4081200111F2D /* GatewayConnection+ValueSets.swift in Sources */,
 				653F928A26B00474000BE8F5 /* CountryCell.swift in Sources */,
 				65EFB62C26B0C2390081682B /* Validator.swift in Sources */,
+				65085B8D26B4080700111F2D /* GatewayConnection+Rules.swift in Sources */,
+				65085B8B26B4080000111F2D /* GatewayConnection+Countries.swift in Sources */,
 				65E2819D269721ED00377913 /* DateFormatter+Default.swift in Sources */,
 				65EFB5F126B04D900081682B /* GatewayConnection+Settings.swift in Sources */,
 				65C3A55426AEF642000BBCC5 /* String+UIImage.swift in Sources */,
 				65021B4026AEC142004C3D14 /* UILabel+Inspectable.swift in Sources */,
 				65021B3D26AEB33F004C3D14 /* UIButton+Set.swift in Sources */,
 				65EFB62926B0BFC00081682B /* CertLogicValidator.swift in Sources */,
+				65FB20E026B40941000B982A /* CountryModel+Name.swift in Sources */,
 				65021B6826AEEC48004C3D14 /* UIImage+Colors.swift in Sources */,
 				65E281AA269721ED00377913 /* HCert+Vaccine.swift in Sources */,
 				65E2816D2697217B00377913 /* VerificationViewController.swift in Sources */,
@@ -1270,6 +1353,7 @@
 				65021B4326AEC202004C3D14 /* UIButton+Inspectable.swift in Sources */,
 				65EFB62F26B1829E0081682B /* Link.swift in Sources */,
 				65E281A0269721ED00377913 /* UIViewController+Alert.swift in Sources */,
+				65085B8926B407E400111F2D /* CertLogicEngineManager.swift in Sources */,
 				65EFB63326B183CF0081682B /* Link+Values.swift in Sources */,
 				65E2819F269721ED00377913 /* Date+Utils.swift in Sources */,
 				659DE89126B2D75B0026A39A /* Font.swift in Sources */,
