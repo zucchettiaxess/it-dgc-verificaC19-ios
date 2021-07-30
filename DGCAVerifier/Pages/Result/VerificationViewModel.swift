@@ -26,13 +26,14 @@ import Foundation
 import SwiftDGC
 import CertLogic
 import SwiftyJSON
+
 class VerificationViewModel {
     
     var status: Status
     var hCert: HCert?
-    var country: Country?
+    var country: CountryModel?
     
-    init(payload: String, country: Country?) {
+    init(payload: String, country: CountryModel?) {
         self.country = country
         self.hCert = HCert(from: payload)
         self.hCert?.ruleCountryCode = country?.code
