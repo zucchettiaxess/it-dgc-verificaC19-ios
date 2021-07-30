@@ -31,6 +31,7 @@
 		65021B6626AEE30F004C3D14 /* UIColor+RGB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65021B6426AEE30F004C3D14 /* UIColor+RGB.swift */; };
 		65021B6826AEEC48004C3D14 /* UIImage+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65021B6726AEEC48004C3D14 /* UIImage+Colors.swift */; };
 		65021B6926AEEC48004C3D14 /* UIImage+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65021B6726AEEC48004C3D14 /* UIImage+Colors.swift */; };
+		65085B8726B4076600111F2D /* CertLogic in Frameworks */ = {isa = PBXBuildFile; productRef = 65085B8626B4076600111F2D /* CertLogic */; };
 		653F928226B00264000BE8F5 /* UITableView+Dequeue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653F928126B00264000BE8F5 /* UITableView+Dequeue.swift */; };
 		653F928426B002D0000BE8F5 /* Array+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653F928326B002D0000BE8F5 /* Array+Utils.swift */; };
 		653F928A26B00474000BE8F5 /* CountryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653F928826B00474000BE8F5 /* CountryCell.swift */; };
@@ -374,6 +375,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE8912FB2634C6B900CB92AF /* Alamofire in Frameworks */,
+				65085B8726B4076600111F2D /* CertLogic in Frameworks */,
 				CE56B5052639F48E00FB31B1 /* SwiftDGC in Frameworks */,
 				65D6D7D42684FCA90022C816 /* SwiftDGC in Frameworks */,
 				CE1F155C2639F9E700736D48 /* SwiftyJSON in Frameworks */,
@@ -905,6 +907,7 @@
 				CE56B5042639F48E00FB31B1 /* SwiftDGC */,
 				CE1F155B2639F9E700736D48 /* SwiftyJSON */,
 				65D6D7D32684FCA90022C816 /* SwiftDGC */,
+				65085B8626B4076600111F2D /* CertLogic */,
 			);
 			productName = DGCAVerifier;
 			productReference = CEA6D6E8261F8D2700715333 /* VerificaC19.app */;
@@ -983,6 +986,7 @@
 				CE8912F92634C6B900CB92AF /* XCRemoteSwiftPackageReference "Alamofire" */,
 				CE1F155A2639F9E700736D48 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				65D6D7D22684FCA90022C816 /* XCRemoteSwiftPackageReference "dgca-app-core-ios" */,
+				65085B8526B4076600111F2D /* XCRemoteSwiftPackageReference "dgc-certlogic-ios" */,
 			);
 			productRefGroup = CEA6D6E9261F8D2700715333 /* Products */;
 			projectDirPath = "";
@@ -2015,6 +2019,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		65085B8526B4076600111F2D /* XCRemoteSwiftPackageReference "dgc-certlogic-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/eu-digital-green-certificates/dgc-certlogic-ios";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		65D6D7D22684FCA90022C816 /* XCRemoteSwiftPackageReference "dgca-app-core-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/eu-digital-green-certificates/dgca-app-core-ios";
@@ -2082,6 +2094,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		65085B8626B4076600111F2D /* CertLogic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 65085B8526B4076600111F2D /* XCRemoteSwiftPackageReference "dgc-certlogic-ios" */;
+			productName = CertLogic;
+		};
 		65D6D7D32684FCA90022C816 /* SwiftDGC */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 65D6D7D22684FCA90022C816 /* XCRemoteSwiftPackageReference "dgca-app-core-ios" */;
