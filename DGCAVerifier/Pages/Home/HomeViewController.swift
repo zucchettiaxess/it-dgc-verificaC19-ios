@@ -168,6 +168,8 @@ class HomeViewController: UIViewController {
     
     @IBAction func chooseCountry(_ sender: Any) {
         guard !viewModel.isVersionOutdated() else { return showOutdatedAlert() }
+        let countries = CountryDataStorage.sharedInstance.countryCodes
+        !countries.isEmpty ? coordinator?.showCountries() : showAlert(key: "no.countries")
     }
     
     @IBAction func updateNow(_ sender: Any) {
