@@ -24,101 +24,40 @@
 
 import Foundation
 import SwiftDGC
-
-enum Status {
-    case valid
-    case expired
-    case future
-    case notValid
-    case invalidQR
-}
-
-func validateWithMedicalRules(_ hcert: HCert?) -> Status {
-    guard let hcert = hcert else { return .notValid }
-    switch hcert.type {
-    case .test:
-        let testValidityCheck = TestValidityCheck()
-        return testValidityCheck.isTestValid(hcert)
-    case .vaccine:
-        let vaccineValidityCheck = VaccineValidityCheck()
-        return vaccineValidityCheck.isVaccineDateValid(hcert)
-    case .recovery:
-        let recoveryValidityCheck = RecoveryValidityCheck()
-        return recoveryValidityCheck.isRecoveryValid(hcert)
-    case .unknown:
-        return .notValid
-    }
-}
-
+import CertLogic
+import SwiftyJSON
 class VerificationViewModel {
-
-    var status: Status = .invalidQR
+    
+    var status: Status
     var hCert: HCert?
-        
-    init(qrCodeText: String) {
-        let cert = HCert(from: qrCodeText)
-        guard isValid(cert) else { return }
-        
-        hCert = cert
-        status = validateWithMedicalRules(cert)
-    }
-
-    private func isValid(_ hCert: HCert?) -> Bool {
-        guard let cert = hCert else { return false }
-//        return cert.isValid // it checks some medical rules too.
-        guard cert.cryptographicallyValid else { return false }
-        guard cert.exp >= HCert.clock else { return false }
-        guard cert.iat <= HCert.clock else { return false }
-        guard cert.statement != nil else { return false }
-        return true
-    }
-
-    var imageName: String {
-        return status == .valid ? "icon_checkmark-filled" : "icon_misuse"
-    }
-    var title: String {
-        return status == .valid ? "result.valid.title".localized : "result.invalid.title".localized
-    }
-    var description: String {
-        switch status {
-        case .valid:
-            return "result.valid.description".localized
-        case .expired:
-            return "result.expired.description".localized
-        case .future:
-            return "result.future.description".localized
-        case .invalidQR:
-            return "result.invalidQR.description".localized
-        case .notValid:
-            return "result.notValid.description".localized
-        }
-    }
-    var rescanButtonTitle: String {
-        return status == .valid ? "result.nextScan".localized : "result.rescan".localized
+    var country: Country?
+    
+    init(payload: String, country: Country?) {
+        self.country = country
+        self.hCert = HCert(from: payload)
+        self.hCert?.ruleCountryCode = country?.code
+        self.status = RulesValidator.getStatus(from: hCert)
+        self.test()
     }
     
-    var resultItems: [ResultItem]? {
-        if status == .invalidQR {
-            return nil
-        }
-        
-        let firstName = hCert?.firstName ?? ""
-        let lastName = hCert?.lastName ?? ""
-        
-        return [
-            ResultItem(title: lastName + " " + firstName, subtitle: "", imageName: "icon_user"),
-            ResultItem(title: "result.bithdate".localized, subtitle: birthDateString, imageName: "icon_calendar")
-        ]
+    func getCountryName() -> String {
+        return country?.name ?? "Italia"
     }
     
-    var birthDateString: String? {
-        guard let dateOfBirth = hCert?.dateOfBirth else { return nil }
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        guard let date = dateFormatter.date(from: dateOfBirth) else { return nil }
-        let italianDateFormatter = DateFormatter()
-        italianDateFormatter.dateFormat = "dd/MM/yyyy"
-        return italianDateFormatter.string(from: date)
+    private func test() {
+//        self.hCert = setNewValue(to: hCert, old: "EU\\/1", new: "AU\\/1")
+//        self.status = RulesValidator.getStatus(from: hCert)
     }
+    
+    private func setNewValue(to hCert: HCert?, old: String, new: String) -> HCert? {
+        #if targetEnvironment(simulator)
+        var hCert = hCert
+        var bodyString = hCert?.body.rawString()
+        bodyString = bodyString?.replacingOccurrences(of: old, with: new)
+        guard let newValue = bodyString else { return hCert }
+        hCert?.body = JSON(parseJSON: newValue)
+        #endif
+        return hCert
+    }
+    
 }
