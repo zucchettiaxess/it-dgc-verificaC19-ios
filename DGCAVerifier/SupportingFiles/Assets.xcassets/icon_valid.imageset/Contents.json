@@ -1,15 +1,17 @@
 {
   "images" : [
     {
+      "filename" : "icon_valid.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "icon_checkmark-filled.png",
+      "filename" : "icon_valid@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "icon_valid@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
