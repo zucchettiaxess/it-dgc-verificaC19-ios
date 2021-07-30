@@ -25,7 +25,6 @@
 
 import Foundation
 import SwiftDGC
-import CertLogic
 
 struct RulesValidator: Validator {
     

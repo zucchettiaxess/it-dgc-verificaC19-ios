@@ -24,7 +24,6 @@
 
 import Foundation
 import SwiftDGC
-import CertLogic
 import SwiftyJSON
 
 class VerificationViewModel {

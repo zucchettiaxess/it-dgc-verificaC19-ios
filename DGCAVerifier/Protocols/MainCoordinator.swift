@@ -66,9 +66,6 @@ extension MainCoordinator: HomeCoordinator {
     }
     
     func showCountries() {
-        let vm = CountrySelectionViewModel()
-        let controller = CountrySelectionViewController(coordinator: self, viewModel: vm)
-        navigationController.pushViewController(controller, animated: true)
     }
 }
 
@@ -82,12 +79,6 @@ extension MainCoordinator: CameraCoordinator {
     }
 }
 
-extension MainCoordinator: CountrySelectionCoordinator {
-    func showCamera(selectedCountry: CountryModel) {
-        let controller = CameraViewController(coordinator: self, country: selectedCountry)
-        navigationController.pushViewController(controller, animated: true)
-    }
-}
 
 extension MainCoordinator: VerificationCoordinator {
     func dismissVerification(completion: (()->())?) {
