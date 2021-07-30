@@ -83,11 +83,5 @@
 	<string>$(certificateEvaluator)</string>
 	<key>certificateFilename</key>
 	<string>$(certificateFilename)</string>
-	<key>settingsEndpoint</key>
-	<string>$(settingsEndpoint)</string>
-	<key>statusEndpoint</key>
-	<string>$(statusEndpoint)</string>
-	<key>updateEndpoint</key>
-	<string>$(updateEndpoint)</string>
 </dict>
 </plist>
