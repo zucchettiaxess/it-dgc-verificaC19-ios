@@ -35,8 +35,8 @@ struct LocalData: Codable {
   var encodedPublicKeys = [String: [String]]()
   var resumeToken: String?
   var lastFetchRaw: Date?
-  var settings = [Setting]()
-  var lastFetch: Date {
+
+var lastFetch: Date {
     get {
       lastFetchRaw ?? .init(timeIntervalSince1970: 0)
     }
@@ -56,18 +56,6 @@ struct LocalData: Codable {
     encodedPublicKeys[kidStr] = list + [encodedPublicKey]
   }
     
-  mutating func addOrUpdateSettings(_ setting: Setting) {
-    if let i = settings.firstIndex(where: { $0.name == setting.name && $0.type == setting.type }) {
-        settings[i].value = setting.value
-        return
-    }
-    settings = settings + [setting]
-  }
-    
-  func getFirstSetting(withName name: String) -> String? {
-      return settings.filter{ $0.name == name}.first?.value
-  }
-
   static func set(resumeToken: String) {
     sharedInstance.resumeToken = resumeToken
   }
@@ -83,7 +71,7 @@ struct LocalData: Codable {
       guard let result = success else {
         return
       }
-      let format = l10n("log.keys-loaded")
+      let format = l10n("log.keys")
       print(String.localizedStringWithFormat(format, result.encodedPublicKeys.count))
       LocalData.sharedInstance = result
       completion()
