@@ -28,7 +28,7 @@ import SwiftDGC
 
 extension HCert {
     
-    var name: String { firstName + " " + lastName }
+    var name: String { lastName + " " + firstName }
     
     var firstName: String { body["nam"]["gn"].string ?? "" }
     
