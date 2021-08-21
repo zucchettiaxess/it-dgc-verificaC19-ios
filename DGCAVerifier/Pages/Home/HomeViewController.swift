@@ -23,6 +23,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 protocol HomeCoordinator: Coordinator {
     func showCamera()
@@ -30,6 +31,8 @@ protocol HomeCoordinator: Coordinator {
 }
 
 class HomeViewController: UIViewController {
+    
+    let realm = try! Realm()
     
     weak var coordinator: HomeCoordinator?
     private var viewModel: HomeViewModel
@@ -59,6 +62,27 @@ class HomeViewController: UIViewController {
         initialize()
         viewModel.startOperations()
         subscribeEvents()
+        
+        var hashedUVCIList: [RevokedDCC] = []
+        for i in 0...100 {
+            hashedUVCIList.removeAll()
+            print("Inserting records - 10000 - \(i) - \(Date())")
+            for j in 10000*i...10000*(i+1) {
+                let revokedDCC = RevokedDCC()
+                revokedDCC.hashedUVCI = String(j).sha256()
+                hashedUVCIList.append(revokedDCC)
+            }
+            print("Array created - \(i) - \(Date())")
+            do {
+                try realm.write {
+                    realm.add(hashedUVCIList)
+                    let count = realm.objects(RevokedDCC.self).count
+                    print("Inserted \(count) - \(i) - \(Date())")
+                }
+            } catch {
+                print("Error while writing: \(error)")
+            }
+        }
     }
     
     private func initialize() {

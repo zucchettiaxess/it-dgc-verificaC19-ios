@@ -23,12 +23,15 @@
 //
 
 import UIKit
+import RealmSwift
 
 protocol VerificationCoordinator: Coordinator {
     func dismissVerification(completion: (()->())?)
 }
 
 class VerificationViewController: UIViewController {
+    
+    let realm = try! Realm()
     
     private weak var coordinator: VerificationCoordinator?
     private var delegate: CameraDelegate?
@@ -68,6 +71,12 @@ class VerificationViewController: UIViewController {
         resultImageView.image = status.mainImage
         titleLabel.text = status.title.localizeWith(getTitleArguments(status))
         descriptionLabel.text = status.description?.localized
+        let revokedDCCs = realm.objects(RevokedDCC.self)
+        let count = revokedDCCs.count
+        print("\(count) - \(Date())")
+        if let _ = revokedDCCs.filter("hashedUVCI == %@", "becd3e0253475b6864314fb3c0b8893a39f8049a0cf99bdffaf334e1450c1313").first {
+            descriptionLabel.text = "Revocato!"
+        }
         lastFetchLabel.isHidden = !status.showLastFetch
         setFaq(for: status)
         setPersonalData(for: status)
