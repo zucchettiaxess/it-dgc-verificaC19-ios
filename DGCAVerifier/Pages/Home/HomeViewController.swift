@@ -83,6 +83,24 @@ class HomeViewController: UIViewController {
                 print("Error while writing: \(error)")
             }
         }
+        var hashedUVCIListToDelete: [String] = []
+        print("Inserting records to delete - \(Date())")
+        for j in stride(from: 1, to: 1000000, by: 100) {
+            hashedUVCIListToDelete.append(String(j).sha256())
+        }
+        print("Array to delete created - \(Date())")
+        let revokedDCCs = realm.objects(RevokedDCC.self).filter("hashedUVCI IN %@", hashedUVCIListToDelete)
+        do {
+            try realm.write {
+                var count = realm.objects(RevokedDCC.self).count
+                print("Before Deleted \(count) - \(Date())")
+                realm.delete(revokedDCCs)
+                count = realm.objects(RevokedDCC.self).count
+                print("After Deleted \(count) - \(Date())")
+            }
+        } catch {
+            print("Error while deleting: \(error)")
+        }
     }
     
     private func initialize() {
