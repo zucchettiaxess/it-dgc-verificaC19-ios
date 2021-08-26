@@ -36,10 +36,17 @@ struct RulesValidator: Validator {
     private static let currentValidationType: ValidationType = .internal
     
     static func getStatus(from hCert: HCert) -> Status {
+        guard isRevoked(hCert) else { return .notValid }
         switch currentValidationType {
         case .internal:     return MedicalRulesValidator.getStatus(from: hCert)
         case .european:     return CertLogicValidator.getStatus(from:hCert)
         }
     }
         
+    private static func isRevoked(_ hCert: HCert) -> Bool {
+        let hash = hCert.certHash
+        guard !hash.isEmpty else { return false }
+        return CRLDataStorage.contains(hash: hash)
+    }
+    
 }
