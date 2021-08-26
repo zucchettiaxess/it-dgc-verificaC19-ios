@@ -31,9 +31,7 @@ protocol HomeCoordinator: Coordinator {
 }
 
 class HomeViewController: UIViewController {
-    
-    let realm = try! Realm()
-    
+        
     weak var coordinator: HomeCoordinator?
     private var viewModel: HomeViewModel
 
@@ -62,45 +60,6 @@ class HomeViewController: UIViewController {
         initialize()
         viewModel.startOperations()
         subscribeEvents()
-        
-        var hashedUVCIList: [RevokedDCC] = []
-        for i in 0...100 {
-            hashedUVCIList.removeAll()
-            print("Inserting records - 10000 - \(i) - \(Date())")
-            for j in 10000*i...10000*(i+1) {
-                let revokedDCC = RevokedDCC()
-                revokedDCC.hashedUVCI = String(j).sha256()
-                hashedUVCIList.append(revokedDCC)
-            }
-            print("Array created - \(i) - \(Date())")
-            do {
-                try realm.write {
-                    realm.add(hashedUVCIList)
-                    let count = realm.objects(RevokedDCC.self).count
-                    print("Inserted \(count) - \(i) - \(Date())")
-                }
-            } catch {
-                print("Error while writing: \(error)")
-            }
-        }
-        var hashedUVCIListToDelete: [String] = []
-        print("Inserting records to delete - \(Date())")
-        for j in stride(from: 1, to: 1000000, by: 100) {
-            hashedUVCIListToDelete.append(String(j).sha256())
-        }
-        print("Array to delete created - \(Date())")
-        let revokedDCCs = realm.objects(RevokedDCC.self).filter("hashedUVCI IN %@", hashedUVCIListToDelete)
-        do {
-            try realm.write {
-                var count = realm.objects(RevokedDCC.self).count
-                print("Before Deleted \(count) - \(Date())")
-                realm.delete(revokedDCCs)
-                count = realm.objects(RevokedDCC.self).count
-                print("After Deleted \(count) - \(Date())")
-            }
-        } catch {
-            print("Error while deleting: \(error)")
-        }
     }
     
     private func initialize() {

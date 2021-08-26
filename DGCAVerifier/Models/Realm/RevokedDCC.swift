@@ -10,4 +10,9 @@ import RealmSwift
 
 class RevokedDCC: Object {
     @Persisted var hashedUVCI: String = ""
+    
+    convenience init(hash: String) {
+        self.init()
+        hashedUVCI = hash
+    }
 }

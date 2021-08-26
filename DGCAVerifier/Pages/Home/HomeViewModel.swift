@@ -83,6 +83,7 @@ extension HomeViewModel {
         
         loadSettings(in: group)
         loadCertificates(in: group)
+        loadCertificateRevocationList(in: group)
         
         group.notify(queue: .main) { [weak self] in self?.loadComplete() }
     }
@@ -103,6 +104,14 @@ extension HomeViewModel {
                 print("log.keys.done")
                 loadingGroup.leave()
             }
+        }
+        loadingGroup.enter()
+    }
+    
+    private func loadCertificateRevocationList(in loadingGroup: DispatchGroup) {
+        GatewayConnection.shared.updateRevocationList() { _ in
+            print("log.crl.done")
+            loadingGroup.leave()
         }
         loadingGroup.enter()
     }
