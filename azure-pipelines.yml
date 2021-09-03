@@ -29,6 +29,6 @@ steps:
     scheme: ''
     sdk: 'iphoneos'
     configuration: 'Release'
-    xcWorkspacePath: 'it-dgc-verificaC19-ios/DGCAVerifier.xcodeproj/project.xcworkspace'
+    xcWorkspacePath: 'it-dgc-verificaC19-ios/Verifier.xcodeproj/project.xcworkspace'
     xcodeVersion: 'default' # Options: 8, 9, 10, 11, 12, default, specifyPath
 
