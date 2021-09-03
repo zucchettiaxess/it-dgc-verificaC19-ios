@@ -26,9 +26,9 @@ steps:
 - task: Xcode@5
   inputs:
     actions: 'build'
-    scheme: ''
-    sdk: 'iphoneos'
     configuration: 'Release'
+    sdk: 'iphoneos'
     xcWorkspacePath: 'it-dgc-verificaC19-ios/Verifier.xcodeproj/project.xcworkspace'
-    xcodeVersion: 'default' # Options: 8, 9, 10, 11, 12, default, specifyPath
+    scheme: 'VerificaC19'
+    packageApp: false
 
