@@ -23,6 +23,18 @@ steps:
 
 - script: |
     ls -l
+
+- task: InstallAppleCertificate@2
+  inputs:
+    certSecureFile: 'SaluteProd.p12'
+    certPwd: '$(P12Password)'
+    keychain: 'temp'
+
+- task: InstallAppleProvisioningProfile@1
+  inputs:
+    provisioningProfileLocation: 'secureFiles'
+    provProfileSecureFile: 'VerificaC19_CI_Prod.mobileprovision'
+
 - task: Xcode@5
   inputs:
     actions: 'build'
@@ -30,5 +42,6 @@ steps:
     sdk: 'iphoneos'
     xcWorkspacePath: 'it-dgc-verificaC19-ios/Verifier.xcodeproj/project.xcworkspace'
     scheme: 'VerificaC19'
-    packageApp: false
+    packageApp: true
+    signingOption: 'default'
 
