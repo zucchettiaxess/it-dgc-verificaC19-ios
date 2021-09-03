@@ -8,12 +8,27 @@ trigger: none
 pool:
   vmImage: 'macos-11'
 
+resources:
+  repositories:
+  - repository: dgca-app-core-ios
+    type: github
+    name: eu-digital-green-certificates/dgca-verifier-app-ios
+    ref: 'main'
+    endpoint: 'GitHub - it-eucert-team'
+
 steps:
+- checkout: self
+  clean: true
+- checkout: dgca-app-core-ios
+
+- script: |
+    ls -l
 - task: Xcode@5
   inputs:
     actions: 'build'
     scheme: ''
     sdk: 'iphoneos'
     configuration: 'Release'
-    xcWorkspacePath: '**/*.xcodeproj/project.xcworkspace'
+    xcWorkspacePath: 'it-dgc-verificaC19-ios/DGCAVerifier.xcodeproj/project.xcworkspace'
     xcodeVersion: 'default' # Options: 8, 9, 10, 11, 12, default, specifyPath
+
