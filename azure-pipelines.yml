@@ -44,6 +44,4 @@ steps:
     scheme: 'VerificaC19'
     packageApp: true
     signingOption: 'manual'
-    signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
-    provisioningProfileUuid: '$(APPLE_PROV_PROFILE_UUID)'
 
