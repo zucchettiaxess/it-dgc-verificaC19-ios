@@ -57,7 +57,7 @@ steps:
   displayName: AppCenter debug Distribute
   inputs:
     serverEndpoint: 'DGC-App'
-    appSlug: 'sogei/it-dgc-verificaC19-ios'
+    appSlug: 'sogei/dgca-verifier-app-ios'
     appFile: 'output/$(SDK)/$(Configuration)/VerificaC19.ipa'
     releaseNotesOption: 'input'
     releaseNotesInput: 'Prova'
