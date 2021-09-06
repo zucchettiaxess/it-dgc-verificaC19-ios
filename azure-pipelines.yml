@@ -33,7 +33,7 @@ steps:
 - task: InstallAppleProvisioningProfile@1
   inputs:
     provisioningProfileLocation: 'secureFiles'
-    provProfileSecureFile: 'VerificaC19_CI_Prod.mobileprovision'
+    provProfileSecureFile: 'VerificaC19ProdProfile.mobileprovision'
 
 - task: Xcode@5
   inputs:
@@ -43,5 +43,5 @@ steps:
     xcWorkspacePath: 'it-dgc-verificaC19-ios/Verifier.xcodeproj/project.xcworkspace'
     scheme: 'VerificaC19'
     packageApp: true
-    signingOption: 'default'
+    signingOption: 'auto'
 
