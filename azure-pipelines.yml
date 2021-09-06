@@ -26,14 +26,14 @@ steps:
 
 - task: InstallAppleCertificate@2
   inputs:
-    certSecureFile: 'Certificati.p12'
+    certSecureFile: 'VerificaC19_Distribution.p12'
     certPwd: '$(P12Password)'
     keychain: 'temp'
 
 - task: InstallAppleProvisioningProfile@1
   inputs:
     provisioningProfileLocation: 'secureFiles'
-    provProfileSecureFile: 'VerificaC19_CI_Prod.mobileprovision'
+    provProfileSecureFile: 'VerificaC19ProdProfile.mobileprovision'
 
 - task: Xcode@5
   inputs:
