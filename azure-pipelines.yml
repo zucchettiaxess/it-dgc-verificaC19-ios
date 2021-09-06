@@ -43,5 +43,6 @@ steps:
     xcWorkspacePath: 'it-dgc-verificaC19-ios/Verifier.xcodeproj/project.xcworkspace'
     scheme: 'VerificaC19'
     packageApp: true
-    signingOption: 'default'
+    signingOption: 'manual'
+    provisioningProfileName: 'VerificaC19ProdProfile.mobileprovision'
 
