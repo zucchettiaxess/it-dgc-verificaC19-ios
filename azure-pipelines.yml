@@ -52,3 +52,14 @@ steps:
     targetPath: 'output/$(SDK)/$(Configuration)'
     artifact: 'output'
     publishLocation: 'pipeline'
+
+- task: AppCenterDistribute@3
+  displayName: AppCenter debug Distribute
+  inputs:
+    serverEndpoint: 'DGC-App'
+    appSlug: 'sogei/it-dgc-verificaC19-ios'
+    appFile: 'output/$(SDK)/$(Configuration)/VerificaC19.ipa'
+    releaseNotesOption: 'input'
+    releaseNotesInput: 'Prova'
+    destinationType: 'groups'
+    isSilent: true
