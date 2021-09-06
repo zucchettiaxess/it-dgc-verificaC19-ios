@@ -47,3 +47,8 @@ steps:
     signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
     provisioningProfileUuid: '$(APPLE_PROV_PROFILE_UUID)'
 
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: 'output/$(SDK)/$(Configuration)'
+    artifact: 'output'
+    publishLocation: 'pipeline'
