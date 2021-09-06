@@ -44,5 +44,6 @@ steps:
     scheme: 'VerificaC19'
     packageApp: true
     signingOption: 'manual'
+    provisioningProfileUuid: '74363267-8f53-4036-aa6d-5eb4a3bdafe1'
     provisioningProfileName: 'VerificaC19ProdProfile.mobileprovision'
 
