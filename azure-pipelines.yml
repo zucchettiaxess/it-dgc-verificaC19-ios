@@ -33,7 +33,7 @@ steps:
 - task: InstallAppleProvisioningProfile@1
   inputs:
     provisioningProfileLocation: 'secureFiles'
-    provProfileSecureFile: 'VerificaC19ProdProfile.mobileprovision'
+    provProfileSecureFile: 'VerificaC19_CI_Prod.mobileprovision'
 
 - task: Xcode@5
   inputs:
