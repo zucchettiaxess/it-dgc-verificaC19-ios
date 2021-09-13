@@ -25,6 +25,8 @@
 import UIKit
 import RealmSwift
 
+typealias Tap = UITapGestureRecognizer
+
 protocol HomeCoordinator: Coordinator {
     func showCamera()
     func showCountries()
@@ -42,7 +44,13 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var countriesButton: AppButton!
     @IBOutlet weak var updateNowButton: AppButton!
     
+    @IBOutlet weak var lastFetchContainer: UIView!
+    @IBOutlet weak var progressContainer: UIView!
+    
+    @IBOutlet weak var progressView: ProgressView!
     @IBOutlet weak var lastFetchLabel: AppLabel!
+    
+    var sync: CRLSynchronizationManager { CRLSynchronizationManager.shared }
     
     init(coordinator: HomeCoordinator, viewModel: HomeViewModel) {
         self.coordinator = coordinator
@@ -73,12 +81,23 @@ class HomeViewController: UIViewController {
     }
     
     private func subscribeEvents() {
+        bindResults()
+        bindIsLoading()
+        bindCRLResults()
+        bindShowMore()
+        bindConfirmButton()
+        bindResumeButton()
+    }
+    
+    func bindResults() {
         viewModel.results.add(observer: self, { [weak self] result in
             DispatchQueue.main.async { [weak self] in
                 self?.manage(result)
             }
         })
-        
+    }
+    
+    func bindIsLoading() {
         viewModel.isLoading.add(observer: self, { [weak self] isLoading in
             DispatchQueue.main.async { [weak self] in
                 guard let isLoading = isLoading else { return }
@@ -87,24 +106,58 @@ class HomeViewController: UIViewController {
         })
     }
     
+    func bindCRLResults() {
+        sync.results.add(observer: self, { [weak self] result in
+            DispatchQueue.main.async { [weak self] in
+                self?.manageCRL(result)
+            }
+        })
+    }
+    
+    func bindShowMore() {
+        let tap = Tap(target: self, action: #selector(crlShowMore))
+        progressView.showMoreLabel.add(tap)
+    }
+    
+    func bindConfirmButton() {
+        progressView.confirmButton
+            .addTarget(self, action: #selector(startSync), for: .touchUpInside)
+    }
+     
+    func bindResumeButton() {
+        progressView.resumeButton
+            .addTarget(self, action: #selector(startSync), for: .touchUpInside)
+    }
+    
     private func manage(_ result: HomeViewModel.Result?) {
         guard let result = result else { return }
         switch result {
-        case .updateComplete:       updateLastFetch(isLoading: false)
-        case .versionOutdated:      showOutdatedAlert()
-        case .error(_):             lastFetchLabel.text = "error"
+        case .updateComplete:   updateLastFetch(isLoading: false)
+        case .versionOutdated:  showOutdatedAlert()
+        case .error(_):         lastFetchLabel.text = "error"
+        }
+    }
+
+    private func manageCRL(_ result: CRLSynchronizationManager.Result?) {
+        guard let result = result else { return }
+        switch result {
+        case .downloadNeeded:   crlDownloadNeeded()
+        case .downloading:      showDownloadingProgress()
+        case .completed:        downloadCompleted()
+        case .paused:           downloadPaused()
+        case .error:            downloadError()
         }
     }
     
     private func setFAQ() {
         let title = Link.faq.title.localized
-        let tap = UITapGestureRecognizer(target: self, action: #selector(faqDidTap))
+        let tap = Tap(target: self, action: #selector(faqDidTap))
         faqLabel.fillView(with: .init(text: title, onTap: tap))
     }
     
     private func setPrivacyPolicy() {
         let title = Link.privacyPolicy.title.localized
-        let tap = UITapGestureRecognizer(target: self, action: #selector(privacyPolicyDidTap))
+        let tap = Tap(target: self, action: #selector(privacyPolicyDidTap))
         privacyPolicyLabel.fillView(with: .init(text: title, onTap: tap))
     }
     
@@ -140,9 +193,17 @@ class HomeViewController: UIViewController {
     }
 
     @objc func goToStore(_ action: UIAlertAction? = nil) {
-//        guard let url = URL(string: Link.store.url) else { return }
-//        guard UIApplication.shared.canOpenURL(url) else { return }
-//        UIApplication.shared.open(url)
+        guard let url = URL(string: Link.store.url) else { return }
+        guard UIApplication.shared.canOpenURL(url) else { return }
+        UIApplication.shared.open(url)
+    }
+    
+    @objc func crlShowMore() {
+        sync.showAlert()
+    }
+    
+    @objc func startSync() {
+        sync.download()
     }
     
     private func showOutdatedAlert() {
@@ -175,6 +236,38 @@ class HomeViewController: UIViewController {
         let isLoading = viewModel.isLoading.value ?? false
         guard !isLoading else { return }
         viewModel.startOperations()
+    }
+    
+    private func crlDownloadNeeded() {
+        guard let progress = sync.progress else { return }
+        progressView.fillView(with: progress)
+        showCRL(true)
+    }
+    
+    private func showDownloadingProgress() {
+        guard let progress = sync.progress else { return }
+        progressView.downloading(with: progress)
+        showCRL(true)
+    }
+    
+    private func downloadCompleted() {
+        showCRL(false)
+    }
+    
+    private func downloadPaused() {
+        guard let progress = sync.progress else { return }
+        progressView.pause(with: progress)
+        showCRL(true)
+    }
+    
+    private func downloadError() {
+        progressView.error()
+        showCRL(true)
+    }
+    
+    private func showCRL(_ value: Bool) {
+        lastFetchContainer.isHidden = value
+        progressContainer.isHidden = !value
     }
     
 }

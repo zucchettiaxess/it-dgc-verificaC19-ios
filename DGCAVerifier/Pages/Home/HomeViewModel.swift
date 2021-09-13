@@ -43,6 +43,7 @@ class HomeViewModel {
     public func loadComplete() {
         results.value = .updateComplete
         isLoading.value = false
+        CRLSynchronizationManager.shared.initialize()
         print("log.upload.complete")
     }
     
@@ -83,7 +84,7 @@ extension HomeViewModel {
         
         loadSettings(in: group)
         loadCertificates(in: group)
-        loadCertificateRevocationList(in: group)
+        loadRevocationList(in: group)
         
         group.notify(queue: .main) { [weak self] in self?.loadComplete() }
     }
@@ -107,13 +108,13 @@ extension HomeViewModel {
         }
         loadingGroup.enter()
     }
-    
-    private func loadCertificateRevocationList(in loadingGroup: DispatchGroup) {
-        GatewayConnection.shared.updateRevocationList() { _ in
+
+    private func loadRevocationList(in loadingGroup: DispatchGroup) {
+        CRLDataStorage.initialize {
             print("log.crl.done")
             loadingGroup.leave()
         }
         loadingGroup.enter()
     }
-    
+
 }

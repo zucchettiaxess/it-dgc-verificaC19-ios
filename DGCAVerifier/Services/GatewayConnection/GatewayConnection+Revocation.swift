@@ -9,29 +9,49 @@ import SwiftDGC
 
 extension GatewayConnection {
 
-    private var revocationUrl: String { "https://storage.googleapis.com/dgc-greenpass/200K.json" }
+    private var revocationUrl: String { "https://storage.googleapis.com/dgc-greenpass/10K.json" }
     
-    func updateRevocationList(completion: ((String?) -> Void)? = nil) {
-        getCRL { crl in
-
-            guard let crl = crl else {
-                completion?("server.error.generic.error".localized)
+    private var statusUrl: String { "https://storage.googleapis.com/dgc-greenpass/10K.json" }
+    
+    func revocationStatus(_ progress: CRLProgress?, completion: ((CRLStatus?, String?) -> Void)? = nil) {
+        let version = progress?.currentVersion
+        let chunk = progress?.currentChunk
+        status(version: version, chunk: chunk) { crlStatus in
+            
+            guard let crlStatus = crlStatus else {
+                completion?(nil, "server.error.generic.error".localized)
                 return
             }
             
-            CRLDataStorage.store(crl: crl)
-            completion?(nil)
+            completion?(crlStatus, nil)
         }
     }
 
-    private func getCRL(completion: ((CRL?) -> Void)?) {
+    func updateRevocationList(_ progress: CRLProgress?, completion: ((CRL?, String?) -> Void)? = nil) {
+        let version = progress?.currentVersion
+        let chunk = progress?.currentChunk
+        print("log.crl.v\(version ?? -1) - \(progress?.chunksMessage ?? "")")
+        
+        getCRL(version: version, chunk: chunk) { crl in
+            
+            guard let crl = crl else {
+                completion?(nil, "server.error.generic.error".localized)
+                return
+            }
+            
+            completion?(crl, nil)
+        }
+    }
+
+    private func getCRL(version: Int?, chunk: Int?, completion: ((CRL?) -> Void)?) {
         let restStartTime = Log.start(key: "[CRL] [REST]")
         session.request(revocationUrl).response {
             Log.end(key: "[CRL] [REST]", startTime: restStartTime)
             
             let jsonStartTime = Log.start(key: "[CRL] [JSON]")
             let decoder = JSONDecoder()
-            let data = try? decoder.decode(CRL.self, from: $0.data ?? .init())
+            var data = try? decoder.decode(CRL.self, from: $0.data ?? .init())
+            data?.responseSize = $0.data?.count.doubleValue
             Log.end(key: "[CRL] [JSON]", startTime: jsonStartTime)
             
             guard let crl = data else {
@@ -40,6 +60,32 @@ extension GatewayConnection {
             }
             completion?(crl)
         }
+    }
+    
+    private func status(version: Int?, chunk: Int?, completion: ((CRLStatus?) -> Void)?) {
+        let restStartTime = Log.start(key: "[CRL STATUS] [REST]")
+        session.request(statusUrl).response {
+            Log.end(key: "[CRL STATUS] [REST]", startTime: restStartTime)
+            
+            let jsonStartTime = Log.start(key: "[CRL STATUS] [JSON]")
+            let decoder = JSONDecoder()
+            let data = try? decoder.decode(CRLStatus.self, from: $0.data ?? .init())
+            Log.end(key: "[CRL STATUS] [JSON]", startTime: jsonStartTime)
+            
+            guard let status = data else {
+                completion?(nil)
+                return
+            }
+            completion?(self.getCRLStatusMock())
+        }
+    }
+
+    private func getCRLStatusMock() -> CRLStatus {
+        var status = CRLStatus()
+        status.version = 42
+        status.lastChunk = 10
+        status.responseSize = (status.lastChunk?.doubleValue ?? 0.0) * 740 * 1024
+        return status
     }
     
 }

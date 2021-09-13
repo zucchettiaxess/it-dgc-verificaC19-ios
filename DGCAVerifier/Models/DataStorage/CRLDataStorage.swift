@@ -7,9 +7,25 @@
 
 import Foundation
 import RealmSwift
+import SwiftDGC
+import SwiftyJSON
 
-struct CRLDataStorage {
+struct CRLDataStorage: Codable {
 
+    static var shared = CRLDataStorage()
+    static let storage = SecureStorage<CRLDataStorage>(fileName: "crl_secure")
+
+    var progress: CRLProgress?
+    
+    public mutating func saveProgress(_ crlProgress: CRLProgress?) {
+        progress = crlProgress
+        save()
+    }
+}
+
+// REALM I/O
+extension CRLDataStorage {
+    
     private static var realm: Realm { try! Realm() }
     
     public static func store(crl: CRL) {
@@ -20,7 +36,6 @@ struct CRLDataStorage {
     }
     
     private static func storeSnapshot(_ crl: CRL) {
-        clear()
         addAll(hashes: crl.revokedUcvi)
     }
     
@@ -66,4 +81,18 @@ struct CRLDataStorage {
         try! storage.write { storage.delete(dcc) }
     }
     
+}
+
+// Persistence
+extension CRLDataStorage {
+    
+    public func save() { Self.storage.save(self) }
+    
+    static func initialize(completion: @escaping () -> Void) {
+        storage.loadOverride(fallback: CRLDataStorage.shared) { success in
+            guard let result = success else { return }
+            CRLDataStorage.shared = result
+            completion()
+        }
+    }
 }

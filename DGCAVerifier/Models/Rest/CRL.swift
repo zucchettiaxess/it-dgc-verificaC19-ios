@@ -12,4 +12,5 @@ struct CRL: Codable {
     var version: Int?
     var revokedUcvi: [String]?
     var delta: Delta?
+    var responseSize: Double?
 }
