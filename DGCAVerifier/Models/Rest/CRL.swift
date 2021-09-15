@@ -10,6 +10,7 @@ import Foundation
 struct CRL: Codable {
     var id: String?
     var version: Int?
+    var chunk: Int?
     var revokedUcvi: [String]?
     var delta: Delta?
     var responseSize: Double?

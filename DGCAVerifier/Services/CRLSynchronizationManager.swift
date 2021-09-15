@@ -36,7 +36,6 @@ class CRLSynchronizationManager {
         set { CRLDataStorage.shared.saveProgress(newValue) }
     }
     
-    
     func initialize() {
         gateway.revocationStatus(progress) { (serverStatus, error) in
             guard error == nil else { return }

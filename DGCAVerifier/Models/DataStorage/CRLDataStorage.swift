@@ -36,6 +36,7 @@ extension CRLDataStorage {
     }
     
     private static func storeSnapshot(_ crl: CRL) {
+        if (isFirstChunk(crl)) { clear() }
         addAll(hashes: crl.revokedUcvi)
     }
     
@@ -81,6 +82,9 @@ extension CRLDataStorage {
         try! storage.write { storage.delete(dcc) }
     }
     
+    private static func isFirstChunk(_ crl: CRL) -> Bool {
+        crl.chunk == CRLSynchronizationManager.shared.FIRST_CHUNK
+    }
 }
 
 // Persistence
