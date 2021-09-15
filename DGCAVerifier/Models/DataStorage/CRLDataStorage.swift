@@ -83,7 +83,7 @@ extension CRLDataStorage {
     }
     
     private static func isFirstChunk(_ crl: CRL) -> Bool {
-        crl.chunk == CRLSynchronizationManager.shared.FIRST_CHUNK
+        crl.chunk == CRLProgress.FIRST_CHUNK
     }
 }
 

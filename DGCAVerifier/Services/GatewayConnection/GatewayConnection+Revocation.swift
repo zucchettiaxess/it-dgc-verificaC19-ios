@@ -30,7 +30,6 @@ extension GatewayConnection {
     func updateRevocationList(_ progress: CRLProgress?, completion: ((CRL?, String?) -> Void)? = nil) {
         let version = progress?.currentVersion
         let chunk = progress?.currentChunk
-        print("log.crl.v\(version ?? -1) - \(progress?.chunksMessage ?? "")")
         
         getCRL(version: version, chunk: chunk) { crl in
             
@@ -39,7 +38,7 @@ extension GatewayConnection {
                 return
             }
             
-            completion?(crl, nil)
+            completion?(self.getCRLMock(from: crl), nil)
         }
     }
 
@@ -80,10 +79,18 @@ extension GatewayConnection {
         }
     }
 
+    private func getCRLMock(from crl: CRL) -> CRL {
+        var crl = crl
+        crl.version = getCRLStatusMock().version
+        return crl
+    }
+    
     private func getCRLStatusMock() -> CRLStatus {
         var status = CRLStatus()
-        status.version = 42
+        status.fromVersion = 47
+        status.version = 55
         status.lastChunk = 10
+        status.chunkSize = 10000
         status.responseSize = (status.lastChunk?.doubleValue ?? 0.0) * 740 * 1024
         return status
     }

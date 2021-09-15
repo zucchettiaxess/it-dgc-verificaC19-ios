@@ -15,4 +15,6 @@ public extension Double {
     
     var byteReadableValue: String { String(format: "%.2f", self) }
 
+    var fromMegaBytesToBytes: Double { self * 1024 * 1024 }
+    
 }

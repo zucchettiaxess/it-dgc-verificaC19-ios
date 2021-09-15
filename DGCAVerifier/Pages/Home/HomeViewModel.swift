@@ -27,6 +27,7 @@ import Foundation
 class HomeViewModel {
     
     public enum Result {
+        case initializeSync
         case updateComplete
         case versionOutdated
         case error(String)
@@ -43,7 +44,7 @@ class HomeViewModel {
     public func loadComplete() {
         results.value = .updateComplete
         isLoading.value = false
-        CRLSynchronizationManager.shared.initialize()
+        results.value = .initializeSync
         print("log.upload.complete")
     }
     

@@ -83,7 +83,6 @@ class HomeViewController: UIViewController {
     private func subscribeEvents() {
         bindResults()
         bindIsLoading()
-        bindCRLResults()
         bindShowMore()
         bindConfirmButton()
         bindResumeButton()
@@ -106,14 +105,6 @@ class HomeViewController: UIViewController {
         })
     }
     
-    func bindCRLResults() {
-        sync.results.add(observer: self, { [weak self] result in
-            DispatchQueue.main.async { [weak self] in
-                self?.manageCRL(result)
-            }
-        })
-    }
-    
     func bindShowMore() {
         let tap = Tap(target: self, action: #selector(crlShowMore))
         progressView.showMoreLabel.add(tap)
@@ -132,20 +123,10 @@ class HomeViewController: UIViewController {
     private func manage(_ result: HomeViewModel.Result?) {
         guard let result = result else { return }
         switch result {
+        case .initializeSync:   initializeSync()
         case .updateComplete:   updateLastFetch(isLoading: false)
         case .versionOutdated:  showOutdatedAlert()
         case .error(_):         lastFetchLabel.text = "error"
-        }
-    }
-
-    private func manageCRL(_ result: CRLSynchronizationManager.Result?) {
-        guard let result = result else { return }
-        switch result {
-        case .downloadNeeded:   crlDownloadNeeded()
-        case .downloading:      showDownloadingProgress()
-        case .completed:        downloadCompleted()
-        case .paused:           downloadPaused()
-        case .error:            downloadError()
         }
     }
     
@@ -174,6 +155,10 @@ class HomeViewController: UIViewController {
     private func setCountriesButton() {
         countriesButton.style = .clear
         countriesButton.setRightImage(named: "icon_arrow-right")
+    }
+    
+    func initializeSync() {
+        CRLSynchronizationManager.shared.initialize(delegate: self)
     }
     
     private func updateLastFetch(isLoading: Bool) {
@@ -239,14 +224,12 @@ class HomeViewController: UIViewController {
     }
     
     private func crlDownloadNeeded() {
-        guard let progress = sync.progress else { return }
-        progressView.fillView(with: progress)
+        progressView.fillView(with: sync.progress)
         showCRL(true)
     }
     
     private func showDownloadingProgress() {
-        guard let progress = sync.progress else { return }
-        progressView.downloading(with: progress)
+        progressView.downloading(with: sync.progress)
         showCRL(true)
     }
     
@@ -255,8 +238,7 @@ class HomeViewController: UIViewController {
     }
     
     private func downloadPaused() {
-        guard let progress = sync.progress else { return }
-        progressView.pause(with: progress)
+        progressView.pause(with: sync.progress)
         showCRL(true)
     }
     
@@ -270,4 +252,17 @@ class HomeViewController: UIViewController {
         progressContainer.isHidden = !value
     }
     
+}
+
+extension HomeViewController: CRLSynchronizationDelegate {
+    
+    func statusDidChange(with result: CRLSynchronizationManager.Result) {
+        switch result {
+        case .downloadReady:    crlDownloadNeeded()
+        case .downloading:      showDownloadingProgress()
+        case .completed:        downloadCompleted()
+        case .paused:           downloadPaused()
+        case .error:            downloadError()
+        }
+    }
 }

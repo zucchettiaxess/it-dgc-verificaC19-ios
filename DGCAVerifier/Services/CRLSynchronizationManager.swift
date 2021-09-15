@@ -8,13 +8,16 @@
 import Foundation
 import UIKit
 
+protocol CRLSynchronizationDelegate {
+    func statusDidChange(with result: CRLSynchronizationManager.Result)
+}
+
 class CRLSynchronizationManager {
     
-    let AUTOMATIC_MAX_SIZE: Double = 5000
-    let FIRST_CHUNK: Int = 1
+    let AUTOMATIC_MAX_SIZE: Double = 5.0.fromMegaBytesToBytes
     
     enum Result {
-        case downloadNeeded
+        case downloadReady
         case downloading
         case completed
         case paused
@@ -23,20 +26,20 @@ class CRLSynchronizationManager {
     
     static let shared = CRLSynchronizationManager()
     
-    var results: Observable<Result> { _results }
-    var progress: CRLProgress? { _progress }
+    var progress: CRLProgress { _progress }
+    var gateway: GatewayConnection { GatewayConnection.shared }
     
-    private var gateway: GatewayConnection { GatewayConnection.shared }
-    
-    private let _results = Observable<Result>(nil)
+    private var _delegate: CRLSynchronizationDelegate?
     private var _serverStatus: CRLStatus?
-    private var _progress: CRLProgress?
+    private var _progress: CRLProgress
     {
-        get { CRLDataStorage.shared.progress }
+        get { CRLDataStorage.shared.progress ?? .init() }
         set { CRLDataStorage.shared.saveProgress(newValue) }
     }
     
-    func initialize() {
+    func initialize(delegate: CRLSynchronizationDelegate? = nil) {
+        log("initialize")
+        self._delegate = delegate
         gateway.revocationStatus(progress) { (serverStatus, error) in
             guard error == nil else { return }
             self._serverStatus = serverStatus
@@ -45,42 +48,57 @@ class CRLSynchronizationManager {
     }
     
     private func synchronize() {
-        guard hasProgress else { return startDownload() }
-        guard sameVersion else { return startDownload() }
-        guard noMoreChunks else { return pauseDownload() }
-        downloadCompleted()
+        log("start synchronization")
+        guard outdatedVersion else { return downloadCompleted() }
+        guard noPendingDownload else { return resumeDownload() }
+        startDownload()
     }
-    
+        
     func startDownload() {
-        if !hasProgress { _progress = createProgress() }
+        _progress = CRLProgress(serverStatus: _serverStatus)
         guard !requireUserInteraction else { return showAlert() }
         download()
     }
     
-    func pauseDownload() {
-        guard noChunksAlreadyDownloaded else { return downloadNeeded() }
-        results.value = .paused
+    func resumeDownload() {
+        log("resuming previous progress")
+        guard sameChunkSize else { return cleanAndRetry() }
+        guard sameRequestedVersion else { return cleanAndRetry() }
+        guard oneChunkAlreadyDownloaded else { return readyToDownload() }
+        readyToResume()
     }
     
-    func downloadNeeded() {
-        results.value = .downloadNeeded
+    func readyToDownload() {
+        log("user can download")
+        _delegate?.statusDidChange(with: .downloadReady)
+    }
+    
+    func readyToResume() {
+        log("user can resume download")
+        _delegate?.statusDidChange(with: .paused)
     }
     
     func downloadCompleted() {
+        log("version up to date")
+        completeProgress()
         _serverStatus = nil
-        results.value = .completed
+        _delegate?.statusDidChange(with: .completed)
     }
     
-    func cleanAndStart() {
-        _progress = nil
+    func cleanAndRetry() {
+        log("clean needed, retry")
+        _progress = .init()
+        _serverStatus = nil
         CRLDataStorage.clear()
-        startDownload()
+        initialize()
     }
     
     func download() {
-        let mock = true //con il mock non sappiamo gestire l'allineamento col server
-        guard chunksNotYetCompleted else { return mock ? downloadCompleted() : initialize() }
-        results.value = .downloading
+//        quando sarà tolto mock
+//        guard chunksNotYetCompleted else { return initialize() }
+        guard chunksNotYetCompleted else { return downloadCompleted() }
+        log(progress)
+        _delegate?.statusDidChange(with: .downloading)
         gateway.updateRevocationList(progress) { crl, error in
             guard error == nil else { return self.errorFlow() }
             guard let crl = crl else { return self.errorFlow() }
@@ -89,43 +107,37 @@ class CRLSynchronizationManager {
     }
     
     private func manageResponse(with crl: CRL) {
-//        guard isConsistent(crl) else { return startDownload() }
+        guard isConsistent(crl) else { return cleanAndRetry() }
+        log("managing response")
         CRLDataStorage.store(crl: crl)
-        updateProgress(size: crl.responseSize)
+        updateProgress(with: crl.responseSize)
         download()
     }
     
     private func errorFlow() {
         _serverStatus = nil
-        _progress = nil
-        results.value = .error
+        _delegate?.statusDidChange(with: .error)
+    }
+        
+    private func updateProgress(with size: Double?) {
+        let current = progress.currentChunk ?? CRLProgress.FIRST_CHUNK
+        let downloadedSize = progress.downloadedSize ?? 0
+        _progress.currentChunk = current + 1
+        _progress.downloadedSize = downloadedSize + (size ?? 0)
     }
     
-    private func createProgress() -> CRLProgress {
-        return .init(
-            currentVersion: _serverStatus?.version ?? 0,
-            totalChunks: _serverStatus?.lastChunk ?? 0,
-            currentChunk: FIRST_CHUNK,
-            totalSize: _serverStatus?.responseSize ?? 0,
-            downloadedSize: 0
-        )
-    }
-    
-    private func updateProgress(size: Double?) {
-        let progress = progress ?? createProgress()
-        let current = progress.currentChunk
-        let downloadedSize = progress.downloadedSize
-        _progress?.currentChunk = current + 1
-        _progress?.downloadedSize = downloadedSize + (size ?? 0)
+    private func completeProgress() {
+        let completedVersion = progress.requestedVersion
+        _progress = .init(version: completedVersion)
     }
     
     public func showAlert() {
         let content: AlertContent = .init(
-            title: "crl.update.title".localizeWith(progress!.remainingSize),
+            title: "crl.update.title".localizeWith(progress.remainingSize),
             message: "crl.update.message",
             confirmAction: { self.download() },
             confirmActionTitle: "crl.update.download.now",
-            cancelAction: { self.downloadNeeded() },
+            cancelAction: { self.readyToDownload() },
             cancelActionTitle: "crl.update.try.later"
         )
         
@@ -136,34 +148,57 @@ class CRLSynchronizationManager {
 }
 
 extension CRLSynchronizationManager {
+        
+    private var noPendingDownload: Bool {
+        progress.currentVersion == progress.requestedVersion
+    }
     
-    private var hasProgress: Bool { _progress != nil }
+    private var outdatedVersion: Bool {
+        _serverStatus?.version != _progress.currentVersion
+    }
     
-    private var sameVersion: Bool {
-        guard let localVersion = _progress?.currentVersion else { return false }
-        guard let serverVersion = _serverStatus?.version else { return false }
-        return localVersion == serverVersion
+    private var sameRequestedVersion: Bool {
+        _serverStatus?.version == _progress.requestedVersion
     }
     
     private var chunksNotYetCompleted: Bool { !noMoreChunks }
     
-    private var noChunksAlreadyDownloaded: Bool { _progress?.currentChunk == FIRST_CHUNK }
-    
     private var noMoreChunks: Bool {
-        guard let lastChunkDownloaded = _progress?.currentChunk else { return false }
+        guard let lastChunkDownloaded = _progress.currentChunk else { return false }
         guard let allChunks = _serverStatus?.lastChunk else { return false }
         return lastChunkDownloaded > allChunks
+    }
+    
+    private var oneChunkAlreadyDownloaded: Bool {
+        guard let currentChunk = _progress.currentChunk else { return true }
+        return currentChunk > CRLProgress.FIRST_CHUNK
+    }
+
+    private var sameChunkSize: Bool {
+        guard let localChunkSize = _progress.chunkSize else { return false }
+        guard let serverChunkSize = _serverStatus?.chunkSize else { return false }
+        return localChunkSize == serverChunkSize
     }
     
     private var requireUserInteraction: Bool {
         guard let size = _serverStatus?.responseSize else { return false }
         return size > AUTOMATIC_MAX_SIZE
     }
-    
+
     private func isConsistent(_ crl: CRL) -> Bool {
         guard let crlVersion = crl.version else { return false }
-        guard let localVersion = progress?.currentVersion else { return false }
-        return crlVersion == localVersion
+        return crlVersion == progress.requestedVersion
     }
     
+    private func log(_ message: String) {
+        print("log.crl.sync - " + message)
+    }
+    
+    private func log(_ progress: CRLProgress) {
+        let from = progress.currentVersion
+        let to = progress.requestedVersion
+        let chunk = progress.currentChunk ?? CRLProgress.FIRST_CHUNK
+        let chunks = progress.totalChunks ?? CRLProgress.FIRST_CHUNK
+        log("downloading [\(from)->\(to)] \(chunk)/\(chunks)")
+    }
 }
