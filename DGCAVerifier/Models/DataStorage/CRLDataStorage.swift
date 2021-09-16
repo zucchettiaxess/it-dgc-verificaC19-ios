@@ -104,10 +104,6 @@ extension CRLDataStorage {
         storage.loadOverride(fallback: CRLDataStorage.shared) { success in
             guard let result = success else { return }
             CRLDataStorage.shared = result
-            CRLDataStorage.shared.lastFetch = .init(timeIntervalSince1970: 0)
-            // lastFetch in localData is loaded asynchronously, so, when the app
-            // will be reopened, it always download certificates (and settings)
-            // initializing CRLDataStorage.shared.lastFetch = 0 follows the same logic
             completion()
         }
     }

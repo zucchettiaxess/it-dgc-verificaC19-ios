@@ -25,6 +25,7 @@ class CRLSynchronizationManager {
     }
     
     static let shared = CRLSynchronizationManager()
+    var firstRun: Bool = true
     
     var progress: CRLProgress { _progress }
     var gateway: GatewayConnection { GatewayConnection.shared }
@@ -43,6 +44,7 @@ class CRLSynchronizationManager {
         log("initialize")
         self.delegate = delegate
         setTimer() { self.start() }
+        start()
     }
     
     func start() {
@@ -223,9 +225,13 @@ extension CRLSynchronizationManager {
     }
     
     func trigger(completion: (()->())? = nil) {
-        let lastFetch = CRLDataStorage.shared.lastFetch
-        guard lastFetch.timeIntervalSinceNow < -24 * 60 * 60 else { return }
+        guard isFetchOutdated || firstRun else { return }
+        firstRun = false
         completion?()
+    }
+    
+    var isFetchOutdated: Bool {
+        CRLDataStorage.shared.lastFetch.timeIntervalSinceNow < -24 * 60 * 60
     }
 
 }

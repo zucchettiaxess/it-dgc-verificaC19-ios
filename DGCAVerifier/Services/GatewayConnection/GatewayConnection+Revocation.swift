@@ -88,7 +88,7 @@ extension GatewayConnection {
     private func getCRLStatusMock() -> CRLStatus {
         var status = CRLStatus()
         status.fromVersion = 47
-        status.version = 55
+        status.version = 58
         status.lastChunk = 10
         status.chunkSize = 10000
         status.responseSize = (status.lastChunk?.doubleValue ?? 0.0) * 740 * 1024

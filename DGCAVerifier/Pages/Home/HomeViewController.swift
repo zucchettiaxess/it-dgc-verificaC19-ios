@@ -209,8 +209,12 @@ class HomeViewController: UIViewController {
     
     @IBAction func scan(_ sender: Any) {
         guard !viewModel.isVersionOutdated() else { return showOutdatedAlert() }
-        let lastFetch = LocalData.sharedInstance.lastFetch.timeIntervalSince1970
-        lastFetch > 0 ? coordinator?.showCamera() : showAlert(key: "no.keys")
+        let certFetch = LocalData.sharedInstance.lastFetch.timeIntervalSince1970
+        let certFetchOutdated = certFetch > 0
+
+        let crlFetchOutdated = CRLSynchronizationManager.shared.isFetchOutdated
+        let canProceed = certFetchOutdated || crlFetchOutdated
+        canProceed ? coordinator?.showCamera() : showAlert(key: "no.keys")
     }
     
     @IBAction func chooseCountry(_ sender: Any) {
