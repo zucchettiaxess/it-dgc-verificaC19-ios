@@ -44,7 +44,6 @@ class CRLSynchronizationManager {
         log("initialize")
         self.delegate = delegate
         setTimer() { self.start() }
-        start()
     }
     
     func start() {
