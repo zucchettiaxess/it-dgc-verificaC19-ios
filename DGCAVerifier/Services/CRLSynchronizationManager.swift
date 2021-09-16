@@ -29,7 +29,9 @@ class CRLSynchronizationManager {
     var progress: CRLProgress { _progress }
     var gateway: GatewayConnection { GatewayConnection.shared }
     
-    private var _delegate: CRLSynchronizationDelegate?
+    private var delegate: CRLSynchronizationDelegate?
+    private var timer: Timer?
+    
     private var _serverStatus: CRLStatus?
     private var _progress: CRLProgress
     {
@@ -37,9 +39,14 @@ class CRLSynchronizationManager {
         set { CRLDataStorage.shared.saveProgress(newValue) }
     }
     
-    func initialize(delegate: CRLSynchronizationDelegate? = nil) {
+    func initialize(delegate: CRLSynchronizationDelegate?) {
         log("initialize")
-        self._delegate = delegate
+        self.delegate = delegate
+        setTimer() { self.start() }
+    }
+    
+    func start() {
+        log("check status")
         gateway.revocationStatus(progress) { (serverStatus, error) in
             guard error == nil else { return }
             self._serverStatus = serverStatus
@@ -70,19 +77,20 @@ class CRLSynchronizationManager {
     
     func readyToDownload() {
         log("user can download")
-        _delegate?.statusDidChange(with: .downloadReady)
+        delegate?.statusDidChange(with: .downloadReady)
     }
     
     func readyToResume() {
         log("user can resume download")
-        _delegate?.statusDidChange(with: .paused)
+        delegate?.statusDidChange(with: .paused)
     }
     
     func downloadCompleted() {
         log("version up to date")
         completeProgress()
         _serverStatus = nil
-        _delegate?.statusDidChange(with: .completed)
+        CRLDataStorage.shared.lastFetch = Date()
+        delegate?.statusDidChange(with: .completed)
     }
     
     func cleanAndRetry() {
@@ -90,15 +98,15 @@ class CRLSynchronizationManager {
         _progress = .init()
         _serverStatus = nil
         CRLDataStorage.clear()
-        initialize()
+        start()
     }
     
     func download() {
 //        quando sarà tolto mock
-//        guard chunksNotYetCompleted else { return initialize() }
+//        guard chunksNotYetCompleted else { return start() }
         guard chunksNotYetCompleted else { return downloadCompleted() }
         log(progress)
-        _delegate?.statusDidChange(with: .downloading)
+        delegate?.statusDidChange(with: .downloading)
         gateway.updateRevocationList(progress) { crl, error in
             guard error == nil else { return self.errorFlow() }
             guard let crl = crl else { return self.errorFlow() }
@@ -116,7 +124,7 @@ class CRLSynchronizationManager {
     
     private func errorFlow() {
         _serverStatus = nil
-        _delegate?.statusDidChange(with: .error)
+        delegate?.statusDidChange(with: .error)
     }
         
     private func updateProgress(with size: Double?) {
@@ -201,4 +209,23 @@ extension CRLSynchronizationManager {
         let chunks = progress.totalChunks ?? CRLProgress.FIRST_CHUNK
         log("downloading [\(from)->\(to)] \(chunk)/\(chunks)")
     }
+}
+
+extension CRLSynchronizationManager {
+    
+    func setTimer(completion: (()->())? = nil) {
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 60.0, repeats: true) { _ in
+            self.trigger(completion: completion)
+        }
+        timer?.tolerance = 5.0
+        self.trigger(completion: completion)
+    }
+    
+    func trigger(completion: (()->())? = nil) {
+        let lastFetch = CRLDataStorage.shared.lastFetch
+        guard lastFetch.timeIntervalSinceNow < -24 * 60 * 60 else { return }
+        completion?()
+    }
+
 }

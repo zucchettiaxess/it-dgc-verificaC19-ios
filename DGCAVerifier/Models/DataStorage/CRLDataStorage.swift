@@ -16,11 +16,19 @@ struct CRLDataStorage: Codable {
     static let storage = SecureStorage<CRLDataStorage>(fileName: "crl_secure")
 
     var progress: CRLProgress?
+    var lastFetchRaw: Date?
     
+    var lastFetch: Date
+    {
+        get { lastFetchRaw ?? .init(timeIntervalSince1970: 0) }
+        set { lastFetchRaw = newValue }
+    }
+
     public mutating func saveProgress(_ crlProgress: CRLProgress?) {
         progress = crlProgress
         save()
     }
+    
 }
 
 // REALM I/O
@@ -96,6 +104,10 @@ extension CRLDataStorage {
         storage.loadOverride(fallback: CRLDataStorage.shared) { success in
             guard let result = success else { return }
             CRLDataStorage.shared = result
+            CRLDataStorage.shared.lastFetch = .init(timeIntervalSince1970: 0)
+            // lastFetch in localData is loaded asynchronously, so, when the app
+            // will be reopened, it always download certificates (and settings)
+            // initializing CRLDataStorage.shared.lastFetch = 0 follows the same logic
             completion()
         }
     }
