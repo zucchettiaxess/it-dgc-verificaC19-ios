@@ -47,8 +47,11 @@ class CameraViewController: UIViewController {
     @IBOutlet weak var countryButton: AppButton!
 
     private var captureSession = AVCaptureSession()
-    private let allowedCodes: [VNBarcodeSymbology] = [.Aztec, .QR, .DataMatrix]
+    private let allowedCodes: [VNBarcodeSymbology] = [.qr]
     private let scanConfidence: VNConfidence = 0.9
+    
+    let UDKeyTotemIsActive = "IsTotemModeActive"
+    let userDefaults = UserDefaults.standard
 
     // MARK: - Init
     init(coordinator: CameraCoordinator, country: CountryModel? = nil) {
@@ -138,8 +141,13 @@ class CameraViewController: UIViewController {
 
     private func setupCameraView() {
         captureSession.sessionPreset = .hd1280x720
+        var cameraMode = AVCaptureDevice.Position.back
+        let isTotemMode = userDefaults.bool(forKey: UDKeyTotemIsActive)
+        if isTotemMode {
+            cameraMode = .front
+        }
 
-        let videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)
+        let videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: cameraMode)
 
         guard let device = videoDevice, let videoDeviceInput = try? AVCaptureDeviceInput(device: device),
               captureSession.canAddInput(videoDeviceInput) else {
