@@ -77,7 +77,7 @@ class VerificationViewController: UIViewController {
         setPersonalData(for: status)
         
         let isTotemModeActive = userDefaults.bool(forKey: UDKeyTotemIsActive)
-        if isTotemModeActive {
+        if isTotemModeActive && (status == .valid || status == .validPartially) {
             timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(dismissVC), userInfo: nil, repeats: false)
         }
     }
