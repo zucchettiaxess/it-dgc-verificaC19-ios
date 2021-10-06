@@ -60,7 +60,7 @@ struct VaccineValidityCheck {
         
         let result: Status
         
-        if hcert.medicalProduct == JeJVacineCode && lastDose{
+        if hcert.medicalProduct == JeJVacineCode && currentDoses > totalDoses{
             result = Validator.validate(currentDate, from: date, to: validityEnd)
         }
         else{
