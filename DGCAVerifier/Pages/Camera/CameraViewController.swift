@@ -45,13 +45,22 @@ class CameraViewController: UIViewController {
     @IBOutlet weak var cameraView: UIView!
     @IBOutlet weak var backButton: AppButton!
     @IBOutlet weak var countryButton: AppButton!
+    @IBOutlet weak var switchButton: UIButton!
 
     private var captureSession = AVCaptureSession()
-    private let allowedCodes: [VNBarcodeSymbology] = [.qr]
+    private let allowedCodes: [VNBarcodeSymbology] = [.qr, .aztec]
     private let scanConfidence: VNConfidence = 0.9
+    
+    // `true`:  use front camera.
+    // `false`: use back camera.
+    let UDKeyCamPreference = "CameraPreference"
+    var UDCamPreference: Bool {
+        return userDefaults.bool(forKey: UDKeyCamPreference)
+    }
     
     let UDKeyTotemIsActive = "IsTotemModeActive"
     let userDefaults = UserDefaults.standard
+    
 
     // MARK: - Init
     init(coordinator: CameraCoordinator, country: CountryModel? = nil) {
@@ -70,6 +79,7 @@ class CameraViewController: UIViewController {
         super.viewDidLoad()
         initializeBackButton()
         initializeCountryButton()
+        initializeCamSwitchButton()
         #if targetEnvironment(simulator)
         found(payload: mockQRCode)
         #else
@@ -96,6 +106,15 @@ class CameraViewController: UIViewController {
         coordinator?.dismissToRoot()
     }
 
+    @IBAction func switchCamera(_ sender: Any) {
+        let camPreference = self.UDCamPreference
+        userDefaults.set(!camPreference, forKey: self.UDKeyCamPreference)
+        
+        captureSession = AVCaptureSession()
+        setupCameraView()
+        startRunning()
+    }
+    
     private func found(payload: String) {
         let vc = coordinator?.navigationController.visibleViewController
         guard !(vc is VerificationViewController) else { return }
@@ -114,6 +133,14 @@ class CameraViewController: UIViewController {
         countryButton.setRightImage(named: "icon_arrow-right")
         countryButton.setTitle(country?.name)
         countryButton.isHidden = country == nil
+    }
+    
+    private func initializeCamSwitchButton() {
+        switchButton.setTitle("")
+        switchButton.backgroundColor = UIColor.darkGray
+        switchButton.cornerRadius = 30.0
+        switchButton.tintColor = UIColor.white
+        switchButton.setImage(UIImage(named: "icon_switch-camera"))
     }
 
     // MARK: - Permissions
@@ -141,12 +168,7 @@ class CameraViewController: UIViewController {
 
     private func setupCameraView() {
         captureSession.sessionPreset = .hd1280x720
-        var cameraMode = AVCaptureDevice.Position.back
-        let isTotemMode = userDefaults.bool(forKey: UDKeyTotemIsActive)
-        if isTotemMode {
-            cameraMode = .front
-        }
-
+        let cameraMode = (self.UDCamPreference == true) ? AVCaptureDevice.Position.front : AVCaptureDevice.Position.back
         let videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: cameraMode)
 
         guard let device = videoDevice, let videoDeviceInput = try? AVCaptureDeviceInput(device: device),
@@ -154,7 +176,6 @@ class CameraViewController: UIViewController {
             self.showAlert(withTitle: "alert.nocamera.title".localized, message: "alert.nocamera.message".localized)
             return
         }
-
         captureSession.addInput(videoDeviceInput)
 
         // Camera output.

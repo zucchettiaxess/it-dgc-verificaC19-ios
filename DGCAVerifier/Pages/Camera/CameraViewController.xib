@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,6 +14,7 @@
                 <outlet property="backButton" destination="W2y-GT-Sfg" id="KdC-8J-HFh"/>
                 <outlet property="cameraView" destination="Gnb-63-dcr" id="cmy-Nj-k2x"/>
                 <outlet property="countryButton" destination="e6Z-DK-O5Q" id="3sa-Dj-gPG"/>
+                <outlet property="switchButton" destination="9Ww-sm-p8Q" id="JgJ-Yt-HL5"/>
                 <outlet property="view" destination="T8R-UI-qcI" id="8R1-82-1s7"/>
             </connections>
         </placeholder>
@@ -205,6 +206,18 @@
                         <constraint firstAttribute="bottom" secondItem="DpA-TL-t79" secondAttribute="bottom" id="zjJ-q9-fH5"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ww-sm-p8Q">
+                    <rect key="frame" x="317" y="746" width="60" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="pWv-hb-qBa"/>
+                        <constraint firstAttribute="width" constant="60" id="tlF-Ik-6ED"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="SwitchCamButton"/>
+                    <connections>
+                        <action selector="switchCamera:" destination="-1" eventType="touchUpInside" id="vs3-bR-Inz"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="KfD-9R-RDC"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -216,6 +229,8 @@
                 <constraint firstItem="KfD-9R-RDC" firstAttribute="trailing" secondItem="e6Z-DK-O5Q" secondAttribute="trailing" constant="32" id="PdX-ot-ZY3"/>
                 <constraint firstItem="uRW-o2-aBb" firstAttribute="width" secondItem="T8R-UI-qcI" secondAttribute="width" multiplier="0.676329" id="THz-1F-dwe"/>
                 <constraint firstItem="KfD-9R-RDC" firstAttribute="bottom" secondItem="e6Z-DK-O5Q" secondAttribute="bottom" constant="16" id="Vt5-Br-Nl3"/>
+                <constraint firstItem="e6Z-DK-O5Q" firstAttribute="top" secondItem="9Ww-sm-p8Q" secondAttribute="bottom" id="X6F-PO-vZT"/>
+                <constraint firstItem="uRW-o2-aBb" firstAttribute="trailing" secondItem="9Ww-sm-p8Q" secondAttribute="trailing" constant="-30" id="cs5-Oc-dzS"/>
                 <constraint firstItem="Gnb-63-dcr" firstAttribute="leading" secondItem="KfD-9R-RDC" secondAttribute="leading" id="fxV-ru-4Uh"/>
                 <constraint firstAttribute="trailing" secondItem="fca-1J-Ax2" secondAttribute="trailing" id="j5X-vR-fek"/>
                 <constraint firstItem="fca-1J-Ax2" firstAttribute="leading" secondItem="T8R-UI-qcI" secondAttribute="leading" id="kBB-ra-vzj"/>
