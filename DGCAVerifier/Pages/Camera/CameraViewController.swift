@@ -47,7 +47,7 @@ class CameraViewController: UIViewController {
     @IBOutlet weak var countryButton: AppButton!
 
     private var captureSession = AVCaptureSession()
-    private let allowedCodes: [VNBarcodeSymbology] = [.qr]
+    private let allowedCodes: [VNBarcodeSymbology] = [.qr, .aztec]
     private let scanConfidence: VNConfidence = 0.9
 
     // MARK: - Init
