@@ -27,6 +27,7 @@ import UIKit
 protocol HomeCoordinator: Coordinator {
     func showCamera()
     func showCountries()
+    func openSettings()
 }
 
 class HomeViewController: UIViewController {
@@ -46,6 +47,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var totemLabel: AppLabel!
     
     @IBOutlet weak var totemSwitch: UISwitch!
+    
+    @IBOutlet weak var settingsImageView: UIImageView!
     
     let UDKeyTotemIsActive = "IsTotemModeActive"
     let userDefaults = UserDefaults.standard
@@ -68,8 +71,14 @@ class HomeViewController: UIViewController {
         subscribeEvents()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setUpTotemMode()
+    }
+    
     private func initialize() {
         setUpTotemMode()
+        setUpSettingsAction()
         setFAQ()
         setPrivacyPolicy()
         setVersion()
@@ -82,6 +91,17 @@ class HomeViewController: UIViewController {
     private func setUpTotemMode(){
         let isTotemModeActive = userDefaults.bool(forKey: UDKeyTotemIsActive)
         totemSwitch.isOn = isTotemModeActive
+    }
+    
+    private func setUpSettingsAction(){
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(settingsImageTapped(tapGestureRecognizer:)))
+        settingsImageView.isUserInteractionEnabled = true
+        settingsImageView.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    @objc func settingsImageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        coordinator?.openSettings()
     }
     
     private func subscribeEvents() {
