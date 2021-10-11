@@ -29,7 +29,7 @@ jobs:
     - name: xcode version
       run: |-
         ls /Applications | grep Xcode
-        sudo xcode-select -switch /Applications/Xcode_12.5.app
+        sudo xcode-select --switch /Applications/Xcode_13.0.app/Contents/Developer
         /usr/bin/xcodebuild -version
     - name: xcode test
       run: |-
