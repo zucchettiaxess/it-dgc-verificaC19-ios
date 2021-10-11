@@ -45,7 +45,6 @@ class CameraViewController: UIViewController {
     @IBOutlet weak var cameraView: UIView!
     @IBOutlet weak var backButton: AppButton!
     @IBOutlet weak var countryButton: AppButton!
-    @IBOutlet weak var switchButton: UIButton!
 
     private var captureSession = AVCaptureSession()
     private let allowedCodes: [VNBarcodeSymbology] = [.qr, .aztec]
@@ -79,7 +78,6 @@ class CameraViewController: UIViewController {
         super.viewDidLoad()
         initializeBackButton()
         initializeCountryButton()
-        initializeCamSwitchButton()
         #if targetEnvironment(simulator)
         found(payload: mockQRCode)
         #else
@@ -105,15 +103,6 @@ class CameraViewController: UIViewController {
     @IBAction func backToRoot(_ sender: Any) {
         coordinator?.dismissToRoot()
     }
-
-    @IBAction func switchCamera(_ sender: Any) {
-        let camPreference = self.UDCamPreference
-        userDefaults.set(!camPreference, forKey: self.UDKeyCamPreference)
-        
-        captureSession = AVCaptureSession()
-        setupCameraView()
-        startRunning()
-    }
     
     private func found(payload: String) {
         let vc = coordinator?.navigationController.visibleViewController
@@ -133,14 +122,6 @@ class CameraViewController: UIViewController {
         countryButton.setRightImage(named: "icon_arrow-right")
         countryButton.setTitle(country?.name)
         countryButton.isHidden = country == nil
-    }
-    
-    private func initializeCamSwitchButton() {
-        switchButton.setTitle("")
-        switchButton.backgroundColor = UIColor.darkGray
-        switchButton.cornerRadius = 30.0
-        switchButton.tintColor = UIColor.white
-        switchButton.setImage(UIImage(named: "icon_switch-camera"))
     }
 
     // MARK: - Permissions

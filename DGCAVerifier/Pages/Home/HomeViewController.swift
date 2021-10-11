@@ -44,14 +44,7 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var lastFetchLabel: AppLabel!
     
-    @IBOutlet weak var totemLabel: AppLabel!
-    
-    @IBOutlet weak var totemSwitch: UISwitch!
-    
     @IBOutlet weak var settingsImageView: UIImageView!
-    
-    let UDKeyTotemIsActive = "IsTotemModeActive"
-    let userDefaults = UserDefaults.standard
     
     init(coordinator: HomeCoordinator, viewModel: HomeViewModel) {
         self.coordinator = coordinator
@@ -71,13 +64,7 @@ class HomeViewController: UIViewController {
         subscribeEvents()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setUpTotemMode()
-    }
-    
     private func initialize() {
-        setUpTotemMode()
         setUpSettingsAction()
         setFAQ()
         setPrivacyPolicy()
@@ -86,11 +73,6 @@ class HomeViewController: UIViewController {
         setCountriesButton()
         updateLastFetch(isLoading: viewModel.isLoading.value ?? false)
         updateNowButton.contentHorizontalAlignment = .center
-    }
-    
-    private func setUpTotemMode(){
-        let isTotemModeActive = userDefaults.bool(forKey: UDKeyTotemIsActive)
-        totemSwitch.isOn = isTotemModeActive
     }
     
     private func setUpSettingsAction(){
@@ -207,11 +189,5 @@ class HomeViewController: UIViewController {
         let isLoading = viewModel.isLoading.value ?? false
         guard !isLoading else { return }
         viewModel.startOperations()
-    }
-    
-    @IBAction func totemSwitchAction(_ sender: Any) {
-        let isTotemModeActive = userDefaults.bool(forKey: UDKeyTotemIsActive)
-        totemSwitch.isOn = !isTotemModeActive
-        userDefaults.set(!isTotemModeActive, forKey: UDKeyTotemIsActive)
     }
 }
