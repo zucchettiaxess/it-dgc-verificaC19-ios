@@ -49,6 +49,17 @@ class CameraViewController: UIViewController {
     private var captureSession = AVCaptureSession()
     private let allowedCodes: [VNBarcodeSymbology] = [.qr, .aztec]
     private let scanConfidence: VNConfidence = 0.9
+    
+    // `true`:  use front camera.
+    // `false`: use back camera.
+    let UDKeyCamPreference = "CameraPreference"
+    var UDCamPreference: Bool {
+        return userDefaults.bool(forKey: UDKeyCamPreference)
+    }
+    
+    let UDKeyTotemIsActive = "IsTotemModeActive"
+    let userDefaults = UserDefaults.standard
+    
 
     // MARK: - Init
     init(coordinator: CameraCoordinator, country: CountryModel? = nil) {
@@ -92,7 +103,7 @@ class CameraViewController: UIViewController {
     @IBAction func backToRoot(_ sender: Any) {
         coordinator?.dismissToRoot()
     }
-
+    
     private func found(payload: String) {
         let vc = coordinator?.navigationController.visibleViewController
         guard !(vc is VerificationViewController) else { return }
@@ -138,15 +149,14 @@ class CameraViewController: UIViewController {
 
     private func setupCameraView() {
         captureSession.sessionPreset = .hd1280x720
-
-        let videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)
+        let cameraMode = (self.UDCamPreference == true) ? AVCaptureDevice.Position.front : AVCaptureDevice.Position.back
+        let videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: cameraMode)
 
         guard let device = videoDevice, let videoDeviceInput = try? AVCaptureDeviceInput(device: device),
               captureSession.canAddInput(videoDeviceInput) else {
             self.showAlert(withTitle: "alert.nocamera.title".localized, message: "alert.nocamera.message".localized)
             return
         }
-
         captureSession.addInput(videoDeviceInput)
 
         // Camera output.

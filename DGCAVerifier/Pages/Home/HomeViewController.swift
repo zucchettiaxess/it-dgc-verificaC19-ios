@@ -27,6 +27,7 @@ import UIKit
 protocol HomeCoordinator: Coordinator {
     func showCamera()
     func showCountries()
+    func openSettings()
 }
 
 class HomeViewController: UIViewController {
@@ -42,6 +43,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var updateNowButton: AppButton!
     
     @IBOutlet weak var lastFetchLabel: AppLabel!
+    
+    @IBOutlet weak var settingsImageView: UIImageView!
     
     init(coordinator: HomeCoordinator, viewModel: HomeViewModel) {
         self.coordinator = coordinator
@@ -62,6 +65,7 @@ class HomeViewController: UIViewController {
     }
     
     private func initialize() {
+        setUpSettingsAction()
         setFAQ()
         setPrivacyPolicy()
         setVersion()
@@ -69,6 +73,17 @@ class HomeViewController: UIViewController {
         setCountriesButton()
         updateLastFetch(isLoading: viewModel.isLoading.value ?? false)
         updateNowButton.contentHorizontalAlignment = .center
+    }
+    
+    private func setUpSettingsAction(){
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(settingsImageTapped(tapGestureRecognizer:)))
+        settingsImageView.isUserInteractionEnabled = true
+        settingsImageView.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    @objc func settingsImageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        coordinator?.openSettings()
     }
     
     private func subscribeEvents() {
@@ -175,5 +190,4 @@ class HomeViewController: UIViewController {
         guard !isLoading else { return }
         viewModel.startOperations()
     }
-    
 }
