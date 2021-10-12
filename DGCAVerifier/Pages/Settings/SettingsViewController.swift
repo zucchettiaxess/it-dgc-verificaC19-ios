@@ -34,7 +34,6 @@ class SettingsViewController: UIViewController {
     private var viewModel: SettingsViewModel
     
     private var pickerViewOptions = ["settings.mode.automatic".localized, "settings.mode.manual".localized]
-//    private let pickerView = ToolbarPickerView()
     private var pickerView = UIPickerView()
     private var pickerToolBar = UIToolbar()
     
@@ -141,7 +140,6 @@ class SettingsViewController: UIViewController {
         pickerToolBar.barStyle = UIBarStyle.default
         pickerToolBar.isTranslucent = true
         pickerToolBar.tintColor = .black
-//        pickerToolBar.sizeToFit()
 
         let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.didTapDone))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
