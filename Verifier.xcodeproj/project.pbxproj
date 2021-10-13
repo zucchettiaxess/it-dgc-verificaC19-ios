@@ -152,6 +152,7 @@
 		65E281FC2697259D00377913 /* testaka4-sogei-it.der in Resources */ = {isa = PBXBuildFile; fileRef = 9F90C579265E284A00B2F992 /* testaka4-sogei-it.der */; };
 		65E281FD2697259D00377913 /* TitilliumWeb-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F90C585265E591D00B2F992 /* TitilliumWeb-BoldItalic.ttf */; };
 		65E281FE2697259D00377913 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F90C57C265E591D00B2F992 /* Roboto-Medium.ttf */; };
+		65E3C1E1271703CC004B2E98 /* AVCaptureDevice+Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E3C1E0271703CC004B2E98 /* AVCaptureDevice+Light.swift */; };
 		65E7000126AF6E1F00715CCC /* UIStackView+ArrangedSubViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E7000026AF6E1F00715CCC /* UIStackView+ArrangedSubViews.swift */; };
 		65E7000226AF6E1F00715CCC /* UIStackView+ArrangedSubViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E7000026AF6E1F00715CCC /* UIStackView+ArrangedSubViews.swift */; };
 		65E7000C26AF753C00715CCC /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E7000B26AF753C00715CCC /* AppView.swift */; };
@@ -301,6 +302,7 @@
 		65E2819A269721ED00377913 /* HCert+Vaccine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HCert+Vaccine.swift"; sourceTree = "<group>"; };
 		65E282022697259D00377913 /* VerificaC19 Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VerificaC19 Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65E282052697269100377913 /* Info-Dev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Dev.plist"; sourceTree = "<group>"; };
+		65E3C1E0271703CC004B2E98 /* AVCaptureDevice+Light.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVCaptureDevice+Light.swift"; sourceTree = "<group>"; };
 		65E7000026AF6E1F00715CCC /* UIStackView+ArrangedSubViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+ArrangedSubViews.swift"; sourceTree = "<group>"; };
 		65E7000B26AF753C00715CCC /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		65E7000E26AF75AD00715CCC /* ResultView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultView.xib; sourceTree = "<group>"; };
@@ -619,6 +621,7 @@
 				65E28192269721ED00377913 /* String */,
 				65E28196269721ED00377913 /* HCert */,
 				653F928326B002D0000BE8F5 /* Array+Utils.swift */,
+				65E3C1DF271703BC004B2E98 /* AVCapture */,
 				65EFB63126B183AB0081682B /* ModelExtensions */,
 				65021B3E26AEC0EA004C3D14 /* UIExtensions */,
 			);
@@ -695,6 +698,14 @@
 				6B24E85A2660E0030003808F /* get-dgc-gov-it.der */,
 			);
 			path = Certificates;
+			sourceTree = "<group>";
+		};
+		65E3C1DF271703BC004B2E98 /* AVCapture */ = {
+			isa = PBXGroup;
+			children = (
+				65E3C1E0271703CC004B2E98 /* AVCaptureDevice+Light.swift */,
+			);
+			path = AVCapture;
 			sourceTree = "<group>";
 		};
 		65E7000626AF718E00715CCC /* ResultView */ = {
@@ -1293,6 +1304,7 @@
 				65EFB62F26B1829E0081682B /* Link.swift in Sources */,
 				65E281A0269721ED00377913 /* UIViewController+Alert.swift in Sources */,
 				65EFB63326B183CF0081682B /* Link+Values.swift in Sources */,
+				65E3C1E1271703CC004B2E98 /* AVCaptureDevice+Light.swift in Sources */,
 				65E2819F269721ED00377913 /* Date+Utils.swift in Sources */,
 				659DE89126B2D75B0026A39A /* Font.swift in Sources */,
 				653F929226B00F9C000BE8F5 /* String+Char.swift in Sources */,
