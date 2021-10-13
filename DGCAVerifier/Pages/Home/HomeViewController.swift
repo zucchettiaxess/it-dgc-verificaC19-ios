@@ -44,6 +44,15 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var lastFetchLabel: AppLabel!
     
+    let userDefaults = UserDefaults.standard
+
+    // `true`:  flash active.
+    // `false`: flash not active.
+    let UDKeyFlashPreference = "FlashPreference"
+    var UDFlashPreference: Bool {
+        return userDefaults.bool(forKey: UDKeyFlashPreference)
+    }
+
     @IBOutlet weak var settingsImageView: UIImageView!
     
     init(coordinator: HomeCoordinator, viewModel: HomeViewModel) {
@@ -64,7 +73,13 @@ class HomeViewController: UIViewController {
         subscribeEvents()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        userDefaults.set(false, forKey: UDKeyFlashPreference)
+    }
+    
     private func initialize() {
+
         setUpSettingsAction()
         setFAQ()
         setPrivacyPolicy()
@@ -75,6 +90,7 @@ class HomeViewController: UIViewController {
         updateNowButton.contentHorizontalAlignment = .center
     }
     
+
     private func setUpSettingsAction(){
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(settingsImageTapped(tapGestureRecognizer:)))
         settingsImageView.isUserInteractionEnabled = true

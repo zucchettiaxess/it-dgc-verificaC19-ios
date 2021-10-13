@@ -34,6 +34,7 @@ protocol CameraCoordinator: Coordinator {
 protocol CameraDelegate {
     func startRunning()
     func stopRunning()
+    func setupFlash()
 }
 
 let mockQRCode = "<add your mock qr code here>"
@@ -45,6 +46,8 @@ class CameraViewController: UIViewController {
     @IBOutlet weak var cameraView: UIView!
     @IBOutlet weak var backButton: AppButton!
     @IBOutlet weak var countryButton: AppButton!
+    @IBOutlet weak var flashButton: AppButton!  
+    @IBOutlet weak var switchButton: UIButton!
 
     private var captureSession = AVCaptureSession()
     private let allowedCodes: [VNBarcodeSymbology] = [.qr, .aztec]
@@ -55,6 +58,13 @@ class CameraViewController: UIViewController {
     let UDKeyCamPreference = "CameraPreference"
     var UDCamPreference: Bool {
         return userDefaults.bool(forKey: UDKeyCamPreference)
+    }
+    
+    // `true`:  flash active.
+    // `false`: flash not active.
+    let UDKeyFlashPreference = "FlashPreference"
+    var UDFlashPreference: Bool {
+        return userDefaults.bool(forKey: UDKeyFlashPreference)
     }
     
     let UDKeyTotemIsActive = "IsTotemModeActive"
@@ -77,6 +87,7 @@ class CameraViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeBackButton()
+        initializeFlashButton()
         initializeCountryButton()
         #if targetEnvironment(simulator)
         found(payload: mockQRCode)
@@ -94,14 +105,50 @@ class CameraViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         startRunning()
+        setupFlash()
     }
 
     @IBAction func back(_ sender: Any) {
         coordinator?.dismiss()
     }
     
+    @IBAction func flashSwitch(_ sender: Any) {
+        guard let device = AVCaptureDevice.default(for: AVMediaType.video) else {
+            return
+        }
+        guard device.hasTorch else {
+            print("Torch isn't available")
+            return
+        }
+        
+        do {
+            try device.lockForConfiguration()
+            if device.torchMode == .off {
+                try device.setTorchModeOn(level: AVCaptureDevice.maxAvailableTorchLevel)
+                userDefaults.set(true, forKey: UDKeyFlashPreference)
+            }
+            else {
+                device.torchMode = AVCaptureDevice.TorchMode.off
+                userDefaults.set(false, forKey: UDKeyFlashPreference)
+            }
+            device.unlockForConfiguration()
+        } catch {
+            print("Torch can't be used")
+        }
+    }
+    
     @IBAction func backToRoot(_ sender: Any) {
         coordinator?.dismissToRoot()
+    }
+
+    @IBAction func switchCamera(_ sender: Any) {
+        let camPreference = self.UDCamPreference
+        flashButton.isHidden = !camPreference
+        userDefaults.set(!camPreference, forKey: self.UDKeyCamPreference)
+        
+        captureSession = AVCaptureSession()
+        setupCameraView()
+        startRunning()
     }
     
     private func found(payload: String) {
@@ -117,11 +164,24 @@ class CameraViewController: UIViewController {
         backButton.setLeftImage(named: "icon_back")
     }
     
+    private func initializeFlashButton() {
+        flashButton.cornerRadius = 30.0
+        flashButton.backgroundColor = .clear
+        flashButton.setImage(UIImage(named: "flash-camera"))
+    }
+    
     private func initializeCountryButton() {
         countryButton.style = .white
         countryButton.setRightImage(named: "icon_arrow-right")
         countryButton.setTitle(country?.name)
         countryButton.isHidden = country == nil
+    }
+    
+    private func initializeCamSwitchButton() {
+        switchButton.cornerRadius = 30.0
+        switchButton.backgroundColor = .clear
+        switchButton.tintColor = UIColor.white
+        switchButton.setImage(UIImage(named: "switch-camera"))
     }
 
     // MARK: - Permissions
@@ -193,6 +253,26 @@ extension CameraViewController: CameraDelegate {
     func stopRunning() {
         guard captureSession.isRunning else { return }
         captureSession.stopRunning()
+    }
+    
+    func setupFlash() {
+        guard let device = AVCaptureDevice.default(for: AVMediaType.video) else {
+            return
+        }
+        guard device.hasTorch else {
+            print("Torch isn't available")
+            return
+        }
+        
+        do {
+            try device.lockForConfiguration()
+            if device.torchMode == .off && UDFlashPreference{
+                try device.setTorchModeOn(level: AVCaptureDevice.maxAvailableTorchLevel)
+            }
+            device.unlockForConfiguration()
+        } catch {
+            print("Torch can't be used")
+        }
     }
 }
 
