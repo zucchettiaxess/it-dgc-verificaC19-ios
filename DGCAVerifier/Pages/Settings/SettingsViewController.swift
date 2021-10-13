@@ -64,7 +64,6 @@ class SettingsViewController: UIViewController {
         setUpFAQView()
         setUpPrivacyView()
         setUpViewActions()
-
     }
     
     private func initializeBackButton() {
@@ -102,7 +101,6 @@ class SettingsViewController: UIViewController {
         privacyView.addGestureRecognizer(privacyTapGesture)
         let pickerModeTapGesture = UITapGestureRecognizer(target: self, action: #selector(modeViewDidTap))
         modeView.addGestureRecognizer(pickerModeTapGesture)
-
     }
     
     @IBAction func goBack(_ sender: Any) {
@@ -129,6 +127,8 @@ class SettingsViewController: UIViewController {
         pickerView.dataSource = self
         pickerView.translatesAutoresizingMaskIntoConstraints = false
         
+        let automatic = userDefaults.bool(forKey: UDKeyTotemIsActive)
+        pickerView.selectRow(automatic ? 0 : 1, inComponent: 0, animated: false)
         self.view.addSubview(pickerView)
         
         pickerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
