@@ -43,17 +43,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var updateNowButton: AppButton!
     
     @IBOutlet weak var lastFetchLabel: AppLabel!
-    
-    let userDefaults = UserDefaults.standard
-
-    // `true`:  flash active.
-    // `false`: flash not active.
-    let UDKeyFlashPreference = "FlashPreference"
-    var UDFlashPreference: Bool {
-        return userDefaults.bool(forKey: UDKeyFlashPreference)
-    }
-
-    @IBOutlet weak var settingsImageView: UIImageView!
+    @IBOutlet weak var settingsView: UIView!
     
     init(coordinator: HomeCoordinator, viewModel: HomeViewModel) {
         self.coordinator = coordinator
@@ -75,11 +65,10 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        userDefaults.set(false, forKey: UDKeyFlashPreference)
+        Store.set(false, for: .isTorchActive)
     }
     
     private func initialize() {
-
         setUpSettingsAction()
         setFAQ()
         setPrivacyPolicy()
@@ -89,17 +78,10 @@ class HomeViewController: UIViewController {
         updateLastFetch(isLoading: viewModel.isLoading.value ?? false)
         updateNowButton.contentHorizontalAlignment = .center
     }
-    
 
-    private func setUpSettingsAction(){
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(settingsImageTapped(tapGestureRecognizer:)))
-        settingsImageView.isUserInteractionEnabled = true
-        settingsImageView.addGestureRecognizer(tapGestureRecognizer)
-    }
-    
-    @objc func settingsImageTapped(tapGestureRecognizer: UITapGestureRecognizer)
-    {
-        coordinator?.openSettings()
+    private func setUpSettingsAction() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(settingsImageDidTap))
+        settingsView.addGestureRecognizer(tap)
     }
     
     private func subscribeEvents() {
@@ -168,11 +150,15 @@ class HomeViewController: UIViewController {
         guard let url = URL(string: Link.privacyPolicy.url) else { return }
         UIApplication.shared.open(url)
     }
+    
+    @objc func settingsImageDidTap() {
+        coordinator?.openSettings()
+    }
 
     @objc func goToStore(_ action: UIAlertAction? = nil) {
-//        guard let url = URL(string: Link.store.url) else { return }
-//        guard UIApplication.shared.canOpenURL(url) else { return }
-//        UIApplication.shared.open(url)
+        guard let url = URL(string: Link.store.url) else { return }
+        guard UIApplication.shared.canOpenURL(url) else { return }
+        UIApplication.shared.open(url)
     }
     
     private func showOutdatedAlert() {
