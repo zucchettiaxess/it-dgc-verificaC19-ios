@@ -1,5 +1,5 @@
 //
-//  AVCaptureDevice+Light.swift
+//  AVCaptureDevice+Torch.swift
 //  VerificaC19
 //
 //  Created by Andrea Prosseda on 13/10/21.
@@ -14,12 +14,12 @@ extension AVCaptureDevice {
         AVCaptureDevice.default(for: AVMediaType.video)
     }
     
-    static func switchLight() {
+    static func switchTorch() {
         guard let device = captureDevice else { return }
-        enableLight(!device.isLightActive)
+        enableTorch(!device.isTorchActive)
     }
     
-    static func enableLight(_ enable: Bool) {
+    static func enableTorch(_ enable: Bool) {
         guard let device = captureDevice else { return }
         guard device.hasTorch else { return }
         
@@ -33,21 +33,21 @@ extension AVCaptureDevice {
     }
     
     private static func on() {
-        guard !isLightActive else { return }
+        guard !isTorchActive else { return }
         let max = AVCaptureDevice.maxAvailableTorchLevel
         try? captureDevice?.setTorchModeOn(level: max)
     }
     
     private static func off() {
-        guard isLightActive else { return }
+        guard isTorchActive else { return }
         captureDevice?.torchMode = .off
     }
     
-    var isLightActive: Bool {
+    var isTorchActive: Bool {
         self.torchMode != .off
     }
     
-    static var isLightActive: Bool {
+    static var isTorchActive: Bool {
         captureDevice?.torchMode != .off
     }
     

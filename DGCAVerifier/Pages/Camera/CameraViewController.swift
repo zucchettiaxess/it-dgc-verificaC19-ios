@@ -17,7 +17,7 @@
 */
 
 //
-//  HomeViewController.swift
+//  CameraViewController.swift
 //  dgp-whitelabel-ios
 //
 //
@@ -46,7 +46,7 @@ class CameraViewController: UIViewController {
     @IBOutlet weak var cameraView: UIView!
     @IBOutlet weak var backButton: AppButton!
     @IBOutlet weak var countryButton: AppButton!
-    @IBOutlet weak var flashButton: AppButton!  
+    @IBOutlet weak var flashButton: AppButton!
     @IBOutlet weak var switchButton: UIButton!
 
     private var captureSession = AVCaptureSession()
@@ -113,28 +113,8 @@ class CameraViewController: UIViewController {
     }
     
     @IBAction func flashSwitch(_ sender: Any) {
-        guard let device = AVCaptureDevice.default(for: AVMediaType.video) else {
-            return
-        }
-        guard device.hasTorch else {
-            print("Torch isn't available")
-            return
-        }
-        
-        do {
-            try device.lockForConfiguration()
-            if device.torchMode == .off {
-                try device.setTorchModeOn(level: AVCaptureDevice.maxAvailableTorchLevel)
-                userDefaults.set(true, forKey: UDKeyFlashPreference)
-            }
-            else {
-                device.torchMode = AVCaptureDevice.TorchMode.off
-                userDefaults.set(false, forKey: UDKeyFlashPreference)
-            }
-            device.unlockForConfiguration()
-        } catch {
-            print("Torch can't be used")
-        }
+        AVCaptureDevice.switchTorch()
+        userDefaults.set(AVCaptureDevice.isTorchActive, forKey: UDKeyFlashPreference)
     }
     
     @IBAction func backToRoot(_ sender: Any) {
@@ -146,9 +126,9 @@ class CameraViewController: UIViewController {
         flashButton.isHidden = !camPreference
         userDefaults.set(!camPreference, forKey: self.UDKeyCamPreference)
         
-        captureSession = AVCaptureSession()
         setupCameraView()
         startRunning()
+        setupFlash()
     }
     
     private func found(payload: String) {
@@ -168,6 +148,7 @@ class CameraViewController: UIViewController {
         flashButton.cornerRadius = 30.0
         flashButton.backgroundColor = .clear
         flashButton.setImage(UIImage(named: "flash-camera"))
+        flashButton.isHidden = self.UDCamPreference
     }
     
     private func initializeCountryButton() {
@@ -204,40 +185,69 @@ class CameraViewController: UIViewController {
         self.showAlert(withTitle: "alert.camera.permissions.title".localized,
                        message: "alert.camera.permissions.message".localized)
     }
-
-    // MARK: - Setup
-
+    
+        // MARK: - Setup
     private func setupCameraView() {
+        cameraView.layer.backgroundColor = Palette.grayDark.cgColor
+        cleanSession()
+        let isFrontCamera = UDCamPreference
+        let cameraMode: AVCaptureDevice.Position = isFrontCamera ? .front : .back
+        
+        let input = getCameraInput(mode: cameraMode, for: captureSession)
+        let output = getCaptureOutput()
+        let layer = getCameraPreviewLayer(for: captureSession)
+        
+        guard let cameraInput = input else { return noCameraError() }
         captureSession.sessionPreset = .hd1280x720
-        let cameraMode = (self.UDCamPreference == true) ? AVCaptureDevice.Position.front : AVCaptureDevice.Position.back
-        let videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: cameraMode)
-
-        guard let device = videoDevice, let videoDeviceInput = try? AVCaptureDeviceInput(device: device),
-              captureSession.canAddInput(videoDeviceInput) else {
-            self.showAlert(withTitle: "alert.nocamera.title".localized, message: "alert.nocamera.message".localized)
-            return
-        }
-        captureSession.addInput(videoDeviceInput)
-
-        // Camera output.
+        captureSession.addInput(cameraInput)
+        captureSession.addOutput(output)
+        cameraView.layer.insertSublayer(layer, at: 0)
+    }
+    
+    private func cleanSession() {
+        stopRunning()
+        cameraView.layer.sublayers?.forEach { $0.removeFromSuperlayer() }
+        captureSession.inputs.forEach { captureSession.removeInput($0) }
+        captureSession.outputs.forEach { captureSession.removeOutput($0) }
+    }
+    
+    private func getCameraInput(mode: AVCaptureDevice.Position, for session: AVCaptureSession) -> AVCaptureDeviceInput? {
+        let type: AVCaptureDevice.DeviceType = .builtInWideAngleCamera
+        let videoDevice = AVCaptureDevice.default(type, for: .video, position: mode)
+        guard let device = videoDevice else { return nil }
+        let deviceInput = try? AVCaptureDeviceInput(device: device)
+        guard let input = deviceInput else { return nil }
+        guard session.canAddInput(input) else { return nil }
+        return input
+    }
+    
+    private func getCaptureOutput() -> AVCaptureVideoDataOutput {
+        let key = kCVPixelBufferPixelFormatTypeKey as String
+        let queue = DispatchQueue.global(qos: DispatchQoS.QoSClass.default)
         let captureOutput = AVCaptureVideoDataOutput()
-        captureOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_32BGRA)]
-        captureOutput.setSampleBufferDelegate(self, queue: DispatchQueue.global(qos: DispatchQoS.QoSClass.default))
-        captureSession.addOutput(captureOutput)
-
-        // Camera preview layer
-        let cameraPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+        captureOutput.videoSettings = [key: Int(kCVPixelFormatType_32BGRA)]
+        captureOutput.setSampleBufferDelegate(self, queue: queue)
+        return captureOutput
+    }
+    
+    private func getCameraPreviewLayer(for session: AVCaptureSession) -> AVCaptureVideoPreviewLayer {
+        let cameraPreviewLayer = AVCaptureVideoPreviewLayer(session: session)
         cameraPreviewLayer.videoGravity = .resizeAspectFill
         cameraPreviewLayer.connection?.videoOrientation = .portrait
         cameraPreviewLayer.frame = view.frame
-        cameraView.layer.insertSublayer(cameraPreviewLayer, at: 0)
+        return cameraPreviewLayer
     }
     
+    private func noCameraError() {
+        showAlert(withTitle: "alert.nocamera.title".localized, message: "alert.nocamera.message".localized)
+    }
+
     private func hapticFeedback() {
         DispatchQueue.main.async {
             UINotificationFeedbackGenerator().notificationOccurred(.success)
         }
     }
+    
 }
 
 extension CameraViewController: CameraDelegate {
@@ -256,23 +266,10 @@ extension CameraViewController: CameraDelegate {
     }
     
     func setupFlash() {
-        guard let device = AVCaptureDevice.default(for: AVMediaType.video) else {
-            return
-        }
-        guard device.hasTorch else {
-            print("Torch isn't available")
-            return
-        }
-        
-        do {
-            try device.lockForConfiguration()
-            if device.torchMode == .off && UDFlashPreference{
-                try device.setTorchModeOn(level: AVCaptureDevice.maxAvailableTorchLevel)
-            }
-            device.unlockForConfiguration()
-        } catch {
-            print("Torch can't be used")
-        }
+        let torchActive = UDFlashPreference
+        let frontCamera = UDCamPreference
+        let enable = torchActive && !frontCamera
+        AVCaptureDevice.enableTorch(enable)
     }
 }
 
