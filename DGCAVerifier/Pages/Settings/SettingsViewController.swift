@@ -37,13 +37,6 @@ class SettingsViewController: UIViewController {
     private var pickerView = UIPickerView()
     private var pickerToolBar = UIToolbar()
     
-    let UDKeyTotemIsActive = "IsTotemModeActive"
-    let userDefaults = UserDefaults.standard
-    
-    var UDIsTotemModeActive: Bool {
-        return userDefaults.bool(forKey: UDKeyTotemIsActive)
-    }
-    
     init(coordinator: SettingsCoordinator, viewModel: SettingsViewModel) {
         self.coordinator = coordinator
         self.viewModel = viewModel
@@ -81,7 +74,7 @@ class SettingsViewController: UIViewController {
     
     private func setUpModeView(){
         modeLabel.text = "settings.mode".localized
-        modeValueLabel.text = (self.UDIsTotemModeActive == true) ? "settings.mode.automatic".localized : "settings.mode.manual".localized
+        modeValueLabel.text = (Store.getBool(key: .isTotemModeActive)) ? "settings.mode.automatic".localized : "settings.mode.manual".localized
         modeLabel.font = .boldSystemFont(ofSize: 15)
     }
     
@@ -129,6 +122,8 @@ class SettingsViewController: UIViewController {
         pickerView.dataSource = self
         pickerView.translatesAutoresizingMaskIntoConstraints = false
         
+        let automatic = Store.getBool(key: .isTotemModeActive)
+        pickerView.selectRow(automatic ? 0 : 1, inComponent: 0, animated: false)
         self.view.addSubview(pickerView)
         
         pickerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
@@ -161,12 +156,7 @@ class SettingsViewController: UIViewController {
         let row = self.pickerView.selectedRow(inComponent: 0)
         self.pickerView.selectRow(row, inComponent: 0, animated: false)
         self.modeValueLabel.text = self.pickerViewOptions[row]
-        if row == 0 {
-            userDefaults.set(true, forKey: UDKeyTotemIsActive)
-        }
-        else if row == 1{
-            userDefaults.set(false, forKey: UDKeyTotemIsActive)
-        }
+        Store.set(row == 0, for: .isTotemModeActive)
         removePicker()
     }
 
@@ -203,11 +193,11 @@ extension SettingsViewController: UIPickerViewDelegate, UIPickerViewDataSource {
             switch row {
             case 0: //Automatic
                 self.modeValueLabel.text = self.pickerViewOptions[row]
-                userDefaults.set(true, forKey: UDKeyTotemIsActive)
+                Store.set(true, for: .isTotemModeActive)
                 return
             case 1: //Manual
                 self.modeValueLabel.text = self.pickerViewOptions[row]
-                userDefaults.set(false, forKey: UDKeyTotemIsActive)
+                Store.set(true, for: .isTotemModeActive)
                 return
             default:
                 return

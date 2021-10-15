@@ -46,8 +46,6 @@ class VerificationViewController: UIViewController {
     @IBOutlet weak var personalDataStackView: UIStackView!
     
     var timer: Timer?
-    let UDKeyTotemIsActive = "IsTotemModeActive"
-    let userDefaults = UserDefaults.standard
     
     init(coordinator: VerificationCoordinator, delegate: CameraDelegate, viewModel: VerificationViewModel) {
         self.coordinator = coordinator
@@ -76,7 +74,7 @@ class VerificationViewController: UIViewController {
         setFaq(for: status)
         setPersonalData(for: status)
         
-        let isTotemModeActive = userDefaults.bool(forKey: UDKeyTotemIsActive)
+        let isTotemModeActive = Store.getBool(key: .isTotemModeActive)
         if isTotemModeActive && (status == .valid || status == .validPartially) {
             timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(dismissVC), userInfo: nil, repeats: false)
         }
