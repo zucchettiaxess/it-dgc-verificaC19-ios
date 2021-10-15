@@ -1,14 +1,14 @@
 /*
  *  license-start
- *  
+ *
  *  Copyright (C) 2021 Ministero della Salute and all other contributors
- *  
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
- *  
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- *  
+ *
  *  Unless required by applicable law or agreed to in writing, software
  *  distributed under the License is distributed on an "AS IS" BASIS,
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,7 +17,7 @@
 */
 
 //
-//  HomeViewController.swift
+//  CameraViewController.swift
 //  dgp-whitelabel-ios
 //
 //
@@ -32,9 +32,7 @@ protocol CameraCoordinator: Coordinator {
 }
 
 protocol CameraDelegate {
-    func startRunning()
-    func stopRunning()
-    func setupFlash()
+    func startOperations()
 }
 
 let mockQRCode = "<add your mock qr code here>"
@@ -46,18 +44,14 @@ class CameraViewController: UIViewController {
     @IBOutlet weak var cameraView: UIView!
     @IBOutlet weak var backButton: AppButton!
     @IBOutlet weak var countryButton: AppButton!
-    @IBOutlet weak var flashButton: AppButton!  
+    @IBOutlet weak var flashButton: AppButton!
     @IBOutlet weak var switchButton: UIButton!
 
     private var captureSession = AVCaptureSession()
-    private let allowedCodes: [VNBarcodeSymbology] = [.qr, .aztec]
-    private let scanConfidence: VNConfidence = 0.9
     
-    // MARK: - Init
     init(coordinator: CameraCoordinator, country: CountryModel? = nil) {
         self.coordinator = coordinator
         self.country = country
-
         super.init(nibName: "CameraViewController", bundle: nil)
     }
 
@@ -65,7 +59,6 @@ class CameraViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: - View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeBackButton()
@@ -75,7 +68,6 @@ class CameraViewController: UIViewController {
         found(payload: mockQRCode)
         #else
         checkPermissions()
-        setupCameraView()
         #endif
     }
 
@@ -86,6 +78,11 @@ class CameraViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        startOperations()
+    }
+    
+    public func startOperations() {
+        setupCamera()
         startRunning()
         setupFlash()
     }
@@ -104,11 +101,8 @@ class CameraViewController: UIViewController {
     }
 
     @IBAction func switchCamera(_ sender: Any) {
-        let frontCameraActive = Store.getBool(key: .isFrontCameraActive)
-        Store.set(!frontCameraActive, for: .isFrontCameraActive)
-        flashButton.isHidden = !frontCameraActive
-        
-        setupCameraView()
+        changeCameraMode()
+        setupCamera()
         startRunning()
         setupFlash()
     }
@@ -139,116 +133,40 @@ class CameraViewController: UIViewController {
         countryButton.setTitle(country?.name)
         countryButton.isHidden = country == nil
     }
-    
-    private func initializeCamSwitchButton() {
-        switchButton.cornerRadius = 30.0
-        switchButton.backgroundColor = .clear
-        switchButton.tintColor = UIColor.white
-        switchButton.setImage(UIImage(named: "switch-camera"))
-    }
 
-    // MARK: - Permissions
-
-    private func checkPermissions() {
-        switch AVCaptureDevice.authorizationStatus(for: .video) {
-        case .notDetermined:
-            AVCaptureDevice.requestAccess(for: .video) { [weak self] granted in
-                guard !granted else { return }
-                self?.showPermissionsAlert()
-            }
-        case .denied, .restricted:
-            self.showPermissionsAlert()
-        default:
-            return
-        }
-    }
-    
-    private func showPermissionsAlert() {
-        self.showAlert(withTitle: "alert.camera.permissions.title".localized,
-                       message: "alert.camera.permissions.message".localized)
-    }
-
-    // MARK: - Setup
-    private func setupCameraView() {
+    private func initializeCameraView() {
         cameraView.layer.backgroundColor = Palette.grayDark.cgColor
-        cleanSession()
-        let isFrontCamera = Store.getBool(key: .isFrontCameraActive)
-        let cameraMode: AVCaptureDevice.Position = isFrontCamera ? .front : .back
+    }
     
-        let input = getCameraInput(mode: cameraMode, for: captureSession)
-        let output = getCaptureOutput()
-        let layer = getCameraPreviewLayer(for: captureSession)
-        
-        guard let cameraInput = input else { return noCameraError() }
-        captureSession.sessionPreset = .hd1280x720
-        captureSession.addInput(cameraInput)
-        captureSession.addOutput(output)
+    private func changeCameraMode() {
+        let frontCameraActive = Store.getBool(key: .isFrontCameraActive)
+        Store.set(!frontCameraActive, for: .isFrontCameraActive)
+        flashButton.isHidden = !frontCameraActive
+    }
+    
+    private func setupCamera() {
+        cleanSession()
+        captureSession.setup(self, with: currentCameraMode)
+        let layer = captureSession.getPreviewLayer(for: view)
         cameraView.layer.insertSublayer(layer, at: 0)
     }
     
     private func cleanSession() {
         stopRunning()
         cameraView.layer.sublayers?.forEach { $0.removeFromSuperlayer() }
-        captureSession.inputs.forEach { captureSession.removeInput($0) }
-        captureSession.outputs.forEach { captureSession.removeOutput($0) }
+        captureSession.clean()
     }
     
-    private func getCameraInput(mode: AVCaptureDevice.Position, for session: AVCaptureSession) -> AVCaptureDeviceInput? {
-        let videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: mode)
-        
-        guard let device = videoDevice else { return nil }
-        let deviceInput = try? AVCaptureDeviceInput(device: device)
-        guard let input = deviceInput else { return nil }
-        guard session.canAddInput(input) else { return nil }
-        return input
+    func setupFlash() {
+        let torchActive = Store.getBool(key: .isTorchActive)
+        let frontCamera = Store.getBool(key: .isFrontCameraActive)
+        let enable = torchActive && !frontCamera
+        AVCaptureDevice.enableTorch(enable)
     }
     
-    private func getCaptureOutput() -> AVCaptureVideoDataOutput {
-        let captureOutput = AVCaptureVideoDataOutput()
-        captureOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_32BGRA)]
-        captureOutput.setSampleBufferDelegate(self, queue: DispatchQueue.global(qos: DispatchQoS.QoSClass.default))
-        return captureOutput
-    }
-    
-    private func getCameraPreviewLayer(for session: AVCaptureSession) -> AVCaptureVideoPreviewLayer {
-        let cameraPreviewLayer = AVCaptureVideoPreviewLayer(session: session)
-        cameraPreviewLayer.videoGravity = .resizeAspectFill
-        cameraPreviewLayer.connection?.videoOrientation = .portrait
-        cameraPreviewLayer.frame = view.frame
-        return cameraPreviewLayer
-    }
-    private func noCameraError() {
-        showAlert(withTitle: "alert.nocamera.title".localized, message: "alert.nocamera.message".localized)
-    }
-    
-    private func setupBackCamera() {
-        
-        captureSession.beginConfiguration()
-        captureSession.sessionPreset = .hd1280x720
-        let isFrontCameraActive = Store.getBool(key: .isFrontCameraActive)
-        let cameraMode: AVCaptureDevice.Position = isFrontCameraActive ? .front : .back
-        let videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: cameraMode)
-        
-        guard let device = videoDevice, let videoDeviceInput = try? AVCaptureDeviceInput(device: device),
-              captureSession.canAddInput(videoDeviceInput) else {
-                  self.showAlert(withTitle: "alert.nocamera.title".localized, message: "alert.nocamera.message".localized)
-                  return
-              }
-        captureSession.addInput(videoDeviceInput)
-        
-            // Camera output.
-        let captureOutput = AVCaptureVideoDataOutput()
-        captureOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_32BGRA)]
-        captureOutput.setSampleBufferDelegate(self, queue: DispatchQueue.global(qos: DispatchQoS.QoSClass.default))
-        captureSession.addOutput(captureOutput)
-        
-            // Camera preview layer
-        let cameraPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        cameraPreviewLayer.videoGravity = .resizeAspectFill
-        cameraPreviewLayer.connection?.videoOrientation = .portrait
-        cameraPreviewLayer.frame = view.frame
-        cameraView.layer.insertSublayer(cameraPreviewLayer, at: 0)
-        captureSession.commitConfiguration()
+    private var currentCameraMode: AVCaptureDevice.Position {
+        let isFrontCamera = Store.getBool(key: .isFrontCameraActive)
+        return isFrontCamera ? .front : .back
     }
     
     private func hapticFeedback() {
@@ -260,6 +178,7 @@ class CameraViewController: UIViewController {
 }
 
 extension CameraViewController: CameraDelegate {
+
     func startRunning() {
         #if targetEnvironment(simulator)
         back(self)
@@ -273,54 +192,78 @@ extension CameraViewController: CameraDelegate {
         guard captureSession.isRunning else { return }
         captureSession.stopRunning()
     }
-    
-    func setupFlash() {
-        let torchActive = Store.getBool(key: .isTorchActive)
-        let frontCamera = Store.getBool(key: .isFrontCameraActive)
-        let enable = torchActive && !frontCamera
-        AVCaptureDevice.enableTorch(enable)
-    }
+
 }
 
 extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
-    func captureOutput(_ output: AVCaptureOutput,
-                       didOutput sampleBuffer: CMSampleBuffer,
-                       from connection: AVCaptureConnection) {
-        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
-
-        let imageRequestHandler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: .right)
-        let detectBarcodeRequest = VNDetectBarcodesRequest { [weak self] request, error in
-            guard error == nil else {
-                self?.showAlert(withTitle: "alert.barcode.error.title".localized, message: error?.localizedDescription ?? "error")
-                return
-            }
-
-            self?.processBarcodesRequest(request)
-        }
-
-        do {
-            try imageRequestHandler.perform([detectBarcodeRequest])
-        } catch {
-            print(error)
-        }
+    
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        let handler = getHandler(sampleBuffer)
+        try? handler?.perform([getBarcodeDetectorHandler()])
     }
 
+    private func getHandler(_ sampleBuffer: CMSampleBuffer) -> VNImageRequestHandler? {
+        guard let buffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return nil }
+        return VNImageRequestHandler(cvPixelBuffer: buffer, orientation: .right)
+    }
+    
+    func getBarcodeDetectorHandler() -> VNDetectBarcodesRequest {
+        return VNDetectBarcodesRequest { [weak self] request, error in
+            guard let `self` = self else { return }
+            guard error == nil else { return self.showBarcodeError(error) }
+            self.processBarcodesRequest(request)
+        }
+    }
     func processBarcodesRequest(_ request: VNRequest) {
-        guard let barcodes = request.results else { return }
-
+        guard let payload = request.results?.allowedValues.first else { return }
+        
         DispatchQueue.main.async { [weak self] in
             guard let `self` = self else { return }
-            self.cameraView.layer.sublayers?.removeSubrange(1...)
-
-            if self.captureSession.isRunning {
-                for barcode in barcodes {
-                    guard let potentialQRCode = barcode as? VNBarcodeObservation,
-                          self.allowedCodes.contains(potentialQRCode.symbology),
-                          potentialQRCode.confidence > self.scanConfidence else { return }
-
-                    self.found(payload: potentialQRCode.payloadStringValue ?? "")
-                }
-            }
+            self.stopRunning()
+            self.found(payload: payload)
         }
     }
+}
+
+// MARK: - Permissions
+extension CameraViewController {
+
+    private func checkPermissions() {
+        switch AVCaptureDevice.authorizationStatus(for: .video) {
+        case .notDetermined: requestAccess()
+        case .denied, .restricted: showPermissionsAlert()
+        default: return
+        }
+    }
+    
+    private func requestAccess() {
+        AVCaptureDevice.requestAccess(for: .video) { [weak self] granted in
+            guard !granted else { return }
+            self?.showPermissionsAlert()
+        }
+    }
+    
+}
+
+// MARK: - Alerts
+extension CameraViewController {
+    
+    private func showPermissionsAlert() {
+        let title = "alert.camera.permissions.title".localized
+        let message = "alert.camera.permissions.message".localized
+        showAlert(withTitle: title, message: message)
+    }
+
+    private func showCameraError() {
+        let title = "alert.nocamera.title".localized
+        let message = "alert.nocamera.message".localized
+        showAlert(withTitle: title, message: message)
+    }
+
+    private func showBarcodeError(_ error: Error?) {
+        let title = "alert.barcode.error.title".localized
+        let message = error?.localizedDescription ?? "error"
+        showAlert(withTitle: title, message: message)
+    }
+    
 }

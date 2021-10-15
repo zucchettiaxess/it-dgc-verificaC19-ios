@@ -39,6 +39,10 @@
 		653F928F26B007B5000BE8F5 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 653F927C26B000D9000BE8F5 /* HomeViewController.xib */; };
 		653F929026B007B5000BE8F5 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 653F927C26B000D9000BE8F5 /* HomeViewController.xib */; };
 		653F929226B00F9C000BE8F5 /* String+Char.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653F929126B00F9C000BE8F5 /* String+Char.swift */; };
+		6559D947271996F300E0E30D /* VNBarcodeObservation+Allowed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6559D946271996F300E0E30D /* VNBarcodeObservation+Allowed.swift */; };
+		6559D94B271998FC00E0E30D /* VNBarcodeObservation+Allowed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6559D946271996F300E0E30D /* VNBarcodeObservation+Allowed.swift */; };
+		6559D94E271999EA00E0E30D /* VNBarcodeObservation+Values.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6559D94D271999EA00E0E30D /* VNBarcodeObservation+Values.swift */; };
+		6559D94F27199A3300E0E30D /* VNBarcodeObservation+Values.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6559D94D271999EA00E0E30D /* VNBarcodeObservation+Values.swift */; };
 		65740958268690E500499706 /* RulesValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65740957268690E500499706 /* RulesValidator.swift */; };
 		658CB71B26AF27D200B90EC0 /* UIBarButtonItem+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658CB71A26AF27D200B90EC0 /* UIBarButtonItem+Appearance.swift */; };
 		658CB71C26AF27D200B90EC0 /* UIBarButtonItem+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658CB71A26AF27D200B90EC0 /* UIBarButtonItem+Appearance.swift */; };
@@ -63,6 +67,7 @@
 		65C3A55E26AF01EB000BBCC5 /* AppLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C3A55D26AF01EB000BBCC5 /* AppLabel.swift */; };
 		65C3A55F26AF01EB000BBCC5 /* AppLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C3A55D26AF01EB000BBCC5 /* AppLabel.swift */; };
 		65D6D7D42684FCA90022C816 /* SwiftDGC in Frameworks */ = {isa = PBXBuildFile; productRef = 65D6D7D32684FCA90022C816 /* SwiftDGC */; };
+		65DAC0A82719B6040043AEDF /* AVCaptureDevice+Torch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E3C1D82716E05D004B2E98 /* AVCaptureDevice+Torch.swift */; };
 		65E281662697217B00377913 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E281432697217B00377913 /* HomeViewModel.swift */; };
 		65E281682697217B00377913 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E281452697217B00377913 /* HomeViewController.swift */; };
 		65E281692697217B00377913 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65E281462697217B00377913 /* LaunchScreen.storyboard */; };
@@ -267,6 +272,8 @@
 		653F928926B00474000BE8F5 /* CountryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountryCell.xib; sourceTree = "<group>"; };
 		653F928D26B00727000BE8F5 /* UITableView+Nib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Nib.swift"; sourceTree = "<group>"; };
 		653F929126B00F9C000BE8F5 /* String+Char.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Char.swift"; sourceTree = "<group>"; };
+		6559D946271996F300E0E30D /* VNBarcodeObservation+Allowed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VNBarcodeObservation+Allowed.swift"; sourceTree = "<group>"; };
+		6559D94D271999EA00E0E30D /* VNBarcodeObservation+Values.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VNBarcodeObservation+Values.swift"; sourceTree = "<group>"; };
 		65740957268690E500499706 /* RulesValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesValidator.swift; sourceTree = "<group>"; };
 		658CB71A26AF27D200B90EC0 /* UIBarButtonItem+Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Appearance.swift"; sourceTree = "<group>"; };
 		658CB71D26AF359100B90EC0 /* UIImage+Rotate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Rotate.swift"; sourceTree = "<group>"; };
@@ -495,6 +502,15 @@
 			path = CountryCell;
 			sourceTree = "<group>";
 		};
+		6559D9482719971000E0E30D /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				6559D946271996F300E0E30D /* VNBarcodeObservation+Allowed.swift */,
+				6559D94D271999EA00E0E30D /* VNBarcodeObservation+Values.swift */,
+			);
+			path = Others;
+			sourceTree = "<group>";
+		};
 		658CB71926AF078900B90EC0 /* UIView */ = {
 			isa = PBXGroup;
 			children = (
@@ -630,6 +646,7 @@
 				65E3C1DB2716E430004B2E98 /* AVCaptureExtensions */,
 				65EFB63126B183AB0081682B /* ModelExtensions */,
 				65021B3E26AEC0EA004C3D14 /* UIExtensions */,
+				6559D9482719971000E0E30D /* Others */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1203,6 +1220,7 @@
 				65EFB62726B0BFB90081682B /* MedicalRulesValidator.swift in Sources */,
 				65E281C52697259D00377913 /* GatewayConnection.swift in Sources */,
 				65EFB62D26B0C2390081682B /* Validator.swift in Sources */,
+				6559D94B271998FC00E0E30D /* VNBarcodeObservation+Allowed.swift in Sources */,
 				659DE89726B2E9410026A39A /* UIButton+Inspectable.swift in Sources */,
 				658CB72626AF3C1200B90EC0 /* Status+Configuration.swift in Sources */,
 				65021B5326AEC88E004C3D14 /* UIView+Set.swift in Sources */,
@@ -1212,6 +1230,7 @@
 				65E281C72697259D00377913 /* String+Date.swift in Sources */,
 				65E281C82697259D00377913 /* String+Localization.swift in Sources */,
 				65E7001426AF7BB000715CCC /* FaqView.swift in Sources */,
+				65DAC0A82719B6040043AEDF /* AVCaptureDevice+Torch.swift in Sources */,
 				65EFB63026B1829E0081682B /* Link.swift in Sources */,
 				65021B4B26AEC883004C3D14 /* AppShadowView.swift in Sources */,
 				65E281C92697259D00377913 /* HCert+Test.swift in Sources */,
@@ -1223,6 +1242,7 @@
 				65C3A55826AEF8F3000BBCC5 /* UIView+Borders.swift in Sources */,
 				65E281CD2697259D00377913 /* Setting.swift in Sources */,
 				65C3A55526AEF642000BBCC5 /* String+UIImage.swift in Sources */,
+				6559D94F27199A3300E0E30D /* VNBarcodeObservation+Values.swift in Sources */,
 				65E281CE2697259D00377913 /* VerificationViewModel.swift in Sources */,
 				65E281CF2697259D00377913 /* Cache.swift in Sources */,
 				65E281D02697259D00377913 /* CameraViewController.swift in Sources */,
@@ -1271,6 +1291,8 @@
 				65E281662697217B00377913 /* HomeViewModel.swift in Sources */,
 				65021B3B26AEB291004C3D14 /* ButtonStyle.swift in Sources */,
 				65E2819C269721ED00377913 /* Date+String.swift in Sources */,
+				6559D947271996F300E0E30D /* VNBarcodeObservation+Allowed.swift in Sources */,
+				6559D94E271999EA00E0E30D /* VNBarcodeObservation+Values.swift in Sources */,
 				65E281A3269721ED00377913 /* Observable.swift in Sources */,
 				65E7000126AF6E1F00715CCC /* UIStackView+ArrangedSubViews.swift in Sources */,
 				653F928226B00264000BE8F5 /* UITableView+Dequeue.swift in Sources */,
@@ -1488,8 +1510,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NFBYJRA8B5;
 				INFOPLIST_FILE = DGCAVerifier/SupportingFiles/Plists/Info.plist;
@@ -1501,7 +1523,7 @@
 				MARKETING_VERSION = 1.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = it.ministerodellasalute.VerificaC19;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = VerificaC19ProdProfile;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1643,8 +1665,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NFBYJRA8B5;
 				INFOPLIST_FILE = DGCAVerifier/SupportingFiles/Plists/Info.plist;
@@ -1656,7 +1678,7 @@
 				MARKETING_VERSION = 1.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = it.ministerodellasalute.VerificaC19;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = VerificaC19ProdProfile;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1861,8 +1883,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NFBYJRA8B5;
 				INFOPLIST_FILE = DGCAVerifier/SupportingFiles/Plists/Info.plist;
@@ -1874,7 +1896,7 @@
 				MARKETING_VERSION = 1.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = it.ministerodellasalute.VerificaC19;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = VerificaC19ProdProfile;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1885,8 +1907,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NFBYJRA8B5;
 				INFOPLIST_FILE = DGCAVerifier/SupportingFiles/Plists/Info.plist;
@@ -1898,7 +1920,7 @@
 				MARKETING_VERSION = 1.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = it.ministerodellasalute.VerificaC19;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = VerificaC19ProdProfile;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
