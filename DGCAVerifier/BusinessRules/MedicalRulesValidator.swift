@@ -59,10 +59,12 @@ struct MedicalRulesValidator: Validator {
         switch current {
         case ..<validityStart:
             return .notValidYet
-        case validityStart...validityEnd:
-            return .valid
+        case validityEndExtension...:
+            return .notValid
         case validityEnd...validityEndExtension:
             return .validPartially
+        case validityStart...validityEnd:
+            return .valid
         default:
             return .notValid
         }
