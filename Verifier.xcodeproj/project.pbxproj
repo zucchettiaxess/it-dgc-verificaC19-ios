@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1410B20B271DBADD00F912BA /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1410B20A271DBADD00F912BA /* PickerViewController.swift */; };
+		1410B20D271EAE6000F912BA /* PickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1410B20C271EAE6000F912BA /* PickerViewController.xib */; };
 		65021B3926AEB21F004C3D14 /* AppButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65021B3826AEB21F004C3D14 /* AppButton.swift */; };
 		65021B3B26AEB291004C3D14 /* ButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65021B3A26AEB291004C3D14 /* ButtonStyle.swift */; };
 		65021B3D26AEB33F004C3D14 /* UIButton+Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65021B3C26AEB33F004C3D14 /* UIButton+Set.swift */; };
@@ -252,6 +254,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1410B20A271DBADD00F912BA /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
+		1410B20C271EAE6000F912BA /* PickerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickerViewController.xib; sourceTree = "<group>"; };
 		65021B3826AEB21F004C3D14 /* AppButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppButton.swift; sourceTree = "<group>"; };
 		65021B3A26AEB291004C3D14 /* ButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyle.swift; sourceTree = "<group>"; };
 		65021B3C26AEB33F004C3D14 /* UIButton+Set.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Set.swift"; sourceTree = "<group>"; };
@@ -422,6 +426,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1410B209271DBACD00F912BA /* PickerView */ = {
+			isa = PBXGroup;
+			children = (
+				1410B20A271DBADD00F912BA /* PickerViewController.swift */,
+				1410B20C271EAE6000F912BA /* PickerViewController.xib */,
+			);
+			path = PickerView;
+			sourceTree = "<group>";
+		};
 		65021B3626AEB1DC004C3D14 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
@@ -744,6 +757,7 @@
 		65E7000726AF71AC00715CCC /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				1410B209271DBACD00F912BA /* PickerView */,
 				65021B4426AEC6AE004C3D14 /* AppShadowView */,
 				65E7000626AF718E00715CCC /* ResultView */,
 				65E7001126AF7BA300715CCC /* FaqView */,
@@ -1107,6 +1121,7 @@
 				9F90C599265E591E00B2F992 /* Roboto-MediumItalic.ttf in Resources */,
 				9F90C597265E591E00B2F992 /* TitilliumWeb-Regular.ttf in Resources */,
 				9F90C595265E591E00B2F992 /* Roboto-Light.ttf in Resources */,
+				1410B20D271EAE6000F912BA /* PickerViewController.xib in Resources */,
 				9F4F3C612649D71F00F59BA2 /* Localizable.strings in Resources */,
 				65E7000F26AF75AD00715CCC /* ResultView.xib in Resources */,
 				9F90C596265E591E00B2F992 /* TitilliumWeb-Bold.ttf in Resources */,
@@ -1337,6 +1352,7 @@
 				65021B4826AEC768004C3D14 /* UIView+Shadow.swift in Sources */,
 				65021B4326AEC202004C3D14 /* UIButton+Inspectable.swift in Sources */,
 				65EFB62F26B1829E0081682B /* Link.swift in Sources */,
+				1410B20B271DBADD00F912BA /* PickerViewController.swift in Sources */,
 				65E281A0269721ED00377913 /* UIViewController+Alert.swift in Sources */,
 				65EFB63326B183CF0081682B /* Link+Values.swift in Sources */,
 				65E2819F269721ED00377913 /* Date+Utils.swift in Sources */,

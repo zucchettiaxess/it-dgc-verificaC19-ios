@@ -33,7 +33,7 @@ class SettingsViewController: UIViewController {
     weak var coordinator: SettingsCoordinator?
     private var viewModel: SettingsViewModel
     
-    private var pickerViewOptions = ["settings.mode.automatic".localized, "settings.mode.manual".localized]
+    private var pickerOptions = ["settings.mode.automatic".localized, "settings.mode.manual".localized]
     private var pickerView = UIPickerView()
     private var pickerToolBar = UIToolbar()
     
@@ -57,7 +57,6 @@ class SettingsViewController: UIViewController {
         setUpFAQView()
         setUpPrivacyView()
         setUpViewActions()
-
     }
     
     private func initializeBackButton() {
@@ -113,97 +112,22 @@ class SettingsViewController: UIViewController {
     }
     
     @objc func modeViewDidTap(_ sender: UITapGestureRecognizer) {
+        PickerViewController.present(for: self, with: .init(
+            doneButtonTitle: "Done",
+            cancelButtonTitle: "Cancel",
+            pickerOptions: self.pickerOptions,
+            selectedOption: Store.get(key: .isTotemModeActive) == "0" ? 1 : 0,
+            doneCallback: self.didTapDone,
+            cancelCallback: nil
+        ))
+    }
+    
+    private func didTapDone(vc: PickerViewController) {
+        let selectedRow: Int = vc.selectedRow()
         
-        pickerView = UIPickerView(frame: CGRect(x: 0, y: 200, width: view.frame.width, height: 300))
-        pickerView.backgroundColor = .white
-
-        pickerView.showsSelectionIndicator = true
-        pickerView.delegate = self
-        pickerView.dataSource = self
-        pickerView.translatesAutoresizingMaskIntoConstraints = false
-        
-        let automatic = Store.getBool(key: .isTotemModeActive)
-        pickerView.selectRow(automatic ? 0 : 1, inComponent: 0, animated: false)
-        self.view.addSubview(pickerView)
-        
-        pickerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        pickerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-        pickerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        pickerView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
-        
-        pickerToolBar = UIToolbar(frame: CGRect(x: 0, y: 200, width: view.frame.width, height: 100))
-        pickerToolBar.barStyle = UIBarStyle.default
-        pickerToolBar.isTranslucent = true
-        pickerToolBar.tintColor = .black
-
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.didTapDone))
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.didTapCancel))
-
-        pickerToolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
-        pickerToolBar.isUserInteractionEnabled = true
-        
-        self.view.addSubview(pickerToolBar)
-
-        pickerToolBar.translatesAutoresizingMaskIntoConstraints = false
-        pickerToolBar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        pickerToolBar.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-        pickerToolBar.bottomAnchor.constraint(equalTo: pickerView.topAnchor).isActive = true
-        pickerToolBar.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+        vc.selectRow(selectedRow, animated: false)
+        self.modeValueLabel.text = self.pickerOptions[selectedRow]
+        Store.set(selectedRow == 0, for: .isTotemModeActive)
     }
     
-    @objc func didTapDone() {
-        let row = self.pickerView.selectedRow(inComponent: 0)
-        self.pickerView.selectRow(row, inComponent: 0, animated: false)
-        self.modeValueLabel.text = self.pickerViewOptions[row]
-        Store.set(row == 0, for: .isTotemModeActive)
-        removePicker()
-    }
-
-    @objc func didTapCancel() {
-        removePicker()
-    }
-    
-    private func removePicker(){
-        pickerToolBar.removeFromSuperview()
-        pickerView.removeFromSuperview()
-    }
-    
-}
-
-extension SettingsViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if component == 0 {
-            return pickerViewOptions.count
-        } else {
-            return 0
-        }
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerViewOptions[row]
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if component == 0 {
-            switch row {
-            case 0: //Automatic
-                self.modeValueLabel.text = self.pickerViewOptions[row]
-                Store.set(true, for: .isTotemModeActive)
-                return
-            case 1: //Manual
-                self.modeValueLabel.text = self.pickerViewOptions[row]
-                Store.set(true, for: .isTotemModeActive)
-                return
-            default:
-                return
-            }
-        } else {
-            return
-        }
-    }
 }
