@@ -55,4 +55,17 @@ struct MedicalRulesValidator: Validator {
         }
     }
     
+    static func validate(_ current: Date, from validityStart: Date, to validityEnd: Date, extendedTo validityEndExtension: Date) -> Status {
+        switch current {
+        case ..<validityStart:
+            return .notValidYet
+        case validityStart...validityEnd:
+            return .valid
+        case validityEnd...validityEndExtension:
+            return .validPartially
+        default:
+            return .notValid
+        }
+    }
+    
 }
