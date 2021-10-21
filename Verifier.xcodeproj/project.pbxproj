@@ -196,6 +196,16 @@
 		6B155169265BE463001D19E2 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B155165265BE463001D19E2 /* Setting.swift */; };
 		6B24E85C266275920003808F /* get-dgc-gov-it.der in Resources */ = {isa = PBXBuildFile; fileRef = 6B24E85A2660E0030003808F /* get-dgc-gov-it.der */; };
 		6BA8B9E5266FAC150060D767 /* GatewayConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4F3C442649D60B00F59BA2 /* GatewayConnection.swift */; };
+		9020C5DF27215EDE00F45CA7 /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1410B20A271DBADD00F912BA /* PickerViewController.swift */; };
+		9020C5E027215F2B00F45CA7 /* PickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1410B20C271EAE6000F912BA /* PickerViewController.xib */; };
+		9020C5E12721600D00F45CA7 /* String+Char.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653F929126B00F9C000BE8F5 /* String+Char.swift */; };
+		9020C5E22721600D00F45CA7 /* Array+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653F928326B002D0000BE8F5 /* Array+Utils.swift */; };
+		9020C5E32721600D00F45CA7 /* UILabel+Inspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65021B3F26AEC142004C3D14 /* UILabel+Inspectable.swift */; };
+		9020C5E42721600D00F45CA7 /* UIImageView+Inspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65021B5826AECF59004C3D14 /* UIImageView+Inspectable.swift */; };
+		9020C5E52721600D00F45CA7 /* UITableView+Dequeue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653F928126B00264000BE8F5 /* UITableView+Dequeue.swift */; };
+		9020C5E62721600D00F45CA7 /* UITableView+Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653F928D26B00727000BE8F5 /* UITableView+Nib.swift */; };
+		9020C5E72721600D00F45CA7 /* CountryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653F928826B00474000BE8F5 /* CountryCell.swift */; };
+		9020C5E82721601E00F45CA7 /* CountryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 653F928926B00474000BE8F5 /* CountryCell.xib */; };
 		9037A0A6270EFD2D0067DCF8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9037A0A5270EFD2D0067DCF8 /* SettingsViewController.swift */; };
 		9037A0A7270EFD2D0067DCF8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9037A0A5270EFD2D0067DCF8 /* SettingsViewController.swift */; };
 		9037A0A9270EFD490067DCF8 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9037A0A8270EFD490067DCF8 /* SettingsViewModel.swift */; };
@@ -1071,6 +1081,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9020C5E82721601E00F45CA7 /* CountryCell.xib in Resources */,
+				9020C5E027215F2B00F45CA7 /* PickerViewController.xib in Resources */,
 				65E281DF2697259D00377913 /* TitilliumWeb-SemiBoldItalic.ttf in Resources */,
 				65E281E02697259D00377913 /* Roboto-ThinItalic.ttf in Resources */,
 				65E281E12697259D00377913 /* Roboto-LightItalic.ttf in Resources */,
@@ -1209,6 +1221,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9020C5E12721600D00F45CA7 /* String+Char.swift in Sources */,
+				9020C5E22721600D00F45CA7 /* Array+Utils.swift in Sources */,
+				9020C5E32721600D00F45CA7 /* UILabel+Inspectable.swift in Sources */,
+				9020C5E42721600D00F45CA7 /* UIImageView+Inspectable.swift in Sources */,
+				9020C5E52721600D00F45CA7 /* UITableView+Dequeue.swift in Sources */,
+				9020C5E62721600D00F45CA7 /* UITableView+Nib.swift in Sources */,
+				9020C5E72721600D00F45CA7 /* CountryCell.swift in Sources */,
+				9020C5DF27215EDE00F45CA7 /* PickerViewController.swift in Sources */,
 				65021B4C26AEC889004C3D14 /* AppButton.swift in Sources */,
 				65E281B92697259D00377913 /* TestValidityCheck.swift in Sources */,
 				65E281BB2697259D00377913 /* HCert+PersonalData.swift in Sources */,

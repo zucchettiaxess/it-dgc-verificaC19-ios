@@ -219,7 +219,6 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         
         DispatchQueue.main.async { [weak self] in
             guard let `self` = self else { return }
-            self.stopRunning()
             self.found(payload: payload)
         }
     }
