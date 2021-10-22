@@ -206,10 +206,20 @@
 		9020C5E62721600D00F45CA7 /* UITableView+Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653F928D26B00727000BE8F5 /* UITableView+Nib.swift */; };
 		9020C5E72721600D00F45CA7 /* CountryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653F928826B00474000BE8F5 /* CountryCell.swift */; };
 		9020C5E82721601E00F45CA7 /* CountryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 653F928926B00474000BE8F5 /* CountryCell.xib */; };
+		9020C5EC2721A20200F45CA7 /* TableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9020C5EB2721A20200F45CA7 /* TableViewHeaderView.swift */; };
+		9020C5ED2721A20200F45CA7 /* TableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9020C5EB2721A20200F45CA7 /* TableViewHeaderView.swift */; };
+		9020C5EF2721A20D00F45CA7 /* TableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9020C5EE2721A20D00F45CA7 /* TableViewHeaderView.xib */; };
+		9020C5F02721A20D00F45CA7 /* TableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9020C5EE2721A20D00F45CA7 /* TableViewHeaderView.xib */; };
 		9037A0A6270EFD2D0067DCF8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9037A0A5270EFD2D0067DCF8 /* SettingsViewController.swift */; };
 		9037A0A7270EFD2D0067DCF8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9037A0A5270EFD2D0067DCF8 /* SettingsViewController.swift */; };
 		9037A0A9270EFD490067DCF8 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9037A0A8270EFD490067DCF8 /* SettingsViewModel.swift */; };
 		9037A0AA270EFD490067DCF8 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9037A0A8270EFD490067DCF8 /* SettingsViewModel.swift */; };
+		90CDC6B7271EB48000707836 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CDC6B6271EB48000707836 /* SettingsCell.swift */; };
+		90CDC6B8271EB48000707836 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CDC6B6271EB48000707836 /* SettingsCell.swift */; };
+		90CDC6BA271EB48C00707836 /* SettingsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90CDC6B9271EB48C00707836 /* SettingsCell.xib */; };
+		90CDC6BB271EB48C00707836 /* SettingsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90CDC6B9271EB48C00707836 /* SettingsCell.xib */; };
+		90CDC6D9271F049A00707836 /* UIView+NibFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CDC6D8271F049A00707836 /* UIView+NibFile.swift */; };
+		90CDC6DA271F049A00707836 /* UIView+NibFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CDC6D8271F049A00707836 /* UIView+NibFile.swift */; };
 		90E9560A270F397600DAA963 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9037A0AB270EFD7D0067DCF8 /* SettingsViewController.xib */; };
 		90E9560B270F397700DAA963 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9037A0AB270EFD7D0067DCF8 /* SettingsViewController.xib */; };
 		9F4F3C572649D60C00F59BA2 /* LocalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4F3C3E2649D60B00F59BA2 /* LocalData.swift */; };
@@ -352,9 +362,14 @@
 		6BA8B9E1266F7E4C0060D767 /* RecoveryValidityCheckTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryValidityCheckTests.swift; sourceTree = "<group>"; };
 		6BA8B9E3266F840B0060D767 /* TestValidityCheckTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestValidityCheckTests.swift; sourceTree = "<group>"; };
 		6BA8B9E72671227C0060D767 /* LocalDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataTests.swift; sourceTree = "<group>"; };
+		9020C5EB2721A20200F45CA7 /* TableViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHeaderView.swift; sourceTree = "<group>"; };
+		9020C5EE2721A20D00F45CA7 /* TableViewHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewHeaderView.xib; sourceTree = "<group>"; };
 		9037A0A5270EFD2D0067DCF8 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		9037A0A8270EFD490067DCF8 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		9037A0AB270EFD7D0067DCF8 /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
+		90CDC6B6271EB48000707836 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		90CDC6B9271EB48C00707836 /* SettingsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsCell.xib; sourceTree = "<group>"; };
+		90CDC6D8271F049A00707836 /* UIView+NibFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+NibFile.swift"; sourceTree = "<group>"; };
 		9F4F3C3E2649D60B00F59BA2 /* LocalData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalData.swift; sourceTree = "<group>"; };
 		9F4F3C412649D60B00F59BA2 /* MainCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		9F4F3C422649D60B00F59BA2 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -502,6 +517,7 @@
 		653F928526B0043F000BE8F5 /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
+				90CDC6AE271EB0E400707836 /* Settings Cell */,
 				653F929326B01BFD000BE8F5 /* CountryCell */,
 			);
 			path = CustomCells;
@@ -542,6 +558,7 @@
 				65021B4726AEC768004C3D14 /* UIView+Shadow.swift */,
 				65C3A55626AEF8F3000BBCC5 /* UIView+Borders.swift */,
 				65E7000026AF6E1F00715CCC /* UIStackView+ArrangedSubViews.swift */,
+				90CDC6D8271F049A00707836 /* UIView+NibFile.swift */,
 			);
 			path = UIView;
 			sourceTree = "<group>";
@@ -767,6 +784,7 @@
 		65E7000726AF71AC00715CCC /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				9020C5EA2721A1E800F45CA7 /* TableViewHeaderView */,
 				1410B209271DBACD00F912BA /* PickerView */,
 				65021B4426AEC6AE004C3D14 /* AppShadowView */,
 				65E7000626AF718E00715CCC /* ResultView */,
@@ -824,6 +842,15 @@
 			path = ModelExtensions;
 			sourceTree = "<group>";
 		};
+		9020C5EA2721A1E800F45CA7 /* TableViewHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				9020C5EB2721A20200F45CA7 /* TableViewHeaderView.swift */,
+				9020C5EE2721A20D00F45CA7 /* TableViewHeaderView.xib */,
+			);
+			path = TableViewHeaderView;
+			sourceTree = "<group>";
+		};
 		9037A0A4270EFC910067DCF8 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -832,6 +859,15 @@
 				9037A0AB270EFD7D0067DCF8 /* SettingsViewController.xib */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		90CDC6AE271EB0E400707836 /* Settings Cell */ = {
+			isa = PBXGroup;
+			children = (
+				90CDC6B6271EB48000707836 /* SettingsCell.swift */,
+				90CDC6B9271EB48C00707836 /* SettingsCell.xib */,
+			);
+			path = "Settings Cell";
 			sourceTree = "<group>";
 		};
 		9F2AF7EE2653D27F00619B9C /* DGCAVerifier */ = {
@@ -1092,9 +1128,11 @@
 				65E281E52697259D00377913 /* Roboto-Italic.ttf in Resources */,
 				65E281E62697259D00377913 /* Roboto-MediumItalic.ttf in Resources */,
 				65E281E72697259D00377913 /* TitilliumWeb-Regular.ttf in Resources */,
+				9020C5F02721A20D00F45CA7 /* TableViewHeaderView.xib in Resources */,
 				65E281E82697259D00377913 /* Roboto-Light.ttf in Resources */,
 				65E281E92697259D00377913 /* Localizable.strings in Resources */,
 				65E7001026AF75AD00715CCC /* ResultView.xib in Resources */,
+				90CDC6BB271EB48C00707836 /* SettingsCell.xib in Resources */,
 				65E281EB2697259D00377913 /* TitilliumWeb-Bold.ttf in Resources */,
 				90E9560B270F397700DAA963 /* SettingsViewController.xib in Resources */,
 				65E281EC2697259D00377913 /* Roboto-Bold.ttf in Resources */,
@@ -1133,11 +1171,13 @@
 				9F90C599265E591E00B2F992 /* Roboto-MediumItalic.ttf in Resources */,
 				9F90C597265E591E00B2F992 /* TitilliumWeb-Regular.ttf in Resources */,
 				9F90C595265E591E00B2F992 /* Roboto-Light.ttf in Resources */,
+				9020C5EF2721A20D00F45CA7 /* TableViewHeaderView.xib in Resources */,
 				1410B20D271EAE6000F912BA /* PickerViewController.xib in Resources */,
 				9F4F3C612649D71F00F59BA2 /* Localizable.strings in Resources */,
 				65E7000F26AF75AD00715CCC /* ResultView.xib in Resources */,
 				9F90C596265E591E00B2F992 /* TitilliumWeb-Bold.ttf in Resources */,
 				653F929026B007B5000BE8F5 /* HomeViewController.xib in Resources */,
+				90CDC6BA271EB48C00707836 /* SettingsCell.xib in Resources */,
 				9F90C5A6265E591E00B2F992 /* Roboto-Bold.ttf in Resources */,
 				9F90C598265E591E00B2F992 /* Roboto-Regular.ttf in Resources */,
 				65E7001626AF7BBA00715CCC /* FaqView.xib in Resources */,
@@ -1232,6 +1272,7 @@
 				65021B4C26AEC889004C3D14 /* AppButton.swift in Sources */,
 				65E281B92697259D00377913 /* TestValidityCheck.swift in Sources */,
 				65E281BB2697259D00377913 /* HCert+PersonalData.swift in Sources */,
+				9020C5ED2721A20200F45CA7 /* TableViewHeaderView.swift in Sources */,
 				65E3C1DE2716E444004B2E98 /* AVCaptureDevice+Camera.swift in Sources */,
 				65021B6926AEEC48004C3D14 /* UIImage+Colors.swift in Sources */,
 				65021B5426AEC88E004C3D14 /* UIView+Shadow.swift in Sources */,
@@ -1251,7 +1292,9 @@
 				65EFB5EF26B04D850081682B /* GatewayConnection+Certificates.swift in Sources */,
 				65EFB5F226B04D900081682B /* GatewayConnection+Settings.swift in Sources */,
 				65E281C32697259D00377913 /* LocalData.swift in Sources */,
+				90CDC6DA271F049A00707836 /* UIView+NibFile.swift in Sources */,
 				65E281C42697259D00377913 /* AppDelegate.swift in Sources */,
+				90CDC6B8271EB48000707836 /* SettingsCell.swift in Sources */,
 				65EFB62726B0BFB90081682B /* MedicalRulesValidator.swift in Sources */,
 				65E281C52697259D00377913 /* GatewayConnection.swift in Sources */,
 				65EFB62D26B0C2390081682B /* Validator.swift in Sources */,
@@ -1308,12 +1351,14 @@
 				658CB72226AF3B5B00B90EC0 /* Status.swift in Sources */,
 				65E281A6269721ED00377913 /* UIView+Set.swift in Sources */,
 				65E281A9269721ED00377913 /* HCert+PersonalData.swift in Sources */,
+				90CDC6D9271F049A00707836 /* UIView+NibFile.swift in Sources */,
 				65021B6526AEE30F004C3D14 /* UIColor+RGB.swift in Sources */,
 				65021B5B26AED0A1004C3D14 /* AppLabelUrl.swift in Sources */,
 				65E3C1DD2716E444004B2E98 /* AVCaptureDevice+Camera.swift in Sources */,
 				65EFB62626B0BFB90081682B /* MedicalRulesValidator.swift in Sources */,
 				65C3A55E26AF01EB000BBCC5 /* AppLabel.swift in Sources */,
 				65E281A8269721ED00377913 /* HCert+Recovery.swift in Sources */,
+				9020C5EC2721A20200F45CA7 /* TableViewHeaderView.swift in Sources */,
 				658CB71E26AF359100B90EC0 /* UIImage+Rotate.swift in Sources */,
 				653F928E26B00727000BE8F5 /* UITableView+Nib.swift in Sources */,
 				65E281A1269721ED00377913 /* LocalData+Setting.swift in Sources */,
@@ -1358,6 +1403,7 @@
 				65E7001326AF7BB000715CCC /* FaqView.swift in Sources */,
 				9F4F3C5A2649D60C00F59BA2 /* MainCoordinator.swift in Sources */,
 				653F928A26B00474000BE8F5 /* CountryCell.swift in Sources */,
+				90CDC6B7271EB48000707836 /* SettingsCell.swift in Sources */,
 				65EFB62C26B0C2390081682B /* Validator.swift in Sources */,
 				65E2819D269721ED00377913 /* DateFormatter+Default.swift in Sources */,
 				65EFB5F126B04D900081682B /* GatewayConnection+Settings.swift in Sources */,
