@@ -34,11 +34,11 @@ class PickerViewController: UIViewController {
     @IBOutlet weak var itemDone:            UIBarButtonItem!
     @IBOutlet weak var itemCancel:          UIBarButtonItem!
     
-    private lazy var content: PickerContent = .init(doneButtonTitle: "Done", cancelButtonTitle: "Cancel", pickerOptions: [])
+    private lazy var content: PickerContent = .init(doneButtonTitle: "label.done".localized, cancelButtonTitle: "label.cancel".localized, pickerOptions: [])
     
     public struct PickerContent {
         var doneButtonTitle:    String = "label.done".localized
-        var cancelButtonTitle:  String
+        var cancelButtonTitle:  String = "label.cancel".localized
         var pickerOptions:      [String]
         var selectedOption:     Int = 0
         var doneCallback:       ((PickerViewController) -> ())? = nil
