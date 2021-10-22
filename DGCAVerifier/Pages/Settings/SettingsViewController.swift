@@ -19,16 +19,7 @@ protocol SettingsDelegate {
 class SettingsViewController: UIViewController {
     
     @IBOutlet weak var backButton: AppButton!
-    @IBOutlet weak var titleLabel: AppLabel!
-    @IBOutlet weak var preferencesLabel: AppLabel!
-    @IBOutlet weak var informationsLabel: AppLabel!
-    @IBOutlet weak var modeView: AppShadowView!
-    @IBOutlet weak var modeLabel: AppLabel!
-    @IBOutlet weak var modeValueLabel: AppLabel!
-    @IBOutlet weak var faqView: AppShadowView!
-    @IBOutlet weak var faqLabel: AppLabel!
-    @IBOutlet weak var privacyView: AppShadowView!
-    @IBOutlet weak var privacyLabel: AppLabel!
+    @IBOutlet weak var tableView: UITableView!
     
     weak var coordinator: SettingsCoordinator?
     private var viewModel: SettingsViewModel
@@ -37,6 +28,8 @@ class SettingsViewController: UIViewController {
     private var pickerView = UIPickerView()
     private var pickerToolBar = UIToolbar()
     
+    private let informationsSettings = ["settings.faq".localized, "settings.privacy".localized]
+
     init(coordinator: SettingsCoordinator, viewModel: SettingsViewModel) {
         self.coordinator = coordinator
         self.viewModel = viewModel
@@ -50,13 +43,22 @@ class SettingsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         initializeBackButton()
-        setUpTitle()
-        setUpModeView()
-        setUpFAQView()
-        setUpPrivacyView()
-        setUpViewActions()
+        initializeTaleView()
+
+    }
+    
+    private func initializeTaleView(){
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.tableHeaderView?.backgroundColor = .white
+        tableView.tableHeaderView?.tintColor = .white
+        tableView.separatorColor = .clear
+        tableView.backgroundView?.backgroundColor = .white
+        
+        tableView.registerNibCell(ofType: SettingsCell.self, with: "settingsCell")
+        tableView.register(UINib(nibName: "TableViewHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "TableViewHeaderViewTitle")
+        tableView.register(UINib(nibName: "TableViewHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "TableViewHeaderView")
     }
     
     private func initializeBackButton() {
@@ -64,54 +66,11 @@ class SettingsViewController: UIViewController {
         backButton.setLeftImage(named: "icon_back")
     }
     
-    private func setUpTitle(){
-        titleLabel.text = "settings.title".localized
-        titleLabel.font = .boldSystemFont(ofSize: 15)
-        preferencesLabel.text = "settings.preferences".localized
-        informationsLabel.text = "settings.informations".localized
-    }
-    
-    private func setUpModeView(){
-        modeLabel.text = "settings.mode".localized
-        modeValueLabel.text = (Store.getBool(key: .isTotemModeActive)) ? "settings.mode.automatic".localized : "settings.mode.manual".localized
-        modeLabel.font = .boldSystemFont(ofSize: 15)
-    }
-    
-    private func setUpFAQView(){
-        faqLabel.text = "settings.faq".localized
-        faqLabel.font = .boldSystemFont(ofSize: 15)
-    }
-    
-    private func setUpPrivacyView(){
-        privacyLabel.text = "settings.privacy".localized
-        privacyLabel.font = .boldSystemFont(ofSize: 15)
-    }
-    
-    private func setUpViewActions(){
-        let faqTapGesture = UITapGestureRecognizer(target: self, action: #selector(faqDidTap))
-        faqView.addGestureRecognizer(faqTapGesture)
-        let privacyTapGesture = UITapGestureRecognizer(target: self, action: #selector(privacyPolicyDidTap))
-        privacyView.addGestureRecognizer(privacyTapGesture)
-        let pickerModeTapGesture = UITapGestureRecognizer(target: self, action: #selector(modeViewDidTap))
-        modeView.addGestureRecognizer(pickerModeTapGesture)
-
-    }
-    
     @IBAction func goBack(_ sender: Any) {
         coordinator?.dismissSettings(completion: nil)
     }
     
-    @objc func faqDidTap(_ sender: UITapGestureRecognizer) {
-        guard let url = URL(string: Link.faq.url) else { return }
-        UIApplication.shared.open(url)
-    }
-    
-    @objc func privacyPolicyDidTap(_ sender: UITapGestureRecognizer) {
-        guard let url = URL(string: Link.privacyPolicy.url) else { return }
-        UIApplication.shared.open(url)
-    }
-    
-    @objc func modeViewDidTap(_ sender: UITapGestureRecognizer) {
+    func modeViewDidTap() {
         PickerViewController.present(for: self, with: .init(
             doneButtonTitle: "Done",
             cancelButtonTitle: "Cancel",
@@ -122,12 +81,118 @@ class SettingsViewController: UIViewController {
         ))
     }
     
+    func faqDidTap() {
+        guard let url = URL(string: Link.faq.url) else { return }
+        UIApplication.shared.open(url)
+    }
+    
+    func privacyPolicyDidTap() {
+        guard let url = URL(string: Link.privacyPolicy.url) else { return }
+        UIApplication.shared.open(url)
+    }
+    
     private func didTapDone(vc: PickerViewController) {
         let selectedRow: Int = vc.selectedRow()
         
         vc.selectRow(selectedRow, animated: false)
-        self.modeValueLabel.text = self.pickerOptions[selectedRow]
         Store.set(selectedRow == 0, for: .isTotemModeActive)
+        tableView.reloadData()
     }
     
+}
+
+extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section{
+        case 0:
+            return 0
+        case 1:
+            return 1
+        case 2:
+            return 2
+        default:
+            return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCell", for: indexPath) as? SettingsCell else {return UITableViewCell()}
+        
+        switch indexPath.section{
+        case 1:
+            let value = Store.getBool(key: .isTotemModeActive)
+            let valueString = value ? "settings.mode.automatic".localized : "settings.mode.manual".localized
+            cell.fillCell(title: "settings.mode".localized, icon: "pencil", value: valueString)
+        case 2:
+            cell.fillCell(title: informationsSettings[indexPath.row], icon: "icon_arrow-right", value: nil)
+        default:
+            break
+        }
+        
+        return cell
+    }
+        
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.section{
+        case 0:
+            break
+        case 1:
+            switch indexPath.row{
+            case 0:
+                modeViewDidTap()
+            default:
+                break
+            }
+        case 2:
+            switch indexPath.row{
+            case 0:
+                faqDidTap()
+            case 1:
+                privacyPolicyDidTap()
+            default:
+                break
+            }
+        default:
+            break
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        guard let tableViewHeaderTitle = tableView.dequeueReusableHeaderFooterView(withIdentifier: "TableViewHeaderViewTitle") as? TableViewHeaderView else { return nil}
+        
+        guard let tableViewHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: "TableViewHeaderView") as? TableViewHeaderView else { return nil}
+        
+        switch section{
+        case 0 :
+            tableViewHeaderTitle.titleLabel.text = "settings.title".localized
+            tableViewHeaderTitle.titleLabel.font = .boldSystemFont(ofSize: 24)
+            return tableViewHeaderTitle
+
+        case 1 :
+            tableViewHeader.titleLabel.text = "settings.preferences".localized
+            tableViewHeader.titleLabel.font = .boldSystemFont(ofSize: 14)
+            tableViewHeader.separatorView?.removeFromSuperview()
+            return tableViewHeader
+
+        case 2 :
+            tableViewHeader.titleLabel.text = "settings.informations".localized
+            tableViewHeader.titleLabel.font = .boldSystemFont(ofSize: 14)
+            tableViewHeader.separatorView?.removeFromSuperview()
+            return tableViewHeader
+
+        default:
+            return nil
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int){
+        view.tintColor = UIColor.white
+    }
 }
