@@ -49,6 +49,7 @@
                             <constraint firstAttribute="trailing" secondItem="Ufq-Z7-SIk" secondAttribute="trailing" constant="16" id="Oaz-pH-ReK"/>
                             <constraint firstItem="Ufq-Z7-SIk" firstAttribute="top" secondItem="M9H-2D-Zg6" secondAttribute="top" constant="24" id="cn6-yv-Kpx"/>
                             <constraint firstAttribute="bottom" secondItem="1Nw-mv-25L" secondAttribute="bottom" constant="8" id="eoi-bA-4RQ"/>
+                            <constraint firstItem="aL7-tU-Snc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="1Nw-mv-25L" secondAttribute="trailing" constant="8" id="gNE-5c-ws8"/>
                             <constraint firstItem="Ufq-Z7-SIk" firstAttribute="leading" secondItem="aL7-tU-Snc" secondAttribute="trailing" constant="16" id="wl2-mm-p8M"/>
                         </constraints>
                     </view>
