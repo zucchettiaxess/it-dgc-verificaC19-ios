@@ -28,7 +28,8 @@ import UIKit
 
 class PickerViewController: UIViewController {
     
-    @IBOutlet weak var pickerView:          UIView!
+    @IBOutlet weak var pickerView:          UIStackView!
+    @IBOutlet weak var backgroundView:      UIView!
     @IBOutlet weak var pickerViewComponent: UIPickerView!
     @IBOutlet weak var itemDone:            UIBarButtonItem!
     @IBOutlet weak var itemCancel:          UIBarButtonItem!
@@ -36,7 +37,7 @@ class PickerViewController: UIViewController {
     private lazy var content: PickerContent = .init(doneButtonTitle: "Done", cancelButtonTitle: "Cancel", pickerOptions: [])
     
     public struct PickerContent {
-        var doneButtonTitle:    String
+        var doneButtonTitle:    String = "label.done".localized
         var cancelButtonTitle:  String
         var pickerOptions:      [String]
         var selectedOption:     Int = 0
@@ -59,9 +60,14 @@ class PickerViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewDidLoad() {
+        self.fillView(with: self.content)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapCancel))
+        backgroundView.addGestureRecognizer(tap)
+    }
+    
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.fillView(with: self.content)
         animatePresentingPicker()
     }
     
@@ -79,6 +85,9 @@ class PickerViewController: UIViewController {
         
         self.itemDone.action                                = #selector(self.didTapDone)
         self.itemCancel.action                              = #selector(self.didTapCancel)
+        
+        self.backgroundView.backgroundColor                 = backgroundColor
+        self.view.backgroundColor                           = .clear
         
         self.selectRow(self.content.selectedOption, animated: false)
     }
@@ -122,34 +131,58 @@ extension PickerViewController: UIPickerViewDelegate, UIPickerViewDataSource {
 
 extension PickerViewController {
     private func animatePresentingPicker() {
-        animate(willAppear: false)
-            
+        pickerView.transform = CGAffineTransform(translationX: 0, y: UIScreen.main.bounds.height)
+        
         UIView.animate (
-            withDuration: 0.4,
+            withDuration: 0.5,
             delay: 0,
             usingSpringWithDamping: 0.9,
             initialSpringVelocity: 0.2,
-            options: .curveEaseIn,
-            animations: { [weak self] in self?.animate(willAppear: true) })
-        }
+            options: .curveEaseOut,
+            animations: { [weak self] in self?.pickerView.transform = .identity }
+        )
+        
+        UIView.animate(withDuration: 0.3, animations: { [weak self] in self?.backgroundView.alpha = 1.0 })
+    }
         
     private func dismissPicker(completionHandler: (()->())? = nil) {
-        UIView.animate (
-            withDuration: 0.4,
-            delay: 0,
-            usingSpringWithDamping: 0.9,
-            initialSpringVelocity: 0.2,
-            options: .curveEaseIn,
-            animations: { [weak self] in self?.animate(willAppear: false) }
-        ) { [weak self] _ in self?.dismiss(animated: false, completion: completionHandler) }
+        animateDismission()
+        dismissAnimationCompletion(completionHandler)
     }
     
-    private func animate(willAppear: Bool) {
-        self.pickerView.alpha = willAppear ? 1 : 0
-        self.pickerView.backgroundColor = willAppear ? .white : .clear
-        self.pickerView.transform = willAppear ? .identity : .init(scaleX: 0.85, y: 0.85)
-        
-        let alpha: CGFloat = willAppear ? 0.8 : 0
-        view.backgroundColor = Palette.black.withAlphaComponent(alpha)
+    private func animateDismission() {
+        UIView.animate (
+            withDuration: 0.5,
+            delay: 0,
+            usingSpringWithDamping: 1,
+            initialSpringVelocity: 0.2,
+            options: .curveEaseOut,
+            animations: { [weak self] in self?.dismissAnimation() }
+        )
+    }
+    
+    private func dismissAnimation() {
+        self.pickerView.frame = CGRect (
+            x: 0,
+            y: self.view.frame.height,
+            width: self.view.frame.width,
+            height: self.pickerView.frame.height
+        )
+    }
+    
+    private func dismissAnimationCompletion(_ completionHandler: (()->())? = nil) {
+        UIView.animate (
+            withDuration: 0.2,
+            animations: { [weak self] in self?.backgroundView.alpha = 0.0 },
+            completion: { [weak self] _ in self?.dismiss(completionHandler) }
+        )
+    }
+
+    private func dismiss(_ completion: (()->())? = nil) {
+        self.dismiss(animated: false, completion: completion)
+    }
+
+    private var backgroundColor: UIColor {
+        Palette.black.withAlphaComponent(0.7)
     }
 }
