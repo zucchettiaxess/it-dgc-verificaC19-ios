@@ -17,52 +17,58 @@
                 <rect key="frame" x="0.0" y="0.0" width="414" height="121"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M9H-2D-Zg6" customClass="AppShadowView" customModule="VerificaC19" customModuleProvider="target">
-                        <rect key="frame" x="16" y="16" width="382" height="89"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="cDZ-as-kad" userLabel="V Stack View">
+                        <rect key="frame" x="16" y="16" width="382" height="52"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Nw-mv-25L" customClass="AppLabel" customModule="VerificaC19" customModuleProvider="target">
-                                <rect key="frame" x="16" y="16" width="41.5" height="57"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ufq-Z7-SIk">
-                                <rect key="frame" x="325" y="24" width="41" height="41"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1wc-Vd-9f6" customClass="AppShadowView" customModule="VerificaC19" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="382" height="52"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="MUG-AC-AtU" userLabel="O Stack View">
+                                        <rect key="frame" x="16" y="16" width="350" height="20"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Nw-mv-25L" customClass="AppLabel" customModule="VerificaC19" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="80.5" height="20"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aL7-tU-Snc" customClass="AppLabel" customModule="VerificaC19" customModuleProvider="target">
+                                                <rect key="frame" x="104.5" y="0.0" width="201.5" height="20"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ufq-Z7-SIk">
+                                                <rect key="frame" x="330" y="0.0" width="20" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="Ufq-Z7-SIk" secondAttribute="height" multiplier="1:1" id="KAI-Eu-glW"/>
+                                                    <constraint firstAttribute="height" constant="20" id="XB8-fT-cv5"/>
+                                                    <constraint firstAttribute="width" constant="20" id="y0u-wC-olI"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="Ufq-Z7-SIk" secondAttribute="height" multiplier="1:1" id="KAI-Eu-glW"/>
+                                    <constraint firstAttribute="trailing" secondItem="MUG-AC-AtU" secondAttribute="trailing" constant="16" id="6iv-yK-Nm0"/>
+                                    <constraint firstItem="MUG-AC-AtU" firstAttribute="top" secondItem="1wc-Vd-9f6" secondAttribute="top" constant="16" id="PsG-ek-2fv"/>
+                                    <constraint firstAttribute="bottom" secondItem="MUG-AC-AtU" secondAttribute="bottom" constant="16" id="eNc-F2-rJe"/>
+                                    <constraint firstItem="MUG-AC-AtU" firstAttribute="leading" secondItem="1wc-Vd-9f6" secondAttribute="leading" constant="16" id="mg9-pm-xrE"/>
                                 </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aL7-tU-Snc" customClass="AppLabel" customModule="VerificaC19" customModuleProvider="target">
-                                <rect key="frame" x="267.5" y="16" width="41.5" height="57"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="aL7-tU-Snc" firstAttribute="top" secondItem="M9H-2D-Zg6" secondAttribute="top" constant="16" id="348-2I-FKM"/>
-                            <constraint firstItem="1Nw-mv-25L" firstAttribute="leading" secondItem="M9H-2D-Zg6" secondAttribute="leading" constant="16" id="5nH-5o-17H"/>
-                            <constraint firstAttribute="bottom" secondItem="Ufq-Z7-SIk" secondAttribute="bottom" constant="24" id="6xr-7S-Rz9"/>
-                            <constraint firstAttribute="bottom" secondItem="aL7-tU-Snc" secondAttribute="bottom" constant="16" id="KkX-Qb-CKv"/>
-                            <constraint firstItem="1Nw-mv-25L" firstAttribute="top" secondItem="M9H-2D-Zg6" secondAttribute="top" constant="16" id="LLT-Ow-zhK"/>
-                            <constraint firstAttribute="trailing" secondItem="Ufq-Z7-SIk" secondAttribute="trailing" constant="16" id="Oaz-pH-ReK"/>
-                            <constraint firstItem="Ufq-Z7-SIk" firstAttribute="top" secondItem="M9H-2D-Zg6" secondAttribute="top" constant="24" id="cn6-yv-Kpx"/>
-                            <constraint firstAttribute="bottom" secondItem="1Nw-mv-25L" secondAttribute="bottom" constant="16" id="eoi-bA-4RQ"/>
-                            <constraint firstItem="aL7-tU-Snc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="1Nw-mv-25L" secondAttribute="trailing" constant="8" id="gNE-5c-ws8"/>
-                            <constraint firstItem="Ufq-Z7-SIk" firstAttribute="leading" secondItem="aL7-tU-Snc" secondAttribute="trailing" constant="16" id="wl2-mm-p8M"/>
-                        </constraints>
-                    </view>
+                    </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="M9H-2D-Zg6" secondAttribute="bottom" constant="16" id="28d-9f-gDK"/>
-                    <constraint firstAttribute="trailing" secondItem="M9H-2D-Zg6" secondAttribute="trailing" constant="16" id="Cqv-2J-kjA"/>
-                    <constraint firstItem="M9H-2D-Zg6" firstAttribute="leading" secondItem="21A-Ya-6TE" secondAttribute="leading" constant="16" id="dGz-ff-jXj"/>
-                    <constraint firstItem="M9H-2D-Zg6" firstAttribute="top" secondItem="21A-Ya-6TE" secondAttribute="top" constant="16" id="qhm-z1-jTv"/>
+                    <constraint firstItem="cDZ-as-kad" firstAttribute="top" secondItem="21A-Ya-6TE" secondAttribute="top" constant="16" id="AgQ-Ce-h4Y"/>
+                    <constraint firstAttribute="trailing" secondItem="cDZ-as-kad" secondAttribute="trailing" constant="16" id="KRu-sh-7OI"/>
+                    <constraint firstAttribute="bottom" secondItem="cDZ-as-kad" secondAttribute="bottom" constant="16" id="XvO-9u-8dL"/>
+                    <constraint firstItem="cDZ-as-kad" firstAttribute="leading" secondItem="21A-Ya-6TE" secondAttribute="leading" constant="16" id="ccD-GI-wkW"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="containerView" destination="M9H-2D-Zg6" id="WDu-Z3-n5O"/>
+                <outlet property="containerView" destination="1wc-Vd-9f6" id="cnS-zZ-izv"/>
                 <outlet property="iconView" destination="Ufq-Z7-SIk" id="ja1-aj-o9e"/>
                 <outlet property="titleLabel" destination="1Nw-mv-25L" id="srI-76-oij"/>
                 <outlet property="valueLabel" destination="aL7-tU-Snc" id="CsZ-ux-XRi"/>

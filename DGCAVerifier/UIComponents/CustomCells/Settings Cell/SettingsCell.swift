@@ -25,13 +25,11 @@ class SettingsCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     private func setup(){
-        titleLabel.font = .boldSystemFont(ofSize: 15)
-        valueLabel.font = .systemFont(ofSize: 15)
+        titleLabel.uppercased = true
+        titleLabel.bold = true
     }
     
     func fillCell(title: String, icon: String?, value: String?){

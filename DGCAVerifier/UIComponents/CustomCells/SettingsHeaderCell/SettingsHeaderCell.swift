@@ -27,8 +27,9 @@ class SettingsHeaderCell: UITableViewCell {
     }
     
     private func setup(){
-        titleLabel.font = .boldSystemFont(ofSize: 15)
         self.selectionStyle = .none
+        titleLabel.uppercased = true
+        titleLabel.bold = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
