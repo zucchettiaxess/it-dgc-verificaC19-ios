@@ -41,6 +41,7 @@ class CRLSynchronizationManager {
     }
     
     func initialize(delegate: CRLSynchronizationDelegate?) {
+        guard isSyncEnabled() else { return }
         log("initialize")
         self.delegate = delegate
         setTimer() { self.start() }
@@ -53,6 +54,10 @@ class CRLSynchronizationManager {
             self._serverStatus = serverStatus
             self.synchronize()
         }
+    }
+    
+    func isSyncEnabled() -> Bool {
+        LocalData.getSetting(from: "DRL_SYNC_ACTIVE")?.boolValue ?? true
     }
     
     private func synchronize() {
@@ -87,7 +92,8 @@ class CRLSynchronizationManager {
     }
     
     func downloadCompleted() {
-        log("version up to date")
+        log("download completed")
+        guard sameDatabaseSize else { return cleanAndRetry() }
         completeProgress()
         _serverStatus = nil
         CRLDataStorage.shared.lastFetch = Date()
@@ -199,6 +205,10 @@ extension CRLSynchronizationManager {
         return crlVersion == progress.requestedVersion
     }
     
+    var sameDatabaseSize: Bool {
+        progress.totalNumberUCVI == CRLDataStorage.crlTotalNumber()
+    }
+    
     private func log(_ message: String) {
         print("log.crl.sync - " + message)
     }
@@ -230,7 +240,7 @@ extension CRLSynchronizationManager {
     }
     
     var isFetchOutdated: Bool {
-        CRLDataStorage.shared.lastFetch.timeIntervalSinceNow < -24 * 60 * 60
+        isSyncEnabled() && CRLDataStorage.shared.lastFetch.timeIntervalSinceNow < -24 * 60 * 60
     }
 
 }

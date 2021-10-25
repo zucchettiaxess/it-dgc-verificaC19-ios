@@ -14,7 +14,5 @@ struct CRLStatus: Codable {
     var chunkSize: Int?
     var lastChunk: Int?
     var responseSize: Double?
-    var numAddItems: Int?
-    var numRemoveItems: Int?
-    
+    var totalNumberUCVI: Int?
 }

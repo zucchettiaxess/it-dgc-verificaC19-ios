@@ -39,6 +39,8 @@
 		653F928F26B007B5000BE8F5 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 653F927C26B000D9000BE8F5 /* HomeViewController.xib */; };
 		653F929026B007B5000BE8F5 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 653F927C26B000D9000BE8F5 /* HomeViewController.xib */; };
 		653F929226B00F9C000BE8F5 /* String+Char.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653F929126B00F9C000BE8F5 /* String+Char.swift */; };
+		656150E02726A9C40076BAE4 /* String+Bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656150DF2726A9C40076BAE4 /* String+Bool.swift */; };
+		656150E12726A9C40076BAE4 /* String+Bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656150DF2726A9C40076BAE4 /* String+Bool.swift */; };
 		656433B426D787C000A41590 /* RevokedDCC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656433B326D787C000A41590 /* RevokedDCC.swift */; };
 		656433B526D787C300A41590 /* RevokedDCC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656433B326D787C000A41590 /* RevokedDCC.swift */; };
 		6570422026E9387400370B2A /* Int+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6570421F26E9387400370B2A /* Int+String.swift */; };
@@ -300,6 +302,7 @@
 		653F928926B00474000BE8F5 /* CountryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountryCell.xib; sourceTree = "<group>"; };
 		653F928D26B00727000BE8F5 /* UITableView+Nib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Nib.swift"; sourceTree = "<group>"; };
 		653F929126B00F9C000BE8F5 /* String+Char.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Char.swift"; sourceTree = "<group>"; };
+		656150DF2726A9C40076BAE4 /* String+Bool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Bool.swift"; sourceTree = "<group>"; };
 		656433B326D787C000A41590 /* RevokedDCC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RevokedDCC.swift; sourceTree = "<group>"; };
 		6570421F26E9387400370B2A /* Int+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+String.swift"; sourceTree = "<group>"; };
 		6570422126E93D2500370B2A /* Double+Bytes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Bytes.swift"; sourceTree = "<group>"; };
@@ -743,6 +746,7 @@
 			isa = PBXGroup;
 			children = (
 				65E28193269721ED00377913 /* String+Int.swift */,
+				656150DF2726A9C40076BAE4 /* String+Bool.swift */,
 				653F929126B00F9C000BE8F5 /* String+Char.swift */,
 				65E28194269721ED00377913 /* String+Localization.swift */,
 				65C3A55326AEF642000BBCC5 /* String+UIImage.swift */,
@@ -1328,6 +1332,7 @@
 				658CB72626AF3C1200B90EC0 /* Status+Configuration.swift in Sources */,
 				65021B5326AEC88E004C3D14 /* UIView+Set.swift in Sources */,
 				6B797DDB26D0528200EB2873 /* String+SHA256.swift in Sources */,
+				656150E12726A9C40076BAE4 /* String+Bool.swift in Sources */,
 				658CB71F26AF359100B90EC0 /* UIImage+Rotate.swift in Sources */,
 				65E281C62697259D00377913 /* String+Int.swift in Sources */,
 				659605DF26E761D0008AD4E2 /* AppAlertViewController.swift in Sources */,
@@ -1426,6 +1431,7 @@
 				65E2816C2697217B00377913 /* ResultView.swift in Sources */,
 				65E281682697217B00377913 /* HomeViewController.swift in Sources */,
 				65E2819B269721ED00377913 /* Date.swift in Sources */,
+				656150E02726A9C40076BAE4 /* String+Bool.swift in Sources */,
 				6B155169265BE463001D19E2 /* Setting.swift in Sources */,
 				65E2816B2697217B00377913 /* VerificationViewModel.swift in Sources */,
 				65021B5926AECF59004C3D14 /* UIImageView+Inspectable.swift in Sources */,

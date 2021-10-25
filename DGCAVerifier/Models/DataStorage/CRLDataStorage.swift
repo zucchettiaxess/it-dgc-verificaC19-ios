@@ -75,6 +75,13 @@ extension CRLDataStorage {
             .first != nil
     }
     
+    public static func crlTotalNumber() -> Int {
+        let storage = realm
+        return storage
+            .objects(RevokedDCC.self)
+            .count
+    }
+    
     public static func clear() {
         let storage = realm
         try! storage.write { storage.deleteAll() }
@@ -93,6 +100,7 @@ extension CRLDataStorage {
     private static func isFirstChunk(_ crl: CRL) -> Bool {
         crl.chunk == CRLProgress.FIRST_CHUNK
     }
+
 }
 
 // Persistence

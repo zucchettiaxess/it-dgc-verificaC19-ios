@@ -44,8 +44,8 @@ struct RulesValidator: Validator {
     }
         
     private static func isRevoked(_ hCert: HCert) -> Bool {
-        let hash = hCert.certHash
-        guard !hash.isEmpty else { return false }
+        guard CRLSynchronizationManager.shared.isSyncEnabled() else { return false }
+        guard !hCert.certHash.isEmpty else { return false }
         return CRLDataStorage.contains(hash: hash)
     }
     
