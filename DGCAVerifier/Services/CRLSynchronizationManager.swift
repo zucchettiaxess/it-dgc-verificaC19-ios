@@ -41,7 +41,7 @@ class CRLSynchronizationManager {
     }
     
     func initialize(delegate: CRLSynchronizationDelegate?) {
-        guard isSyncEnabled() else { return }
+        guard isSyncEnabled else { return }
         log("initialize")
         self.delegate = delegate
         setTimer() { self.start() }
@@ -56,7 +56,7 @@ class CRLSynchronizationManager {
         }
     }
     
-    func isSyncEnabled() -> Bool {
+    var isSyncEnabled: Bool {
         LocalData.getSetting(from: "DRL_SYNC_ACTIVE")?.boolValue ?? true
     }
     
@@ -240,7 +240,7 @@ extension CRLSynchronizationManager {
     }
     
     var isFetchOutdated: Bool {
-        isSyncEnabled() && CRLDataStorage.shared.lastFetch.timeIntervalSinceNow < -24 * 60 * 60
+        isSyncEnabled && CRLDataStorage.shared.lastFetch.timeIntervalSinceNow < -24 * 60 * 60
     }
 
 }
