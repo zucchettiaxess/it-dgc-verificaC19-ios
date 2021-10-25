@@ -1,3 +1,21 @@
+/*
+ *  license-start
+ *
+ *  Copyright (C) 2021 Ministero della Salute and all other contributors
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+*/
+
 //
 //  SettingsViewController.swift
 //  Verifier
@@ -51,14 +69,11 @@ class SettingsViewController: UIViewController {
     private func initializeTaleView(){
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.tableHeaderView?.backgroundColor = .white
-        tableView.tableHeaderView?.tintColor = .white
         tableView.separatorColor = .clear
         tableView.backgroundView?.backgroundColor = .white
         
-        tableView.registerNibCell(ofType: SettingsCell.self, with: "settingsCell")
-        tableView.register(UINib(nibName: "TableViewHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "TableViewHeaderViewTitle")
-        tableView.register(UINib(nibName: "TableViewHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "TableViewHeaderView")
+        tableView.registerNibCell(ofType: SettingsCell.self, with: "SettingsCell")
+        tableView.registerNibCell(ofType: SettingsHeaderCell.self, with: "SettingsHeaderCell")
     }
     
     private func initializeBackButton() {
@@ -72,8 +87,8 @@ class SettingsViewController: UIViewController {
     
     func modeViewDidTap() {
         PickerViewController.present(for: self, with: .init(
-            doneButtonTitle: "label.done".localized,
-            cancelButtonTitle: "label.cancel".localized,
+            doneButtonTitle: "Done",
+            cancelButtonTitle: "Cancel",
             pickerOptions: self.pickerOptions,
             selectedOption: Store.get(key: .isTotemModeActive) == "0" ? 1 : 0,
             doneCallback: self.didTapDone,
@@ -104,16 +119,21 @@ class SettingsViewController: UIViewController {
 extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 5
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section{
+            
         case 0:
-            return 0
+            return 1
         case 1:
             return 1
         case 2:
+            return 1
+        case 3:
+            return 1
+        case 4:
             return 2
         default:
             return 0
@@ -122,34 +142,44 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCell", for: indexPath) as? SettingsCell else {return UITableViewCell()}
-        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath) as? SettingsCell else {return UITableViewCell()}
+                
+        guard let headerCell = tableView.dequeueReusableCell(withIdentifier: "SettingsHeaderCell", for: indexPath) as? SettingsHeaderCell else {return UITableViewCell()}
+                
         switch indexPath.section{
+        case 0 :
+            headerCell.fillCell(title: "settings.title".localized, isSeparatorHidden: false)
+            return headerCell
         case 1:
+            headerCell.fillCell(title: "settings.preferences".localized, fontSize: 13)
+            return headerCell
+        case 2:
             let value = Store.getBool(key: .isTotemModeActive)
             let valueString = value ? "settings.mode.automatic".localized : "settings.mode.manual".localized
             cell.fillCell(title: "settings.mode".localized, icon: "pencil", value: valueString)
-        case 2:
+            return cell
+        case 3:
+            headerCell.fillCell(title: "settings.informations".localized, fontSize: 13)
+            return headerCell
+        case 4:
             cell.fillCell(title: informationsSettings[indexPath.row], icon: "icon_arrow-right", value: nil)
+            return cell
         default:
             break
         }
-        
-        return cell
+        return UITableViewCell()
     }
         
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section{
-        case 0:
-            break
-        case 1:
+        case 2:
             switch indexPath.row{
             case 0:
                 modeViewDidTap()
             default:
                 break
             }
-        case 2:
+        case 4:
             switch indexPath.row{
             case 0:
                 faqDidTap()
@@ -163,36 +193,4 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        guard let tableViewHeaderTitle = tableView.dequeueReusableHeaderFooterView(withIdentifier: "TableViewHeaderViewTitle") as? TableViewHeaderView else { return nil}
-        
-        guard let tableViewHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: "TableViewHeaderView") as? TableViewHeaderView else { return nil}
-        
-        switch section{
-        case 0 :
-            tableViewHeaderTitle.titleLabel.text = "settings.title".localized
-            tableViewHeaderTitle.titleLabel.font = .boldSystemFont(ofSize: 24)
-            return tableViewHeaderTitle
-
-        case 1 :
-            tableViewHeader.titleLabel.text = "settings.preferences".localized
-            tableViewHeader.titleLabel.font = .boldSystemFont(ofSize: 14)
-            tableViewHeader.separatorView?.removeFromSuperview()
-            return tableViewHeader
-
-        case 2 :
-            tableViewHeader.titleLabel.text = "settings.informations".localized
-            tableViewHeader.titleLabel.font = .boldSystemFont(ofSize: 14)
-            tableViewHeader.separatorView?.removeFromSuperview()
-            return tableViewHeader
-
-        default:
-            return nil
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int){
-        view.tintColor = UIColor.white
-    }
 }

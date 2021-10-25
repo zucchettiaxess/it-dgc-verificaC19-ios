@@ -206,14 +206,14 @@
 		9020C5E62721600D00F45CA7 /* UITableView+Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653F928D26B00727000BE8F5 /* UITableView+Nib.swift */; };
 		9020C5E72721600D00F45CA7 /* CountryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653F928826B00474000BE8F5 /* CountryCell.swift */; };
 		9020C5E82721601E00F45CA7 /* CountryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 653F928926B00474000BE8F5 /* CountryCell.xib */; };
-		9020C5EC2721A20200F45CA7 /* TableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9020C5EB2721A20200F45CA7 /* TableViewHeaderView.swift */; };
-		9020C5ED2721A20200F45CA7 /* TableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9020C5EB2721A20200F45CA7 /* TableViewHeaderView.swift */; };
-		9020C5EF2721A20D00F45CA7 /* TableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9020C5EE2721A20D00F45CA7 /* TableViewHeaderView.xib */; };
-		9020C5F02721A20D00F45CA7 /* TableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9020C5EE2721A20D00F45CA7 /* TableViewHeaderView.xib */; };
 		9037A0A6270EFD2D0067DCF8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9037A0A5270EFD2D0067DCF8 /* SettingsViewController.swift */; };
 		9037A0A7270EFD2D0067DCF8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9037A0A5270EFD2D0067DCF8 /* SettingsViewController.swift */; };
 		9037A0A9270EFD490067DCF8 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9037A0A8270EFD490067DCF8 /* SettingsViewModel.swift */; };
 		9037A0AA270EFD490067DCF8 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9037A0A8270EFD490067DCF8 /* SettingsViewModel.swift */; };
+		90C2EB1B2726BA9B00E06A5F /* SettingsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C2EB192726BA9B00E06A5F /* SettingsHeaderCell.swift */; };
+		90C2EB1C2726BA9B00E06A5F /* SettingsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C2EB192726BA9B00E06A5F /* SettingsHeaderCell.swift */; };
+		90C2EB1D2726BA9B00E06A5F /* SettingsHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90C2EB1A2726BA9B00E06A5F /* SettingsHeaderCell.xib */; };
+		90C2EB1E2726BA9B00E06A5F /* SettingsHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90C2EB1A2726BA9B00E06A5F /* SettingsHeaderCell.xib */; };
 		90CDC6B7271EB48000707836 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CDC6B6271EB48000707836 /* SettingsCell.swift */; };
 		90CDC6B8271EB48000707836 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CDC6B6271EB48000707836 /* SettingsCell.swift */; };
 		90CDC6BA271EB48C00707836 /* SettingsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90CDC6B9271EB48C00707836 /* SettingsCell.xib */; };
@@ -362,11 +362,11 @@
 		6BA8B9E1266F7E4C0060D767 /* RecoveryValidityCheckTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryValidityCheckTests.swift; sourceTree = "<group>"; };
 		6BA8B9E3266F840B0060D767 /* TestValidityCheckTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestValidityCheckTests.swift; sourceTree = "<group>"; };
 		6BA8B9E72671227C0060D767 /* LocalDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataTests.swift; sourceTree = "<group>"; };
-		9020C5EB2721A20200F45CA7 /* TableViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHeaderView.swift; sourceTree = "<group>"; };
-		9020C5EE2721A20D00F45CA7 /* TableViewHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewHeaderView.xib; sourceTree = "<group>"; };
 		9037A0A5270EFD2D0067DCF8 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		9037A0A8270EFD490067DCF8 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		9037A0AB270EFD7D0067DCF8 /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
+		90C2EB192726BA9B00E06A5F /* SettingsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHeaderCell.swift; sourceTree = "<group>"; };
+		90C2EB1A2726BA9B00E06A5F /* SettingsHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsHeaderCell.xib; sourceTree = "<group>"; };
 		90CDC6B6271EB48000707836 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		90CDC6B9271EB48C00707836 /* SettingsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsCell.xib; sourceTree = "<group>"; };
 		90CDC6D8271F049A00707836 /* UIView+NibFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+NibFile.swift"; sourceTree = "<group>"; };
@@ -451,18 +451,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1410B209271DBACD00F912BA /* PickerView */ = {
+		1410B209271DBACD00F912BA /* PickerVC */ = {
 			isa = PBXGroup;
 			children = (
 				1410B20A271DBADD00F912BA /* PickerViewController.swift */,
 				1410B20C271EAE6000F912BA /* PickerViewController.xib */,
 			);
-			path = PickerView;
+			path = PickerVC;
 			sourceTree = "<group>";
 		};
 		65021B3626AEB1DC004C3D14 /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				9020C5F12721C1FB00F45CA7 /* CustomControllers */,
 				65021B5526AECB7E004C3D14 /* BaseComponents */,
 				65E7000726AF71AC00715CCC /* CustomViews */,
 				653F928526B0043F000BE8F5 /* CustomCells */,
@@ -517,6 +518,7 @@
 		653F928526B0043F000BE8F5 /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
+				90C2EB172726BA7600E06A5F /* SettingsHeaderCell */,
 				90CDC6AE271EB0E400707836 /* Settings Cell */,
 				653F929326B01BFD000BE8F5 /* CountryCell */,
 			);
@@ -784,8 +786,6 @@
 		65E7000726AF71AC00715CCC /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				9020C5EA2721A1E800F45CA7 /* TableViewHeaderView */,
-				1410B209271DBACD00F912BA /* PickerView */,
 				65021B4426AEC6AE004C3D14 /* AppShadowView */,
 				65E7000626AF718E00715CCC /* ResultView */,
 				65E7001126AF7BA300715CCC /* FaqView */,
@@ -842,13 +842,12 @@
 			path = ModelExtensions;
 			sourceTree = "<group>";
 		};
-		9020C5EA2721A1E800F45CA7 /* TableViewHeaderView */ = {
+		9020C5F12721C1FB00F45CA7 /* CustomControllers */ = {
 			isa = PBXGroup;
 			children = (
-				9020C5EB2721A20200F45CA7 /* TableViewHeaderView.swift */,
-				9020C5EE2721A20D00F45CA7 /* TableViewHeaderView.xib */,
+				1410B209271DBACD00F912BA /* PickerVC */,
 			);
-			path = TableViewHeaderView;
+			path = CustomControllers;
 			sourceTree = "<group>";
 		};
 		9037A0A4270EFC910067DCF8 /* Settings */ = {
@@ -859,6 +858,15 @@
 				9037A0AB270EFD7D0067DCF8 /* SettingsViewController.xib */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		90C2EB172726BA7600E06A5F /* SettingsHeaderCell */ = {
+			isa = PBXGroup;
+			children = (
+				90C2EB192726BA9B00E06A5F /* SettingsHeaderCell.swift */,
+				90C2EB1A2726BA9B00E06A5F /* SettingsHeaderCell.xib */,
+			);
+			path = SettingsHeaderCell;
 			sourceTree = "<group>";
 		};
 		90CDC6AE271EB0E400707836 /* Settings Cell */ = {
@@ -1128,7 +1136,6 @@
 				65E281E52697259D00377913 /* Roboto-Italic.ttf in Resources */,
 				65E281E62697259D00377913 /* Roboto-MediumItalic.ttf in Resources */,
 				65E281E72697259D00377913 /* TitilliumWeb-Regular.ttf in Resources */,
-				9020C5F02721A20D00F45CA7 /* TableViewHeaderView.xib in Resources */,
 				65E281E82697259D00377913 /* Roboto-Light.ttf in Resources */,
 				65E281E92697259D00377913 /* Localizable.strings in Resources */,
 				65E7001026AF75AD00715CCC /* ResultView.xib in Resources */,
@@ -1146,6 +1153,7 @@
 				65E281F32697259D00377913 /* Roboto-BoldItalic.ttf in Resources */,
 				65E281F42697259D00377913 /* LaunchScreen.storyboard in Resources */,
 				65E281F52697259D00377913 /* TitilliumWeb-Italic.ttf in Resources */,
+				90C2EB1E2726BA9B00E06A5F /* SettingsHeaderCell.xib in Resources */,
 				65E281F72697259D00377913 /* Roboto-Thin.ttf in Resources */,
 				65E281F82697259D00377913 /* TitilliumWeb-LightItalic.ttf in Resources */,
 				65E281FA2697259D00377913 /* TitilliumWeb-SemiBold.ttf in Resources */,
@@ -1171,7 +1179,6 @@
 				9F90C599265E591E00B2F992 /* Roboto-MediumItalic.ttf in Resources */,
 				9F90C597265E591E00B2F992 /* TitilliumWeb-Regular.ttf in Resources */,
 				9F90C595265E591E00B2F992 /* Roboto-Light.ttf in Resources */,
-				9020C5EF2721A20D00F45CA7 /* TableViewHeaderView.xib in Resources */,
 				1410B20D271EAE6000F912BA /* PickerViewController.xib in Resources */,
 				9F4F3C612649D71F00F59BA2 /* Localizable.strings in Resources */,
 				65E7000F26AF75AD00715CCC /* ResultView.xib in Resources */,
@@ -1190,6 +1197,7 @@
 				65E281692697217B00377913 /* LaunchScreen.storyboard in Resources */,
 				9F90C5A3265E591E00B2F992 /* TitilliumWeb-Italic.ttf in Resources */,
 				90E9560A270F397600DAA963 /* SettingsViewController.xib in Resources */,
+				90C2EB1D2726BA9B00E06A5F /* SettingsHeaderCell.xib in Resources */,
 				9F90C5A7265E591E00B2F992 /* Roboto-Thin.ttf in Resources */,
 				9F90C5A0265E591E00B2F992 /* TitilliumWeb-LightItalic.ttf in Resources */,
 				653F928B26B00474000BE8F5 /* CountryCell.xib in Resources */,
@@ -1272,7 +1280,6 @@
 				65021B4C26AEC889004C3D14 /* AppButton.swift in Sources */,
 				65E281B92697259D00377913 /* TestValidityCheck.swift in Sources */,
 				65E281BB2697259D00377913 /* HCert+PersonalData.swift in Sources */,
-				9020C5ED2721A20200F45CA7 /* TableViewHeaderView.swift in Sources */,
 				65E3C1DE2716E444004B2E98 /* AVCaptureDevice+Camera.swift in Sources */,
 				65021B6926AEEC48004C3D14 /* UIImage+Colors.swift in Sources */,
 				65021B5426AEC88E004C3D14 /* UIView+Shadow.swift in Sources */,
@@ -1328,6 +1335,7 @@
 				65E281D22697259D00377913 /* DateFormatter+Default.swift in Sources */,
 				65E281D32697259D00377913 /* HCert+Vaccine.swift in Sources */,
 				65E3C1D72716D87A004B2E98 /* Store.swift in Sources */,
+				90C2EB1C2726BA9B00E06A5F /* SettingsHeaderCell.swift in Sources */,
 				9037A0A7270EFD2D0067DCF8 /* SettingsViewController.swift in Sources */,
 				65E281D42697259D00377913 /* VerificationViewController.swift in Sources */,
 				65E281D52697259D00377913 /* UIViewController+Alert.swift in Sources */,
@@ -1358,7 +1366,6 @@
 				65EFB62626B0BFB90081682B /* MedicalRulesValidator.swift in Sources */,
 				65C3A55E26AF01EB000BBCC5 /* AppLabel.swift in Sources */,
 				65E281A8269721ED00377913 /* HCert+Recovery.swift in Sources */,
-				9020C5EC2721A20200F45CA7 /* TableViewHeaderView.swift in Sources */,
 				658CB71E26AF359100B90EC0 /* UIImage+Rotate.swift in Sources */,
 				653F928E26B00727000BE8F5 /* UITableView+Nib.swift in Sources */,
 				65E281A1269721ED00377913 /* LocalData+Setting.swift in Sources */,
@@ -1414,6 +1421,7 @@
 				65EFB62926B0BFC00081682B /* CertLogicValidator.swift in Sources */,
 				65021B6826AEEC48004C3D14 /* UIImage+Colors.swift in Sources */,
 				65E281AA269721ED00377913 /* HCert+Vaccine.swift in Sources */,
+				90C2EB1B2726BA9B00E06A5F /* SettingsHeaderCell.swift in Sources */,
 				65E2816D2697217B00377913 /* VerificationViewController.swift in Sources */,
 				65021B4826AEC768004C3D14 /* UIView+Shadow.swift in Sources */,
 				65021B4326AEC202004C3D14 /* UIButton+Inspectable.swift in Sources */,
