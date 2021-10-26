@@ -31,9 +31,9 @@ extension GatewayConnection {
     private var settingsUrl: String { baseUrl + "settings" }
     
     func settings(completion: ((String?) -> Void)? = nil) {
-        getSettings { settings in
+        getSettings { settings, error in
             guard let settings = settings else {
-                completion?("server.error.generic.error".localized)
+                completion?(error)
                 return
             }
             
@@ -41,20 +41,26 @@ extension GatewayConnection {
                 SettingDataStorage.sharedInstance.addOrUpdateSettings(setting)
             }
             SettingDataStorage.sharedInstance.save()
+            LocalData.sharedInstance.lastFetch = Date()
+            LocalData.sharedInstance.save()
             
             completion?(nil)
         }
     }
     
-    private func getSettings(completion: (([Setting]?) -> Void)?) {
+    private func getSettings(completion: (([Setting]?, String?) -> Void)?) {
         session.request(settingsUrl).response {
+            guard let status = $0.response?.statusCode else {
+                completion?(nil, "server.error.generic.error".localized)
+                return
+            }
             let decoder = JSONDecoder()
             let data = try? decoder.decode([Setting].self, from: $0.data ?? .init())
             guard let settings = data else {
-                completion?(nil)
+                completion?(nil, "server.error.error.with.status".localized + "\(status)")
                 return
             }
-            completion?(settings)
+            completion?(settings, nil)
         }
     }
 

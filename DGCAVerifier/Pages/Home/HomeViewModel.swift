@@ -89,10 +89,7 @@ extension HomeViewModel {
     
     private func loadSettings(in loadingGroup: DispatchGroup) {
         SettingDataStorage.initialize {
-            GatewayConnection.shared.settings { _ in
-                print("log.settings.done")
-                loadingGroup.leave()
-            }
+            loadingGroup.leave()
         }
         loadingGroup.enter()
     }
@@ -101,6 +98,7 @@ extension HomeViewModel {
         LocalData.initialize {
             GatewayConnection.shared.update { _ in
                 print("log.keys.done")
+                print("log.settings.done")
                 loadingGroup.leave()
             }
         }
